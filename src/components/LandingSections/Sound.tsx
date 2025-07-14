@@ -1,7 +1,8 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 
-function PassThrough() {
+
+function Sound() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
   const [hasPlayedOnce, setHasPlayedOnce] = useState(false);
@@ -69,7 +70,7 @@ function PassThrough() {
     observer.observe(section);
 
     let lastScrollY = window.scrollY;
-    let scrollTimeout: ReturnType<typeof setTimeout>;
+    let scrollTimeout: NodeJS.Timeout;
 
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
@@ -102,14 +103,14 @@ function PassThrough() {
         muted
         playsInline
         preload="metadata"
-        className="absolute inset-0 -left-64 scale-[1.4] w-full h-full object-cover"
+        className="absolute inset-0  w-full h-full object-cover"
       >
         <source
-          src="https://lumynxr-cdn.azureedge.net/videos/Passthrough.webm"
+          src="https://lumynxr-cdn.azureedge.net/videos/Speakers.webm"
           type="video/webm"
         />
         <source
-          src="https://lumynxr-cdn.azureedge.net/videos/Passthrough.mp4"
+          src="https://lumynxr-cdn.azureedge.net/videos/Speakers.mp4"
           type="video/mp4"
         />
         Your browser does not support the video tag.
@@ -119,14 +120,15 @@ function PassThrough() {
       <div className="absolute inset-0 flex justify-end items-center p-10 right-32">
         <div className="max-w-xl text-left">
           <h1 className="text-4xl md:text-[96px] font-light leading-[100px] text-[#E2E2E2] tracking-[0%]">
-            Clear
+            Immersive
             <br />
-            Passthrough
+            Sound
           </h1>
           <div className="w-[46px] h-1 bg-white my-[40px] rounded"></div>
           <p className="text-xl md:text-2xl font-extralight leading-[32px] text-[#C5C5C5] tracking-[0.2%]">
-            LumynXR delivers full-color passthrough <br /> with iToF depth
-            sensing for a vivid and <br /> accurate Mixed Reality experience.
+            LumynXR delivers a rich 3D soundstage - <br /> so every sound feels
+            perfectly placed in <br />
+            your environment.
           </p>
         </div>
       </div>
@@ -134,4 +136,4 @@ function PassThrough() {
   );
 }
 
-export default PassThrough;
+export default Sound;
