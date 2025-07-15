@@ -1,25 +1,33 @@
-import React from 'react'
+import React from 'react';
 
 function Hero() {
   return (
-    <div className='flexh-full w-full  '>
-      <div className=" absolute  h-[895px] w-[1590px] top-[102px]  ">
+    <div className="flex h-screen w-screen items-center justify-center gap-40 px-12 bg-black">
+      {/* Video Section */}
+      <div className="w-[640px] h-[480px] flex-shrink-0">
         <video
-          className="object-center object-cover w-full h-full " 
+          className="w-full h-full object-cover rounded-xl"
           src={`${process.env.NEXT_PUBLIC_CDN_URL}/videos/Header.webm`}
           autoPlay
           loop
           muted
-        /> 
+        />
       </div>
-      <div className=" gap-[60px]  flex flex-col absolute right-[200px] top-[357px]  ">
-        <div className="text-[96px]  leading-[100px]  text-[#E2E2E2]">
+
+      {/* Text Section */}
+      <div className="flex flex-col gap-10 max-w-xl text-left">
+        <div className="text-[64px] leading-[72px] font-light text-[#E2E2E2]">
           Realities <br /> Unlike Before
         </div>
-        <div className="text-[24px] leading-[32px] font-[250] text-[#C5C5C5]">LumynXR is a high-performance mixed reality <br />headset designed for the future of spatial <br />computing, with enterprise-ready features for <br /> cross-industry innovation</div></div>
-
+        <div className="text-[20px] leading-[30px] font-extralight text-[#C5C5C5]">
+          LumynXR is a high-performance mixed reality <br />
+          headset designed for the future of spatial <br />
+          computing, with enterprise-ready features for <br />
+          cross-industry innovation
+        </div>
+      </div>
     </div>
-  )
+  );
 }
 
-export default Hero
+export default Hero;

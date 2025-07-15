@@ -12,7 +12,7 @@ import RevealingHeadset from "@/components/LandingSections/RevealingHeadset";
 import Sound from "@/components/LandingSections/Sound";
 import WhatsInTheBox from "@/components/LandingSections/WhatsInTheBox";
 import Navbar from "@/components/navbar";
-import Image from "next/image";
+import ClientWrapper from "./ClientWrapper";
 
 export default function Home() {
   return (
@@ -42,19 +42,9 @@ export default function Home() {
       <section id="product" data-theme="dark" className="h-screen bg-black">
         <Controller />
       </section>
-      <section id="product" data-theme="light" className="h-screen w-screen overflow-hidden">
-        <HoldingHeadset />
-      </section>
-      <section id="product" data-theme="dark" className="h-screen bg-black">
-        <Features />
-      </section>
-      <section id="product" data-theme="light" className="h-screen ">
-        <WhatsInTheBox />
-      </section>
-      <section id="product" data-theme="light" className="h-screen ">
-        <BuiltForEnterprise />
-      </section>
-      <Footer />
+
+      {/* 👇 This wraps only the scroll-sensitive section */}
+      <ClientWrapper />
     </>
   );
 }

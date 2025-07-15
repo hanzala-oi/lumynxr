@@ -20,18 +20,18 @@ function WhatsInTheBox() {
     ];
 
     return (
-        <div className='min-h-screen bg-[#FAFAFA] py-[223px] px-8'>
+        <div className='h-screen bg-[#FAFAFA] py-[223px] '>
             <div className=' mx-auto'>
-                <div className='grid grid-cols-1 lg:grid-cols-2 gap-[48px] pl-[123px]'>
+                <div className='grid grid-cols-1 lg:grid-cols-2 gap-[48px] pl-[122px]'>
 
                     {/* What's in the Box Section */}
                     <div>
-                        <h2 className="text-[64px] font-[350] text-black mb-16 ">
+                        <h2 className="text-[64px] leading-[100px] font-[300]  text-black  ">
                             What's in the Box?
                         </h2>
 
                         <div className="">
-                            <div className=''>
+                            <div className='ml-[-259px] mt-[-20] '>
                                 <Image
                                     src={`${process.env.NEXT_PUBLIC_CDN_URL}/images/BoxContents.png`}
                                     alt="LumynXR Logo"
@@ -50,10 +50,10 @@ function WhatsInTheBox() {
                             Specifications
                         </h2>
 
-                        <div className=" p-2 w-[600px]">
-                            <div className="space-y-2">
+                        <div className="  w-[600px]">
+                            <div className="">
                                 {specifications.map((spec, index) => (
-                                    <div key={index} className="flex justify-between items-center py-2 ">
+                                    <div key={index} className="flex justify-between items-center py-0.5 ">
                                         <span className="text-[#5B5B5B] text-[20px] font-extralight">{spec.label}</span>
                                         <div className="flex items-center start  w-[325px]">
                                             <span className="text-[#5B5B5B] text-[20px] font-normal ">{spec.value}</span>
