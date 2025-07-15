@@ -59,10 +59,10 @@ const Features: React.FC = () => {
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-black">
-      <div className="flex gap-3">
+      <div className="flex gap-[6px]">
         {/* Left Large Card */}
         <div
-          className="relative rounded-xl overflow-hidden shadow-lg group"
+          className="relative rounded-xl bg-[#090909] overflow-hidden shadow-lg group"
           style={{
             width: "759px",
             height: "754px",
@@ -81,7 +81,7 @@ const Features: React.FC = () => {
             <source src={features[0].sources.mp4} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
-          <div className="absolute flex justify-center items-start flex-col gap-3 bottom-6 left-6 ">
+          <div className="absolute flex justify-center items-start flex-col gap-5 bottom-6 left-6 ">
             <h1 className="text-[20px] font-normal leading-[100%] tracking-[0%] text-[#F2F2F2]">
               {features[0].title}
             </h1>
@@ -93,10 +93,10 @@ const Features: React.FC = () => {
         </div>
 
         {/* Right Stacked Cards */}
-        <div className="flex flex-col justify-between">
+        <div className="flex flex-col gap-[6px]">
           {/* First Right Card */}
           <div
-            className="relative rounded-xl overflow-hidden flex justify-center items-start shadow-lg group"
+            className="relative rounded-xl bg-[#090909] overflow-hidden flex justify-center items-start shadow-lg group"
             style={{
               width: "711px",
               height: "468.37px",
@@ -115,7 +115,7 @@ const Features: React.FC = () => {
               <source src={features[1].sources.mp4} type="video/mp4" />
               Your browser does not support the video tag.
             </video>
-            <div className="absolute flex justify-center items-start flex-col gap-3 bottom-6 left-6 ">
+            <div className="absolute flex justify-center items-start flex-col gap-5 bottom-6 left-6 ">
               <h1 className="text-[20px] font-normal leading-[100%] tracking-[0%] text-[#F2F2F2]">
                 {features[1].title}
               </h1>
@@ -128,14 +128,14 @@ const Features: React.FC = () => {
 
           {/* Second Right Card */}
           <div
-            className="relative rounded-xl overflow-hidden shadow-lg group flex justify-center items-start mt-4"
+            className="relative rounded-xl  bg-[#090909] overflow-hidden shadow-lg group flex justify-end items-start "
             style={{
               width: "711px",
               height: "281px",
             }}
           >
             <video
-              className="w-[600px] object-cover"
+              className="w-[500px] h-auto flex justify-start items-start object-cover"
               muted
               loop
               playsInline
@@ -147,7 +147,7 @@ const Features: React.FC = () => {
               <source src={features[2].sources.mp4} type="video/mp4" />
               Your browser does not support the video tag.
             </video>
-            <div className="absolute flex justify-center items-start flex-col gap-3 bottom-6 left-6 ">
+            <div className="absolute flex justify-center items-start flex-col gap-5 bottom-6 left-6 ">
               <h1 className="text-[20px] font-normal leading-[100%] tracking-[0%] text-[#F2F2F2]">
                 {features[2].title}
               </h1>
