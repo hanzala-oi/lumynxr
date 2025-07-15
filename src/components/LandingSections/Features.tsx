@@ -1,0 +1,165 @@
+"use client";
+import React from "react";
+
+type VideoSource = {
+  webm: string;
+  mp4: string;
+};
+
+type Feature = {
+  title: string;
+
+  sources: VideoSource;
+};
+
+const features: Feature[] = [
+  {
+    title: "Anti-fogging ventilation system",
+
+    sources: {
+      webm: "https://lumynxr-cdn.azureedge.net/videos/Controllers.webm",
+      mp4: "https://lumynxr-cdn.azureedge.net/videos/Controllers.mp4",
+    },
+  },
+  {
+    title: "Easy IPD Adjustment",
+
+    sources: {
+      webm: "https://lumynxr-cdn.azureedge.net/videos/IPD-Bentou.webm",
+      mp4: "https://lumynxr-cdn.azureedge.net/videos/IPD-Bento.mp4",
+    },
+  },
+  {
+    title: "Power that lasts",
+
+    sources: {
+      webm: "https://lumynxr-cdn.azureedge.net/videos/Batteryu.webm",
+      mp4: "https://lumynxr-cdn.azureedge.net/videos/Battery.mp4",
+    },
+  },
+];
+
+const Features: React.FC = () => {
+  const handleMouseEnter = (e: React.MouseEvent<HTMLVideoElement>) => {
+    const video = e.currentTarget;
+    if (video.paused) {
+      video.play().catch((err) => {
+        console.warn("Video play interrupted:", err);
+      });
+    }
+  };
+
+  const handleMouseLeave = (e: React.MouseEvent<HTMLVideoElement>) => {
+    const video = e.currentTarget;
+    if (!video.paused) {
+      video.pause();
+      video.currentTime = 0;
+    }
+  };
+
+  return (
+    <div className="flex justify-center items-center min-h-screen bg-black">
+      <div className="flex gap-3">
+        {/* Left Large Card */}
+        <div
+          className="relative rounded-xl overflow-hidden shadow-lg group"
+          style={{
+            width: "759px",
+            height: "754px",
+          }}
+        >
+          <video
+            className="w-full h-full object-cover transition duration-300 ease-in-out group-hover:scale-105"
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+          >
+            <source src={features[0].sources.webm} type="video/webm" />
+            <source src={features[0].sources.mp4} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <div className="absolute flex justify-center items-start flex-col gap-3 bottom-6 left-6 ">
+            <h1 className="text-[20px] font-normal leading-[100%] tracking-[0%] text-[#F2F2F2]">
+              {features[0].title}
+            </h1>
+            <p className="text-[16px] leading-[24px] tracking-[3%] font-extralight text-[#F2F2F2]">
+              Built-in anti-fog ventilation keeps your view clear and <br/>
+              uninterrupted during extended use
+            </p>
+          </div>
+        </div>
+
+        {/* Right Stacked Cards */}
+        <div className="flex flex-col justify-between">
+          {/* First Right Card */}
+          <div
+            className="relative rounded-xl overflow-hidden flex justify-center items-start shadow-lg group"
+            style={{
+              width: "711px",
+              height: "468.37px",
+            }}
+          >
+            <video
+              className="w-[600px] object-cover"
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+            >
+              <source src={features[1].sources.webm} type="video/webm" />
+              <source src={features[1].sources.mp4} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+            <div className="absolute flex justify-center items-start flex-col gap-3 bottom-6 left-6 ">
+              <h1 className="text-[20px] font-normal leading-[100%] tracking-[0%] text-[#F2F2F2]">
+                {features[1].title}
+              </h1>
+              <p className="text-[16px] leading-[24px] tracking-[3%] font-extralight text-[#F2F2F2]">
+                Adjustable IPD range from 56-70mm ensures a clear,<br />
+                comfortable view tailored to each user’s eye distance
+              </p>
+            </div>
+          </div>
+
+          {/* Second Right Card */}
+          <div
+            className="relative rounded-xl overflow-hidden shadow-lg group flex justify-center items-start mt-4"
+            style={{
+              width: "711px",
+              height: "281px",
+            }}
+          >
+            <video
+              className="w-[600px] object-cover"
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+            >
+              <source src={features[2].sources.webm} type="video/webm" />
+              <source src={features[2].sources.mp4} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+            <div className="absolute flex justify-center items-start flex-col gap-3 bottom-6 left-6 ">
+              <h1 className="text-[20px] font-normal leading-[100%] tracking-[0%] text-[#F2F2F2]">
+                {features[2].title}
+              </h1>
+              <p className="text-[16px] leading-[24px] tracking-[3%] font-extralight text-[#F2F2F2]">
+                5500mAh battery for long lasting <br /> power for extended use
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Features;

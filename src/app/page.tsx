@@ -3,6 +3,7 @@ import BuiltForEnterprise from "@/components/LandingSections/BuiltForEnterprice"
 import Chipset from "@/components/LandingSections/Chipset";
 import Comfort from "@/components/LandingSections/Comfort";
 import Controller from "@/components/LandingSections/Controller";
+import Features from "@/components/LandingSections/Features";
 import Hero from "@/components/LandingSections/Hero";
 import HoldingHeadset from "@/components/LandingSections/HoldingHeadset";
 import Optical from "@/components/LandingSections/Optical";
@@ -43,6 +44,9 @@ export default function Home() {
       </section>
       <section id="product" data-theme="light" className="h-screen w-screen overflow-hidden">
         <HoldingHeadset />
+      </section>
+      <section id="product" data-theme="dark" className="h-screen bg-black">
+        <Features />
       </section>
       <section id="product" data-theme="light" className="h-screen ">
         <WhatsInTheBox />
