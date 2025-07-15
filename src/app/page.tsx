@@ -1,11 +1,15 @@
+import Footer from "@/components/footer";
+import BuiltForEnterprise from "@/components/LandingSections/BuiltForEnterprice";
 import Chipset from "@/components/LandingSections/Chipset";
 import Comfort from "@/components/LandingSections/Comfort";
 import Controller from "@/components/LandingSections/Controller";
 import Hero from "@/components/LandingSections/Hero";
+import HoldingHeadset from "@/components/LandingSections/HoldingHeadset";
 import Optical from "@/components/LandingSections/Optical";
 import PassThrough from "@/components/LandingSections/PassThrough";
 import RevealingHeadset from "@/components/LandingSections/RevealingHeadset";
 import Sound from "@/components/LandingSections/Sound";
+import WhatsInTheBox from "@/components/LandingSections/WhatsInTheBox";
 import Navbar from "@/components/navbar";
 import Image from "next/image";
 
@@ -19,7 +23,7 @@ export default function Home() {
       <section id="product" data-theme="dark" className="h-screen bg-[#E2E2E2]">
         <RevealingHeadset />
       </section>
-       <section id="product" data-theme="dark" className="h-screen bg-black">
+      <section id="product" data-theme="dark" className="h-screen bg-black">
         <Optical />
       </section>
       <section id="product" data-theme="dark" className="h-screen bg-black">
@@ -37,6 +41,16 @@ export default function Home() {
       <section id="product" data-theme="dark" className="h-screen bg-black">
         <Controller />
       </section>
+      <section id="product" data-theme="light" className="h-screen w-screen overflow-hidden">
+        <HoldingHeadset />
+      </section>
+      <section id="product" data-theme="light" className="h-screen ">
+        <WhatsInTheBox />
+      </section>
+      <section id="product" data-theme="light" className="h-screen ">
+        <BuiltForEnterprise />
+      </section>
+      <Footer />
     </>
   );
 }

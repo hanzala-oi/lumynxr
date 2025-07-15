@@ -2,10 +2,43 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { StarBorder } from './ui/star-border';
 
 const Footer: React.FC = () => {
     return (
-        <footer className="bg-black text-white py-12 px-3 md:px-12     ">
+        <footer className="bg-black text-white py-12 pt-32   ">
+            <div className=' flex flex-col items-center justify-center px-8'>
+                <div className="max-w-4xl w-full text-center">
+                    {/* Main Heading */}
+                    <h1 className="text-[64px] xl:text-[96px] mb-[38px] xl:mb-[60px] font-[300] flex items-center justify-center flex-col text-[#E2E2E2] gap-[19px] xl:gap-[60px]">
+                        Reserve a LumynXR
+                        <svg xmlns="http://www.w3.org/2000/svg" width="52" height="6" viewBox="0 0 52 6" fill="none">
+                            <path d="M3 3C18.3333 3 49 3 49 3" stroke="#C5C5C5" strokeWidth="5" strokeLinecap="round" />
+                        </svg>
+                    </h1>
+
+                    {/* Description */}
+                    <div className="mx-auto mb-[60px]">
+                        <p className="text-[20px] xl:text-[24px] font-[200] text-[#C5C5C5] leading-[32px] tracking-[0.04px]">
+                            We are ready for the enterprise market and actively seeking close collaborations <br /> to bring our headset to your teams. For more details or to reserve a LumynXR, <br />please contact our sales team.
+                        </p>
+                    </div>
+
+                    <StarBorder darkMode={true} className="mb-8">
+                        TALK TO SALES
+                    </StarBorder>
+                </div>
+            </div>
+            <div className="flex justify-center mb-[242px] w-full mt-[38px]">
+                <Image
+                    src={`${process.env.NEXT_PUBLIC_CDN_URL}/images/Footer.png`}
+                    alt="LumynXR Logo"
+                    width={1630} // use real resolution width of the image
+                    height={861}
+                    className="h-auto w-screen "
+                    priority // optional: load early for performance
+                />
+            </div>
             <div className="max-w-7xl mx-auto">
                 {/* Main Footer Content */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
