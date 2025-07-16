@@ -8,42 +8,43 @@ function Optical() {
   const [isVisible, setIsVisible] = useState(false);
   const playPromiseRef = useRef<Promise<void> | null>(null);
 
-const playVideo = async () => {
-  const video = videoRef.current;
-  if (!video) return;
+  const playVideo = async () => {
+    const video = videoRef.current;
+    if (!video) return;
 
-  try {
-    if (video.paused) {
-      // Only try to play if it’s paused
-      playPromiseRef.current = video.play();
-      await playPromiseRef.current;
+    try {
+      if (video.paused) {
+        // Only try to play if it’s paused
+        playPromiseRef.current = video.play();
+        await playPromiseRef.current;
+      }
+    } catch (error) {
+      if (error instanceof Error && error.name !== "AbortError") {
+        console.error("Video play error:", error);
+      }
+    } finally {
+      playPromiseRef.current = null;
     }
-  } catch (error) {
-    if (error instanceof Error && error.name !== "AbortError") {
-      console.error("Video play error:", error);
-    }
-  } finally {
-    playPromiseRef.current = null;
-  }
-};
+  };
 
-const pauseVideo = async () => {
-  const video = videoRef.current;
-  if (!video) return;
+  const pauseVideo = async () => {
+    const video = videoRef.current;
+    if (!video) return;
 
-  try {
-    if (!video.paused) {
-      video.pause();
+    try {
+      if (!video.paused) {
+        video.pause();
+      }
+    } catch (error) {
+      if (error instanceof Error && error.name !== "AbortError") {
+        console.error("Video pause error:", error);
+      }
     }
-  } catch (error) {
-    if (error instanceof Error && error.name !== "AbortError") {
-      console.error("Video pause error:", error);
-    }
-  }
-};
+  };
 
 
   useEffect(() => {
+    console.log(window.innerWidth, window.innerHeight);
     const video = videoRef.current;
     const section = sectionRef.current;
 
@@ -111,11 +112,11 @@ const pauseVideo = async () => {
           className="w-full h-full object-cover"
         >
           <source
-            src="https://lumynxr-cdn.azureedge.net/videos/Optical.webm"
+            src={`${process.env.NEXT_PUBLIC_CDN_URL}/videos/Optical.webm`}
             type="video/webm"
           />
           <source
-            src="https://lumynxr-cdn.azureedge.net/videos/Optical.mp4"
+            src={`${process.env.NEXT_PUBLIC_CDN_URL}/videos/Optical.mp4`}
             type="video/mp4"
           />
           Your browser does not support the video tag.
@@ -124,7 +125,7 @@ const pauseVideo = async () => {
 
       {/* Content Section */}
       <div className="flex flex-col w-full md:w-[40%]">
-        <h1 className="text-4xl md:text-[96px] font-light leading-[100px] text-[#E2E2E2] tracking-tight">
+        <h1 className="text-[48px] xl:text-[48px] xl-text-red-500 2xl:text-[64px] 2xl:text-yellow-500 3xl:text-[96px] 3xl:text-green-500  font-light leading-[100px] text-[#E2E2E2] tracking-tight">
           See Every
           <br />
           Detail

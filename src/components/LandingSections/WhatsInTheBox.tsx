@@ -46,7 +46,7 @@ function WhatsInTheBox() {
 
                     {/* Specifications Section */}
                     <div>
-                        <h2 className="text-[64px] font-[350]  text-black mb-[54px]">
+                        <h2 className="text-[64px] font-[300]  text-black mb-[54px]">
                             Specifications
                         </h2>
 
@@ -55,7 +55,7 @@ function WhatsInTheBox() {
                                 {specifications.map((spec, index) => (
                                     <div key={index} className="flex justify-between items-center py-0.5 ">
                                         <span className="text-[#5B5B5B] text-[20px] font-extralight">{spec.label}</span>
-                                        <div className="flex items-center start  w-[325px]">
+                                        <div className="flex items-center start  w-[335px]">
                                             <span className="text-[#5B5B5B] text-[20px] font-normal ">{spec.value}</span>
                                         </div>
                                     </div>

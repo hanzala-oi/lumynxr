@@ -33,8 +33,8 @@ const features: Feature[] = [
     title: "Power that lasts",
 
     sources: {
-      webm: "${process.env.NEXT_PUBLIC_CDN_URL}/videos/Batteryu.webm",
-      mp4: "${process.env.NEXT_PUBLIC_CDN_URL}/videos/Battery.mp4",
+      webm: `${process.env.NEXT_PUBLIC_CDN_URL}/videos/Batteryu.webm`,
+      mp4: `${process.env.NEXT_PUBLIC_CDN_URL}/videos/Battery.mp4`,
     },
   },
 ];
@@ -86,7 +86,7 @@ const Features: React.FC = () => {
               {features[0].title}
             </h1>
             <p className="text-[16px] leading-[24px] tracking-[3%] font-extralight text-[#F2F2F2]">
-              Built-in anti-fog ventilation keeps your view clear and <br/>
+              Built-in anti-fog ventilation keeps your view clear and <br />
               uninterrupted during extended use
             </p>
           </div>
@@ -121,7 +121,7 @@ const Features: React.FC = () => {
               </h1>
               <p className="text-[16px] leading-[24px] tracking-[3%] font-extralight text-[#F2F2F2]">
                 Adjustable IPD range from 56-70mm ensures a clear,<br />
-                comfortable view tailored to each user’s eye distance
+                comfortable view tailored to each user&apso;s eye distance
               </p>
             </div>
           </div>

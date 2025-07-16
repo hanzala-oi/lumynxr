@@ -6,8 +6,12 @@ module.exports = {
     "./pages/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {
-        animation: {
+        extend: {
+
+      fontFamily: {
+        sans: ['var(--font-dm-sans)', 'sans-serif'],
+      },
+      animation: {
         'star-movement-bottom': 'star-movement-bottom linear infinite alternate',
         'star-movement-top': 'star-movement-top linear infinite alternate',
       },
