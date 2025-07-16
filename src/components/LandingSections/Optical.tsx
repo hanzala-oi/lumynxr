@@ -125,7 +125,7 @@ function Optical() {
 
       {/* Content Section */}
       <div className="flex flex-col w-full md:w-[40%]">
-        <h1 className="text-[48px] xl:text-[48px] xl-text-red-500 2xl:text-[64px] 2xl:text-yellow-500 3xl:text-[96px] 3xl:text-green-500  font-light leading-[100px] text-[#E2E2E2] tracking-tight">
+        <h1 className="text-[96px]   font-light leading-[100px] text-[#E2E2E2] tracking-tight">
           See Every
           <br />
           Detail
