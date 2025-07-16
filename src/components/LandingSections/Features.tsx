@@ -15,8 +15,8 @@ const features: Feature[] = [
   {
     title: "Anti-fogging ventilation system",
     sources: {
-      webm: `${process.env.NEXT_PUBLIC_CDN_URL}/videos/Controllers.webm`,
-      mp4: `${process.env.NEXT_PUBLIC_CDN_URL}/videos/Controllers.mp4`,
+      webm: `${process.env.NEXT_PUBLIC_CDN_URL}/videos/Ventilation.webm`,
+      mp4: `${process.env.NEXT_PUBLIC_CDN_URL}/videos/Ventilation.mp4`,
     },
   },
   {

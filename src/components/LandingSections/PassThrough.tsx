@@ -102,7 +102,7 @@ function PassThrough() {
         muted
         playsInline
         preload="metadata"
-        className="absolute inset-0 -left-64 scale-[1.4] w-full h-full object-cover"
+        className="absolute inset-0 -left-64 scale-[1.1] w-full h-full object-cover"
       >
         <source
           src={`${process.env.NEXT_PUBLIC_CDN_URL}/videos/passthrough.webm`}
@@ -116,8 +116,8 @@ function PassThrough() {
       </video>
 
       {/* Overlay Text */}
-      <div className="absolute inset-0 flex justify-end items-center p-10 right-2">
-        <div className="max-w-xl text-left">
+      <div className="absolute w-3/5 flex justify-end items-center p-10 right-32 top-1/2 transform -translate-y-1/2">
+        <div className="text-left">
           <h1 className="text-4xl md:text-[96px] font-light leading-[100px] text-[#E2E2E2] tracking-[0%]">
             Clear
             <br />

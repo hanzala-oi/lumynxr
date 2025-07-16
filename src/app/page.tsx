@@ -23,7 +23,7 @@ export default function Home() {
       <section id="product" data-theme="dark" className=" ">
         <RevealingHeadset />
       </section>
-      <section id="product" data-theme="dark" className="h-screen bg-black">
+      <section id="product" data-theme="dark" className="h-[120vh] bg-black">
         <Optical />
       </section>
       <section id="product" data-theme="dark" className="h-screen bg-black">

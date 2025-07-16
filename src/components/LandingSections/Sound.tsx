@@ -103,22 +103,22 @@ function Sound() {
         muted
         playsInline
         preload="metadata"
-        className="absolute inset-0  w-full h-full object-cover"
+        className="absolute w-full h-full object-cover"
       >
         <source
-          src={`${process.env.NEXT_PUBLIC_CDN_URL}/videos/speakers.webm`}
+          src={`${process.env.NEXT_PUBLIC_CDN_URL}/videos/Speakersv2.webm`}
           type="video/webm"
         />
         <source
-          src={`${process.env.NEXT_PUBLIC_CDN_URL}/videos/Speakers.mp4`}
+          src={`${process.env.NEXT_PUBLIC_CDN_URL}/videos/Speakersv2.mp4`}
           type="video/mp4"
         />
         Your browser does not support the video tag.
       </video>
 
       {/* Overlay Text */}
-      <div className="absolute inset-0 flex justify-end items-center p-10 right-32">
-        <div className="max-w-xl text-left">
+      <div className="absolute inset-0 flex justify-end items-center p-10 right-56 top-1/2 transform -translate-y-1/2">
+        <div className=" text-left">
           <h1 className="text-4xl md:text-[96px] font-light leading-[100px] text-[#E2E2E2] tracking-[0%]">
             Immersive
             <br />

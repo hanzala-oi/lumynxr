@@ -4,9 +4,9 @@ function Hero() {
   return (
     <div className="flex flex-col xl:flex-row h-screen w-screen items-start xl:items-center justify-center bg-black ">
       {/* Video Section */}
-      <div className="w-auto xl:w-3/4  xl:ml-[-158px] 2xl:ml-[-206px] h-[301px]  xl:h-full flex-shrink-0  ">
+      <div className="w-auto xl:w-3/5 xl:ml-[-158px] 2xl:ml-[-206px] h-[301px] xl:h-full flex-shrink-0 p-10 ">
         <video
-          className="w-full h-full object-cover rounded-xl"
+          className=" object-cover rounded-xl"
           autoPlay
           muted
         >
@@ -23,7 +23,7 @@ function Hero() {
       </div>
 
       {/* Text Section */}
-      <div className="flex flex-col gap-[16px] xl:gap-10  text-left ml-[26px] xl:ml-0 mt-[68px] xl:mt-0 ">
+      <div className="flex flex-col gap-[16px] xl:gap-10 text-left ml-[26px] xl:ml-0 mt-[68px] xl:mt-0 ">
         <div className="text-[32px] leading-[35px] xl:text-[64px] 2xl:text-[96px] xl:leading-[76px] 2xl:leading-[100px] font-light text-[#E2E2E2]">
           Realities <br /> Unlike Before
         </div>
