@@ -97,11 +97,11 @@ function Controller() {
           className="rounded-[20px] w-full h-full object-cover"
         >
           <source
-            src="https://lumynxr-cdn.azureedge.net/videos/Controllers.webm"
+            src={`${process.env.NEXT_PUBLIC_CDN_URL}/videos/Controllers.webm`}
             type="video/webm"
           />
           <source
-            src="https://lumynxr-cdn.azureedge.net/videos/Controllers.mp4"
+            src={`${process.env.NEXT_PUBLIC_CDN_URL}/videos/Controllers.mp4`}
             type="video/mp4"
           />
           Your browser does not support the video tag.

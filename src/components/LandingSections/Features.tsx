@@ -17,24 +17,24 @@ const features: Feature[] = [
     title: "Anti-fogging ventilation system",
 
     sources: {
-      webm: "https://lumynxr-cdn.azureedge.net/videos/Controllers.webm",
-      mp4: "https://lumynxr-cdn.azureedge.net/videos/Controllers.mp4",
+      webm: `${process.env.NEXT_PUBLIC_CDN_URL}/videos/Controllers.webm`,
+      mp4: `${process.env.NEXT_PUBLIC_CDN_URL}/videos/Controllers.mp4`,
     },
   },
   {
     title: "Easy IPD Adjustment",
 
     sources: {
-      webm: "https://lumynxr-cdn.azureedge.net/videos/IPD-Bentou.webm",
-      mp4: "https://lumynxr-cdn.azureedge.net/videos/IPD-Bento.mp4",
+      webm: `${process.env.NEXT_PUBLIC_CDN_URL}/videos/IPD-Bentou.webm`,
+      mp4: `${process.env.NEXT_PUBLIC_CDN_URL}/videos/IPD-Bento.mp4`,
     },
   },
   {
     title: "Power that lasts",
 
     sources: {
-      webm: "https://lumynxr-cdn.azureedge.net/videos/Batteryu.webm",
-      mp4: "https://lumynxr-cdn.azureedge.net/videos/Battery.mp4",
+      webm: "${process.env.NEXT_PUBLIC_CDN_URL}/videos/Batteryu.webm",
+      mp4: "${process.env.NEXT_PUBLIC_CDN_URL}/videos/Battery.mp4",
     },
   },
 ];

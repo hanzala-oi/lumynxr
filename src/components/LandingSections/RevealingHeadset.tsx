@@ -51,8 +51,8 @@ const VideoReveal: React.FC = () => {
       <div className="sticky top-0 flex justify-center items-center w-full h-screen">
         <video
           ref={videoRef}
-          className="rounded-2xl shadow-2xl bg-black"
-          src="https://lumynxr-cdn.azureedge.net/videos/Header.webm"
+          className="rounded-3xl shadow-2xl bg-black"
+          src={`${process.env.NEXT_PUBLIC_CDN_URL}/videos/header.webm`}
           muted
           playsInline
           autoPlay

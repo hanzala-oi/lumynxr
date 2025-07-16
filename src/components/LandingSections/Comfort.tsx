@@ -7,7 +7,7 @@ function Comfort() {
       {/* Image Block - Absolute positioned */}
       <div className="absolute inset-0">
         <Image
-          src="https://lumynxr-cdn.azureedge.net/images/SideView.png"
+          src={`${process.env.NEXT_PUBLIC_CDN_URL}/images/SideView.png`}
           alt="Comfort"
           fill
           className="object-cover scale-90 translate-x-44"

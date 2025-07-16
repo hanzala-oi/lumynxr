@@ -109,11 +109,11 @@ const pauseVideo = async () => {
         className="absolute inset-0 w-full h-full object-cover"
       >
         <source
-          src="https://lumynxr-cdn.azureedge.net/videos/Chipset.webm"
+          src={`${process.env.NEXT_PUBLIC_CDN_URL}/videos/chipset.webm`}
           type="video/webm"
         />
         <source
-          src="https://lumynxr-cdn.azureedge.net/videos/Chipset.mp4"
+          src={`${process.env.NEXT_PUBLIC_CDN_URL}/videos/Chipset.mp4`}
           type="video/mp4"
         />
         Your browser does not support the video tag.

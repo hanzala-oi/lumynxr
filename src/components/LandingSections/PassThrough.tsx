@@ -105,11 +105,11 @@ function PassThrough() {
         className="absolute inset-0 -left-64 scale-[1.4] w-full h-full object-cover"
       >
         <source
-          src="https://lumynxr-cdn.azureedge.net/videos/Passthrough.webm"
+          src={`${process.env.NEXT_PUBLIC_CDN_URL}/videos/passthrough.webm`}
           type="video/webm"
         />
         <source
-          src="https://lumynxr-cdn.azureedge.net/videos/Passthrough.mp4"
+          src={`${process.env.NEXT_PUBLIC_CDN_URL}/videos/Passthrough.mp4`}
           type="video/mp4"
         />
         Your browser does not support the video tag.
