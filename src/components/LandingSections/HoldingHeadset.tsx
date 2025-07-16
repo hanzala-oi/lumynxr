@@ -24,15 +24,14 @@ const HoldingHeadset: React.FC = () => {
         scrub: true,
         pin: true, 
         pinSpacing: true, 
-        end: () => `+=${window.innerHeight * 2}`, // in your GSAP ScrollTrigger
+        end: () => `+=${window.innerHeight * 2}`,
       },
     });
 
-    // Animate the image scaling up
     timeline.fromTo(
       image,
-      { scale: 0.3 }, // Start at 30% scale
-      { scale: 1, ease: "power2.out" } // End at full size
+      { scale: 0.3 },
+      { scale: 1, ease: "power2.out" }
     );
 
     return () => {
@@ -46,7 +45,7 @@ const HoldingHeadset: React.FC = () => {
       ref={containerRef}
       className="relative bg-[#E2E2E2] flex items-center justify-center"
     >
-      <div className="sticky top-0 flex justify-center items-center w-full h-screen ">
+      <div className="relative flex justify-center items-center w-full h-screen">
         <Image
           src={`${process.env.NEXT_PUBLIC_CDN_URL}/images/HoldingHeadset-BG-Desktop.png`}
           alt="Header Image"

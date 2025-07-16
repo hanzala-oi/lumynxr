@@ -14,7 +14,6 @@ function Optical() {
 
     try {
       if (video.paused) {
-        // Only try to play if it’s paused
         playPromiseRef.current = video.play();
         await playPromiseRef.current;
       }
@@ -42,9 +41,7 @@ function Optical() {
     }
   };
 
-
   useEffect(() => {
-    console.log(window.innerWidth, window.innerHeight);
     const video = videoRef.current;
     const section = sectionRef.current;
 
@@ -100,16 +97,16 @@ function Optical() {
   return (
     <div
       ref={sectionRef}
-      className="relative w-full h-screen flex flex-col md:flex-row justify-center items-center bg-black p-10"
+      className="flex flex-col xl:flex-row h-screen w-screen items-start xl:items-center justify-center bg-black"
     >
       {/* Video Section */}
-      <div className="w-full md:w-[60%] h-1/2 md:h-full flex justify-center items-center">
+      <div className="w-auto xl:w-3/4 xl:ml-[-158px] 2xl:ml-[-206px] h-[301px] xl:h-full flex-shrink-0">
         <video
           ref={videoRef}
           muted
           playsInline
           preload="metadata"
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover rounded-xl"
         >
           <source
             src={`${process.env.NEXT_PUBLIC_CDN_URL}/videos/Optical.webm`}
@@ -123,18 +120,19 @@ function Optical() {
         </video>
       </div>
 
-      {/* Content Section */}
-      <div className="flex flex-col w-full md:w-[40%]">
-        <h1 className="text-[96px]   font-light leading-[100px] text-[#E2E2E2] tracking-tight">
+      {/* Text Section */}
+      <div className="flex flex-col gap-[16px] xl:gap-10 text-left ml-[26px] xl:ml-0 mt-[68px] xl:mt-0">
+        <div className="text-[32px] leading-[35px] xl:text-[64px] 2xl:text-[96px] xl:leading-[76px] 2xl:leading-[100px] font-light text-[#E2E2E2]">
           See Every
           <br />
           Detail
-        </h1>
-        <div className="w-[46px] h-1 bg-white my-[60px] rounded"></div>
-        <p className="text-2xl font-extralight md:text-xl leading-[32px] text-[#C5C5C5] tracking-wide max-w-xl">
-          4K+ fast LCD delivers ultra-low latency and <br /> stunning clarity
-          with vibrant colors, sharp text <br /> and lifelike details.
-        </p>
+        </div>
+        <div className="w-[46px] h-1 bg-white rounded" />
+        <div className="text-[14px] xl:text-[20px] 2xl:text-[24px] xl:leading-[32px] font-[200] text-[#C5C5C5] xl:tracking-[0.048px]">
+          4K+ fast LCD delivers ultra-low latency and <br />
+          stunning clarity with vibrant colors, sharp text <br />
+          and lifelike details.
+        </div>
       </div>
     </div>
   );

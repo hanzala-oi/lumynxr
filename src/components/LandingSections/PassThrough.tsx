@@ -116,7 +116,7 @@ function PassThrough() {
       </video>
 
       {/* Overlay Text */}
-      <div className="absolute inset-0 flex justify-end items-center p-10 right-32">
+      <div className="absolute inset-0 flex justify-end items-center p-10 right-2">
         <div className="max-w-xl text-left">
           <h1 className="text-4xl md:text-[96px] font-light leading-[100px] text-[#E2E2E2] tracking-[0%]">
             Clear

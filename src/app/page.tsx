@@ -41,7 +41,7 @@ export default function Home() {
       <section id="product" data-theme="dark" className="h-screen bg-black">
         <Controller />
       </section>
-      <section id="product" data-theme="dark">
+      <section id="product" data-theme="light">
         <HoldingHeadset />
       </section>
       <section id="product" data-theme="dark" className="h-screen bg-black">

@@ -2,7 +2,7 @@ import React from 'react';
 
 function Hero() {
   return (
-    <div className="flex flex-col xl:flex-row h-screen w-screen items-start xl:items-center justify-center   bg-black ">
+    <div className="flex flex-col xl:flex-row h-screen w-screen items-start xl:items-center justify-center bg-black ">
       {/* Video Section */}
       <div className="w-auto xl:w-3/4  xl:ml-[-158px] 2xl:ml-[-206px] h-[301px]  xl:h-full flex-shrink-0  ">
         <video
