@@ -8,14 +8,12 @@ type VideoSource = {
 
 type Feature = {
   title: string;
-
   sources: VideoSource;
 };
 
 const features: Feature[] = [
   {
     title: "Anti-fogging ventilation system",
-
     sources: {
       webm: `${process.env.NEXT_PUBLIC_CDN_URL}/videos/Controllers.webm`,
       mp4: `${process.env.NEXT_PUBLIC_CDN_URL}/videos/Controllers.mp4`,
@@ -23,7 +21,6 @@ const features: Feature[] = [
   },
   {
     title: "Easy IPD Adjustment",
-
     sources: {
       webm: `${process.env.NEXT_PUBLIC_CDN_URL}/videos/IPD-Bentou.webm`,
       mp4: `${process.env.NEXT_PUBLIC_CDN_URL}/videos/IPD-Bento.mp4`,
@@ -31,7 +28,6 @@ const features: Feature[] = [
   },
   {
     title: "Power that lasts",
-
     sources: {
       webm: `${process.env.NEXT_PUBLIC_CDN_URL}/videos/Batteryu.webm`,
       mp4: `${process.env.NEXT_PUBLIC_CDN_URL}/videos/Battery.mp4`,
@@ -40,18 +36,18 @@ const features: Feature[] = [
 ];
 
 const Features: React.FC = () => {
-  const handleMouseEnter = (e: React.MouseEvent<HTMLVideoElement>) => {
-    const video = e.currentTarget;
-    if (video.paused) {
+  const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
+    const video = e.currentTarget.querySelector("video");
+    if (video && video.paused) {
       video.play().catch((err) => {
         console.warn("Video play interrupted:", err);
       });
     }
   };
 
-  const handleMouseLeave = (e: React.MouseEvent<HTMLVideoElement>) => {
-    const video = e.currentTarget;
-    if (!video.paused) {
+  const handleMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
+    const video = e.currentTarget.querySelector("video");
+    if (video && !video.paused) {
       video.pause();
       video.currentTime = 0;
     }
@@ -63,10 +59,9 @@ const Features: React.FC = () => {
         {/* Left Large Card */}
         <div
           className="relative rounded-xl bg-[#090909] overflow-hidden shadow-lg group"
-          style={{
-            width: "759px",
-            height: "754px",
-          }}
+          style={{ width: "759px", height: "754px" }}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
         >
           <video
             className="w-full h-full object-cover transition duration-300 ease-in-out group-hover:scale-105"
@@ -74,14 +69,12 @@ const Features: React.FC = () => {
             loop
             playsInline
             preload="metadata"
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
           >
             <source src={features[0].sources.webm} type="video/webm" />
             <source src={features[0].sources.mp4} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
-          <div className="absolute flex justify-center items-start flex-col gap-5 bottom-6 left-6 ">
+          <div className="absolute flex justify-center items-start flex-col gap-5 bottom-6 left-6">
             <h1 className="text-[20px] font-normal leading-[100%] tracking-[0%] text-[#F2F2F2]">
               {features[0].title}
             </h1>
@@ -97,57 +90,51 @@ const Features: React.FC = () => {
           {/* First Right Card */}
           <div
             className="relative rounded-xl bg-[#090909] overflow-hidden flex justify-center items-start shadow-lg group"
-            style={{
-              width: "711px",
-              height: "468.37px",
-            }}
+            style={{ width: "711px", height: "468.37px" }}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
           >
             <video
-              className="w-[600px] object-cover"
+              className="w-[600px] object-cover transition duration-300 ease-in-out group-hover:scale-105"
               muted
               loop
               playsInline
               preload="metadata"
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
             >
               <source src={features[1].sources.webm} type="video/webm" />
               <source src={features[1].sources.mp4} type="video/mp4" />
               Your browser does not support the video tag.
             </video>
-            <div className="absolute flex justify-center items-start flex-col gap-5 bottom-6 left-6 ">
+            <div className="absolute flex justify-center items-start flex-col gap-5 bottom-6 left-6">
               <h1 className="text-[20px] font-normal leading-[100%] tracking-[0%] text-[#F2F2F2]">
                 {features[1].title}
               </h1>
               <p className="text-[16px] leading-[24px] tracking-[3%] font-extralight text-[#F2F2F2]">
                 Adjustable IPD range from 56-70mm ensures a clear,<br />
-                comfortable view tailored to each user&apso;s eye distance
+                comfortable view tailored to each user’s eye distance
               </p>
             </div>
           </div>
 
           {/* Second Right Card */}
           <div
-            className="relative rounded-xl  bg-[#090909] overflow-hidden shadow-lg group flex justify-end items-start "
-            style={{
-              width: "711px",
-              height: "281px",
-            }}
+            className="relative rounded-xl bg-[#090909] overflow-hidden shadow-lg group flex justify-end items-start"
+            style={{ width: "711px", height: "281px" }}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
           >
             <video
-              className="w-[500px] h-auto flex justify-start items-start object-cover"
+              className="w-[500px] h-auto flex justify-start items-start object-cover transition duration-300 ease-in-out group-hover:scale-105"
               muted
               loop
               playsInline
               preload="metadata"
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
             >
               <source src={features[2].sources.webm} type="video/webm" />
               <source src={features[2].sources.mp4} type="video/mp4" />
               Your browser does not support the video tag.
             </video>
-            <div className="absolute flex justify-center items-start flex-col gap-5 bottom-6 left-6 ">
+            <div className="absolute flex justify-center items-start flex-col gap-5 bottom-6 left-6">
               <h1 className="text-[20px] font-normal leading-[100%] tracking-[0%] text-[#F2F2F2]">
                 {features[2].title}
               </h1>
