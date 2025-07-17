@@ -1,14 +1,17 @@
 "use client";
 
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Volume2, VolumeIcon, VolumeOff } from "lucide-react";
+
 
 gsap.registerPlugin(ScrollTrigger);
 
 const VideoReveal: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [isMuted, setIsMuted] = useState(true);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -19,21 +22,20 @@ const VideoReveal: React.FC = () => {
     const timeline = gsap.timeline({
       scrollTrigger: {
         trigger: container,
-        start: "top top", // when container hits top of viewport
-        end: "bottom+=100% top", // stick for 100% height
+        start: "top top",
+        end: "bottom+=100% top",
         scrub: true,
-        pin: true, // pin section during scroll
+        pin: true,
       },
     });
 
-    // Animate the video scaling up
     timeline.fromTo(
       video,
       {
-        scale: 0.3, // Start at 30% size
+        scale: 0.3,
       },
       {
-        scale: 1, // End at full size
+        scale: 1,
         ease: "power2.out",
       }
     );
@@ -42,6 +44,13 @@ const VideoReveal: React.FC = () => {
       ScrollTrigger.getAll().forEach((st) => st.kill());
     };
   }, []);
+
+  const toggleMute = () => {
+    if (videoRef.current) {
+      videoRef.current.muted = !videoRef.current.muted;
+      setIsMuted(videoRef.current.muted);
+    }
+  };
 
   return (
     <div
@@ -58,6 +67,13 @@ const VideoReveal: React.FC = () => {
           autoPlay
           loop
         />
+        {/* Mute Toggle Button */}
+        <button
+          onClick={toggleMute}
+          className="absolute bottom-5 right-10 cursor-pointer hover:bg-gray-800 text-white text-sm px-3 py-1.5 rounded-xl shadow-lg bg-black/70 transition"
+        >
+          {isMuted ? <Volume2 /> : <VolumeOff />}
+        </button>
       </div>
     </div>
   );
