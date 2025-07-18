@@ -23,7 +23,7 @@ export default function Navbar() {
                 requestAnimationFrame(() => {
                     const currentScrollY = window.scrollY;
                     const scrollDirection = currentScrollY > lastScrollY.current ? 'down' : 'up';
-                    
+
                     // Hide navbar when scrolling down, show when scrolling up
                     if (scrollDirection === 'down' && currentScrollY > 100) {
                         gsap.to(navRef.current, {
@@ -38,7 +38,7 @@ export default function Navbar() {
                             ease: "power2.out"
                         });
                     }
-                    
+
                     lastScrollY.current = currentScrollY;
                     ticking.current = false;
                 });
@@ -68,12 +68,12 @@ export default function Navbar() {
     // Mobile menu toggle with GSAP animation
     const toggleMobileMenu = () => {
         setIsMobileMenuOpen(!isMobileMenuOpen);
-        
+
         if (!isMobileMenuOpen) {
             // Open menu
             gsap.set(mobileMenuRef.current, { display: "flex" });
-            gsap.fromTo(mobileMenuRef.current, 
-                { opacity: 0, y: -20 }, 
+            gsap.fromTo(mobileMenuRef.current,
+                { opacity: 0, y: -20 },
                 { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" }
             );
         } else {
@@ -114,7 +114,7 @@ export default function Navbar() {
                 // Desktop styles
                 "px-[60px] w-[107.375rem] h-[4.625rem]",
                 // Tablet styles
-                "md:px-[40px] md:w-[90vw] md:h-[4rem]",
+                "md:px-[40px] md:pr-[10px] md:w-[90vw] md:h-[4rem]",
                 // Mobile styles
                 "sm:px-[20px] sm:w-[95vw] sm:h-[3.5rem] sm:top-[20px]",
                 isDark ? "text-white" : "text-black"
@@ -126,20 +126,20 @@ export default function Navbar() {
             {/* Logo */}
             <div className="flex flex-1 items-center gap-2">
                 {isDark ? (
-                    <svg 
-                        xmlns="http://www.w3.org/2000/svg" 
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
                         className="w-[44px] h-[32px] md:w-[36px] md:h-[26px] sm:w-[32px] sm:h-[24px]"
-                        viewBox="0 0 44 32" 
+                        viewBox="0 0 44 32"
                         fill="none"
                     >
                         <path d="M44 31.9915H32.7659L32.7659 4.90613L44 0L44 31.9915Z" fill="white" />
                         <path d="M30.2708 17.2526C30.2708 25.3974 23.4944 32 15.1354 32C6.77634 32 0 25.3974 0 17.2526C0 9.10786 6.77634 2.50524 15.1354 2.50524C23.4944 2.50524 30.2708 9.10786 30.2708 17.2526ZM8.77852 17.2526C8.77852 20.6734 11.6246 23.4465 15.1354 23.4465C18.6462 23.4465 21.4922 20.6734 21.4922 17.2526C21.4922 13.8318 18.6462 11.0587 15.1354 11.0587C11.6246 11.0587 8.77852 13.8318 8.77852 17.2526Z" fill="white" />
                     </svg>
                 ) : (
-                    <svg 
-                        xmlns="http://www.w3.org/2000/svg" 
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
                         className="w-[44px] h-[32px] md:w-[36px] md:h-[26px] sm:w-[32px] sm:h-[24px]"
-                        viewBox="0 0 44 32" 
+                        viewBox="0 0 44 32"
                         fill="none"
                     >
                         <path d="M44 31.9915H32.7659L32.7659 4.90613L44 0L44 31.9915Z" fill="#1D1D1D" />
@@ -195,13 +195,18 @@ export default function Navbar() {
             </button>
 
             {/* CTA Button - Desktop only */}
-            <div className="flex-1 justify-end lg:flex hidden">
-                <StarBorder darkMode={isDark}>
-                    <span className="text-[20px]">
-                        TALK TO SALES
-                    </span>
-                </StarBorder>
+            <div className="hidden lg:flex flex-1 justify-end">
+                <div className="card">
+                    <div className={`box-base ${isDark ? "box" : "box-white"}`}>
+                        <div className="glass"></div>
+                        <div className="px-[24px] py-[14px] rounded-[51px] font-[600]">
+                            <h1 className="mt-[1px]">Talk to Sales</h1>
+                        </div>
+                    </div>
+                </div>
             </div>
+
+
 
             {/* Mobile Menu */}
             <div
@@ -227,14 +232,17 @@ export default function Navbar() {
                             {item}
                         </Link>
                     ))}
-                    
+
                     {/* Mobile CTA Button */}
                     <div className="mt-8">
-                        <StarBorder darkMode={isDark}>
-                            <span className="text-[18px]">
-                                TALK TO SALES
-                            </span>
-                        </StarBorder>
+                        <a href="#" className="talktosales">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            Talk to Sales
+                        </a>
+
                     </div>
                 </div>
             </div>

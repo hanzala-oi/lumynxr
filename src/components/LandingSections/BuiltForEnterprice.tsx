@@ -46,15 +46,19 @@ function BuiltForEnterprise() {
     >
       <div className="flex items-center h-screen">
         {/* Left Content */}
-        <div className="fade-left w-1/2 pl-[299px]">
+        <div className="fade-left w-1/2 xl:pl-[115px] 2xl:pl-[199px]">
           <div className="max-w-lg">
-            <h1 className="text-[96px] text-black leading-tight">
-              Built for
-              <br />
-              Enterprise
-            </h1>
+            <div className="text-[32px] leading-[30px] xl:text-[64px] 2xl:text-[96px] xl:leading-[76px] 2xl:leading-[100px] text-black">
+              <span className="block xl:hidden">Built for Enterprise</span>
+              <span className="hidden xl:block">
+                Built for
+                <br />
+               Enterprisel
+              </span>
+
+            </div>
             <svg
-              className="my-[60px]"
+              className="xl:mb-[39px] xl:mt-[18px] 2xl:my-[60px]"
               xmlns="http://www.w3.org/2000/svg"
               width="52"
               height="6"
@@ -70,7 +74,7 @@ function BuiltForEnterprise() {
             </svg>
 
             {/* Description */}
-            <p className="text-[24px] font-[250] text-[#141414] leading-relaxed">
+            <p className="text-[14px] xl:text-[20px] 2xl:text-[24px] xl:leading-[32px] font-[200] 2xl:font-[250]  xl:tracking-[0.048px] text-[#141414] leading-relaxed">
               Enterprise-ready and fully customizable, LumynXR <br />
               gives you control over software and hardware to <br />
               build MR solutions tailored to your workflow

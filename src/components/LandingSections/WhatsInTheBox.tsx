@@ -68,18 +68,30 @@ function WhatsInTheBox() {
   return (
     <div
       ref={containerRef}
-      className="h-screen bg-[#FAFAFA] py-[223px]"
+      className="h-screen bg-[#FAFAFA] xl:py-[115px] 2xl:py-[223px] overflow-hidden"
     >
       <div className="mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-[48px] pl-[122px]">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-[48px]  xl:pl-[122px]">
           {/* What's in the Box Section */}
           <div>
-            <h2 className="heading text-[64px] leading-[100px] font-[300] text-black mb-8">
+            <h2 className="heading text-[32px] xl:text-[40px] 2xl:text-[64px] leading-[35px] xl:leading-[100px] font-[300] text-black mb-8 pl-[28px] pt-10 xl:pt-0">
               What's in the Box?
             </h2>
 
             <div>
-              <div className="ml-[-259px] mt-[-20] box-image">
+              <div className="xl:hidden ">
+                <Image
+                  src={`${process.env.NEXT_PUBLIC_CDN_URL}/images/BoxContents.png`}
+                  alt="LumynXR Logo"
+                  width={684}
+                  height={368}
+                  className="w-[130vw]  h-auto"
+                  priority
+                />
+              </div>
+
+              <div className="
+               xl:ml-[-259px] hidden xl:block  xl:mt-[-60] 2xl:mt-[-20]   box-image ">
                 <Image
                   src={`${process.env.NEXT_PUBLIC_CDN_URL}/images/BoxContents.png`}
                   alt="LumynXR Logo"
@@ -92,30 +104,26 @@ function WhatsInTheBox() {
           </div>
 
           {/* Specifications Section */}
-          <div>
-            <h2 className="heading text-[64px] font-[300] text-black mb-[54px]">
+          <div className="pl-[28px] xl:pl-0">
+            <h2 className="heading text-[32px] xl:text-[40px] 2xl:text-[64px] leading-[35px] xl:leading-[100px] font-[300] text-black mb-[54px] ">
               Specifications
             </h2>
 
-            <div className="w-[600px]">
-              <div>
+            <div className=" xl:w-[600px] 2xl:w-[700px]">
+              <div className="grid grid-cols-2 gap-y-3  ">
                 {specifications.map((spec, index) => (
-                  <div
-                    key={index}
-                    className="spec-line flex justify-between items-center py-0.5"
-                  >
-                    <span className="text-[#5B5B5B] text-[20px] font-extralight">
+                  <React.Fragment key={index}>
+                    <span className="text-left text-[#5B5B5B] text-[12px] xl:text-[16px] 2xl:text-[20px] font-extralight leading-[14px] xl:leading-[20px]  ">
                       {spec.label}
                     </span>
-                    <div className="flex items-center w-[335px]">
-                      <span className="text-[#5B5B5B] text-[20px] font-normal">
-                        {spec.value}
-                      </span>
-                    </div>
-                  </div>
+                    <span className="ml-[-30px] text-left text-[#5B5B5B] text-[12px] xl:text-[16px] 2xl:text-[20px] font-normal leading-[14px] xl:leading-[20px] ">
+                      {spec.value}
+                    </span>
+                  </React.Fragment>
                 ))}
               </div>
             </div>
+
           </div>
         </div>
       </div>

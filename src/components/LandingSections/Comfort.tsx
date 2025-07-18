@@ -48,28 +48,31 @@ function Comfort() {
   return (
     <div
       ref={containerRef}
-      className="relative h-screen w-full bg-black overflow-hidden"
+      className="relative h-screen w-full bg-black overflow-hidden "
     >
       {/* Image Block - Absolute positioned */}
-      <div className="absolute inset-0">
+      <div className="absolute inset-0  ml-[-156px] h-[500px] mt-[150px] xl:m-0 xl:h-screen ">
         <Image
           src={`${process.env.NEXT_PUBLIC_CDN_URL}/images/SideView.png`}
           alt="Comfort"
           fill
-          className="comfort-image object-cover scale-90 translate-x-44"
+          className="comfort-image object-cover xl:scale-90 xl:translate-x-44"
           priority
         />
       </div>
 
       {/* Text Block - Relative positioned */}
-      <div className="comfort-text relative z-10 flex flex-col justify-center h-full ml-[250px]">
-        <h1 className="text-[36px] md:text-[96px] font-light leading-[100px] tracking-[0%] text-[#E2E2E2]">
-          Balanced
-          <br />
-          for Comfort
+      <div className="comfort-text relative z-10 pl-[28px] pt-10 xl:p-0 flex flex-col justify-start  xl:justify-center h-full xl:ml-[250px] ">
+        <h1 className="text-[32px] xl:text-[64px] 2xl:text-[96px] font-light leading-[35px]   xl:leading-[76px]  2xl:leading-[100px] tracking-[0%] text-[#E2E2E2] ">
+          <span className="block xl:hidden">Balanced for Comfort</span>
+          <span className="hidden xl:block">
+            Balanced
+            <br />
+            for Comfort
+          </span>
         </h1>
-        <div className="w-[46px] h-1 bg-white my-[60px] rounded"></div>
-        <p className="text-base md:text-2xl font-light leading-[32px] tracking-[0.2%] text-[#C5C5C5]">
+        <div className="w-[46px] h-[1px] xl:h-1 mt-[13px] bg-white xl:mt-[38px] mb-[20px] xl:mb-[40px] 2xl:my-[60px] rounded" />
+        <p className="text-[14px] xl:text-[20px] 2xl:text-[24px] xl:leading-[32px] font-[200] text-[#C5C5C5] xl:tracking-[0.048px]">
           Ergonomic facemask design ensures balanced <br /> 1:1 weight
           distribution for all-day comfort
         </p>

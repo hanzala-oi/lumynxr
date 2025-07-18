@@ -12,6 +12,7 @@ import Sound from "@/components/LandingSections/Sound";
 import WhatsInTheBox from "@/components/LandingSections/WhatsInTheBox";
 import Navbar from "@/components/navbar";
 import HoldingHeadset from "@/components/LandingSections/HoldingHeadset";
+import HoldingHeadsetFullscreen from "@/components/LandingSections/HoldingHeadsetFullscreen";
 
 export default function Home() {
   return (
@@ -41,7 +42,11 @@ export default function Home() {
       <section id="product" data-theme="dark" className="h-screen bg-black">
         <Controller />
       </section>
-      <section id="product" data-theme="light">
+       
+      <section id="product" data-theme="light" className="xl:hidden">
+        <HoldingHeadsetFullscreen />
+      </section>
+      <section id="product" data-theme="light" className="hidden xl:block">
         <HoldingHeadset />
       </section>
       <section id="product" data-theme="dark" className="h-screen bg-black">
