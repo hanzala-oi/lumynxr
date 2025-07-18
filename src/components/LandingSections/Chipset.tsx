@@ -8,39 +8,39 @@ function Chipset() {
   const [isVisible, setIsVisible] = useState(false);
   const playPromiseRef = useRef<Promise<void> | null>(null);
 
-const playVideo = async () => {
-  const video = videoRef.current;
-  if (!video) return;
+  const playVideo = async () => {
+    const video = videoRef.current;
+    if (!video) return;
 
-  try {
-    if (video.paused) {
-      // Only try to play if it’s paused
-      playPromiseRef.current = video.play();
-      await playPromiseRef.current;
+    try {
+      if (video.paused) {
+        // Only try to play if it’s paused
+        playPromiseRef.current = video.play();
+        await playPromiseRef.current;
+      }
+    } catch (error) {
+      if (error instanceof Error && error.name !== "AbortError") {
+        console.error("Video play error:", error);
+      }
+    } finally {
+      playPromiseRef.current = null;
     }
-  } catch (error) {
-    if (error instanceof Error && error.name !== "AbortError") {
-      console.error("Video play error:", error);
-    }
-  } finally {
-    playPromiseRef.current = null;
-  }
-};
+  };
 
-const pauseVideo = async () => {
-  const video = videoRef.current;
-  if (!video) return;
+  const pauseVideo = async () => {
+    const video = videoRef.current;
+    if (!video) return;
 
-  try {
-    if (!video.paused) {
-      video.pause();
+    try {
+      if (!video.paused) {
+        video.pause();
+      }
+    } catch (error) {
+      if (error instanceof Error && error.name !== "AbortError") {
+        console.error("Video pause error:", error);
+      }
     }
-  } catch (error) {
-    if (error instanceof Error && error.name !== "AbortError") {
-      console.error("Video pause error:", error);
-    }
-  }
-};
+  };
 
   useEffect(() => {
     const video = videoRef.current;
@@ -98,7 +98,7 @@ const pauseVideo = async () => {
   return (
     <div
       ref={sectionRef}
-      className="relative w-full h-screen bg-black overflow-hidden"
+      className="relative w-full xl:h-screen bg-black h-[70vh] "
     >
       {/* Background video */}
       <video
@@ -106,7 +106,7 @@ const pauseVideo = async () => {
         muted
         playsInline
         preload="metadata"
-        className="absolute inset-0 w-full h-full object-cover"
+        className="absolute inset-0 w-full  xl:h-full object-cover  mt-[200px] xl:mt-0"
       >
         <source
           src={`${process.env.NEXT_PUBLIC_CDN_URL}/videos/Chipsetv2.webm`}
@@ -120,16 +120,33 @@ const pauseVideo = async () => {
       </video>
 
       {/* Text overlay */}
-      <div className="relative bottom-28 z-10 ml-20 flex flex-col justify-end items-start h-full px-8 md:px-16 text-[#E2E2E2]">
-        <h1 className="text-4xl md:text-[96px] font-light tracking-[0%] leading-[100px] ">
-          Powered by <br /> Snapdragon<sup className="text-5xl">®</sup>
+      <div className="xl:relative xl:bottom-28  z-10 pl-[28px] xl:ml-20 flex flex-col xl:justify-end items-start h-full  md:px-16 text-[#E2E2E2]">
+        <h1 className="text-[32px] leading-[30px] w-full  xl:text-[64px] 2xl:text-[96px] xl:leading-[76px] 2xl:leading-[100px] font-light text-[#E2E2E2]">
+          <span className="hidden xl:block">  Powered by <br /> Snapdragon<sup className="xl:text-5xl">®</sup></span>
+          <span className="xl:hidden"> Powered by Snapdragon<sup className="">®</sup></span>
         </h1>
-        <div className="w-[46px] h-1 bg-white my-[40px] rounded"></div>
-        <p className="text-[24px] font-extralight leading-[32px] tracking-[0.2%]  md:text-xl max-w-lg text-[#C5C5C5]">
-          Qualcomm<sup>®</sup> Snapdragon<sup>®</sup> XR2+ Gen 2 powers
-          high-speed processing, rich graphics and seamless multitasking for
+
+        <svg className="my-[60px] hidden 2xl:block" xmlns="http://www.w3.org/2000/svg" width="52" height="6" viewBox="0 0 52 6" fill="none">
+          <path d="M3 3C18.3333 3 49 3 49 3" stroke="#E2E2E2" strokeWidth="5" strokeLinecap="round" />
+        </svg>
+        <svg className="mt-[37px] mb-[41px] hidden xl:block 2xl:hidden" xmlns="http://www.w3.org/2000/svg" width="42" height="2" viewBox="0 0 42 2" fill="none">
+          <path d="M1 1C14.3333 1 41 1 41 1" stroke="#E2E2E2" strokeWidth="2" strokeLinecap="round" />
+        </svg>
+        <svg className="my-[15px] xl:hidden" xmlns="http://www.w3.org/2000/svg" width="34" height="2" viewBox="0 0 34 2" fill="none">
+          <path d="M1 1C11.6667 1 33 1 33 1" stroke="#C5C5C5" strokeLinecap="round" />
+        </svg>
+        <p className="hidden xl:block xl:text-[20px] 2xl:text-[24px] xl:leading-[32px] font-[150] xl:font-[200] text-[#C5C5C5] xl:tracking-[0.048px]">
+          Qualcomm<sup>®</sup> Snapdragon<sup>®</sup> XR2+ Gen 2 powers <br />
+          high-speed processing, rich graphics and <br /> seamless multitasking for
           enterprise and MR use.
         </p>
+        <p className=" xl:hidden text-[14px] font-[150] text-[#C5C5C5]">
+          Qualcomm<sup>®</sup> Snapdragon<sup>®</sup> XR2+ Gen 2 powers
+          high-speed processing, rich graphics and  seamless multitasking for
+          enterprise and MR use.
+        </p>
+
+
       </div>
     </div>
   );

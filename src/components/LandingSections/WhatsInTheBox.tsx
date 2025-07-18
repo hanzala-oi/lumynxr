@@ -68,7 +68,7 @@ function WhatsInTheBox() {
   return (
     <div
       ref={containerRef}
-      className="h-screen bg-[#FAFAFA] xl:py-[115px] 2xl:py-[223px] overflow-hidden"
+      className="min-h-screen bg-[#FAFAFA] xl:py-[115px] 2xl:py-[223px] overflow-hidden"
     >
       <div className="mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-[48px]  xl:pl-[122px]">
@@ -79,13 +79,13 @@ function WhatsInTheBox() {
             </h2>
 
             <div>
-              <div className="xl:hidden ">
+              <div className="xl:hidden mt-[-60px] w-[150vw] ml-[-25vw] ">
                 <Image
                   src={`${process.env.NEXT_PUBLIC_CDN_URL}/images/BoxContents.png`}
                   alt="LumynXR Logo"
                   width={684}
                   height={368}
-                  className="w-[130vw]  h-auto"
+                  className="w-full h-auto"
                   priority
                 />
               </div>
@@ -104,7 +104,7 @@ function WhatsInTheBox() {
           </div>
 
           {/* Specifications Section */}
-          <div className="pl-[28px] xl:pl-0">
+          <div className="pl-[28px] xl:pl-0 ">
             <h2 className="heading text-[32px] xl:text-[40px] 2xl:text-[64px] leading-[35px] xl:leading-[100px] font-[300] text-black mb-[54px] ">
               Specifications
             </h2>
@@ -113,7 +113,7 @@ function WhatsInTheBox() {
               <div className="grid grid-cols-2 gap-y-3  ">
                 {specifications.map((spec, index) => (
                   <React.Fragment key={index}>
-                    <span className="text-left text-[#5B5B5B] text-[12px] xl:text-[16px] 2xl:text-[20px] font-extralight leading-[14px] xl:leading-[20px]  ">
+                    <span className="text-left text-[#5B5B5B] text-[12px] xl:text-[16px] 2xl:text-[20px] font-extralight leading-[16px] xl:leading-[22px] 2xl:leading-[24px]  ">
                       {spec.label}
                     </span>
                     <span className="ml-[-30px] text-left text-[#5B5B5B] text-[12px] xl:text-[16px] 2xl:text-[20px] font-normal leading-[14px] xl:leading-[20px] ">

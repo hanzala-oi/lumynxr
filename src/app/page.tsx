@@ -24,22 +24,22 @@ export default function Home() {
       <section id="product" data-theme="dark" className=" ">
         <RevealingHeadset />
       </section>
-      <section id="product" data-theme="dark" className="h-[120vh] bg-black">
+      <section id="product" data-theme="dark" className=" bg-black">
         <Optical />
       </section>
-      <section id="product" data-theme="dark" className="h-screen bg-black">
+      <section id="product" data-theme="dark" className=" bg-black">
         <Chipset />
       </section>
-      <section id="product" data-theme="dark" className="h-screen bg-black">
+      <section id="product" data-theme="dark" className=" bg-black">
         <PassThrough />
       </section>
-      <section id="product" data-theme="dark" className="h-screen bg-black">
+      <section id="product" data-theme="dark" className=" bg-black">
         <Comfort />
       </section>
-      <section id="product" data-theme="dark" className="h-screen bg-black">
+      <section id="product" data-theme="dark" className=" bg-black">
         <Sound />
       </section>
-      <section id="product" data-theme="dark" className="h-screen bg-black">
+      <section id="product" data-theme="dark" className=" bg-black">
         <Controller />
       </section>
        
@@ -49,13 +49,13 @@ export default function Home() {
       <section id="product" data-theme="light" className="hidden xl:block">
         <HoldingHeadset />
       </section>
-      <section id="product" data-theme="dark" className="h-screen bg-black">
+      <section id="product" data-theme="dark" className=" bg-black">
         <Features />
       </section>
       <section id="product" data-theme="light" className="h-screen ">
         <WhatsInTheBox />
       </section>
-      <section id="product" data-theme="light" className="h-screen ">
+      <section id="product" data-theme="light" className=" ">
         <BuiltForEnterprise />
       </section>
       <section id="product" data-theme="dark">

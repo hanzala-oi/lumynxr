@@ -95,14 +95,16 @@ function PassThrough() {
   }, [hasPlayedOnce, isVisible]);
 
   return (
-    <div ref={sectionRef} className="relative w-full h-screen overflow-hidden">
+    <div ref={sectionRef} className="relative w-full xl:h-screen bg-black h-[70vh] overflow-hidden">
       {/* Background Video */}
       <video
         ref={videoRef}
         muted
         playsInline
         preload="metadata"
-        className="absolute inset-0 -left-64 scale-[1.1] w-full h-full object-cover"
+
+        className="absolute inset-0 xl:-left-64 scale-[1.1] w-full xl:h-full object-cover mt-[200px] xl:mt-0"
+
       >
         <source
           src={`${process.env.NEXT_PUBLIC_CDN_URL}/videos/Passthroughv2.webm`}
@@ -116,17 +118,31 @@ function PassThrough() {
       </video>
 
       {/* Overlay Text */}
-      <div className="absolute w-3/5 flex justify-end items-center p-10 right-32 top-1/2 transform -translate-y-1/2">
-        <div className="text-left">
-          <h1 className="text-4xl md:text-[96px] font-light leading-[100px] text-[#E2E2E2] tracking-[0%]">
-            Clear
-            <br />
-            Passthrough
+      <div className="xl:absolute xl:w-3/5 flex  xl:justify-end xl:items-center xl:p-10 xl:right-32 2xl:right-22 xl:top-1/2 xl:transform xl:-translate-y-1/2 pl-[28px] ">
+        <div className="text-left ">
+          <h1 className="text-[32px] leading-[30px]  xl:text-[64px] 2xl:text-[96px] xl:leading-[76px] 2xl:leading-[100px] font-light text-[#E2E2E2]">
+            <span className="hidden xl:block"> Clear
+              <br />
+              Passthrough</span>
+            <span className="xl:hidden"> Clear Passthrough</span>
           </h1>
-          <div className="w-[46px] h-1 bg-white my-[40px] rounded"></div>
-          <p className="text-xl md:text-2xl font-extralight leading-[32px] text-[#C5C5C5] tracking-[0.2%]">
+
+         <svg className="my-[60px] hidden 2xl:block" xmlns="http://www.w3.org/2000/svg" width="52" height="6" viewBox="0 0 52 6" fill="none">
+          <path d="M3 3C18.3333 3 49 3 49 3" stroke="#E2E2E2" strokeWidth="5" strokeLinecap="round" />
+        </svg>
+        <svg className="mt-[37px] mb-[41px] hidden xl:block 2xl:hidden" xmlns="http://www.w3.org/2000/svg" width="42" height="2" viewBox="0 0 42 2" fill="none">
+          <path d="M1 1C14.3333 1 41 1 41 1" stroke="#E2E2E2" strokeWidth="2" strokeLinecap="round" />
+        </svg>
+        <svg className="my-[15px] xl:hidden" xmlns="http://www.w3.org/2000/svg" width="34" height="2" viewBox="0 0 34 2" fill="none">
+          <path d="M1 1C11.6667 1 33 1 33 1" stroke="#C5C5C5" strokeLinecap="round" />
+        </svg>
+          <p className="hidden xl:block xl:text-[20px] 2xl:text-[24px] xl:leading-[32px] font-[150] xl:font-[200] text-[#C5C5C5] xl:tracking-[0.048px]">
             LumynXR delivers full-color passthrough <br /> with iToF depth
             sensing for a vivid and <br /> accurate Mixed Reality experience.
+          </p>
+          <p className=" xl:hidden text-[14px] font-[150] text-[#C5C5C5]">
+            LumynXR delivers full-color passthrough  with iToF depth
+            sensing for a vivid and  accurate Mixed Reality experience.
           </p>
         </div>
       </div>

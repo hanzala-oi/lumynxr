@@ -42,23 +42,48 @@ function BuiltForEnterprise() {
   return (
     <div
       ref={containerRef}
-      className="h-screen bg-[#FAFAFA] overflow-hidden"
+      className="h-fit  xl:h-screen bg-[#FAFAFA] overflow-hidden pt-[100px] xl:pt-0 "
     >
-      <div className="flex items-center h-screen">
+      <div className="flex flex-col xl:flex-row items-start xl:items-center  ">
         {/* Left Content */}
-        <div className="fade-left w-1/2 xl:pl-[115px] 2xl:pl-[199px]">
-          <div className="max-w-lg">
-            <div className="text-[32px] leading-[30px] xl:text-[64px] 2xl:text-[96px] xl:leading-[76px] 2xl:leading-[100px] text-black">
-              <span className="block xl:hidden">Built for Enterprise</span>
-              <span className="hidden xl:block">
+        <div className="fade-left xl:w-1/2 xl:pl-[115px] 2xl:pl-[199px] pl-[28px]  ">
+          <div className="">
+            <div className="text-[32px] font-[300] leading-[30px] xl:text-[64px] 2xl:text-[96px]  xl:leading-[100px] text-black ">
+              <span className="block 2xl:hidden ">Built for Enterprise</span>
+              <span className="hidden 2xl:block">
                 Built for
                 <br />
-               Enterprisel
+                Enterprise
               </span>
 
             </div>
+            {/* Small screens (default) */}
             <svg
-              className="xl:mb-[39px] xl:mt-[18px] 2xl:my-[60px]"
+              className="block xl:hidden my-[15px]"
+              xmlns="http://www.w3.org/2000/svg"
+              width="34"
+              height="2"
+              viewBox="0 0 34 2"
+              fill="none"
+            >
+              <path d="M1 1C11.6667 1 33 1 33 1" stroke="#4D4D4D" strokeLinecap="round" />
+            </svg>
+
+            {/* Extra Large screens (xl only) */}
+            <svg
+              className="hidden xl:block 2xl:hidden mt-[10px] mb-[40px]"
+              xmlns="http://www.w3.org/2000/svg"
+              width="42"
+              height="2"
+              viewBox="0 0 42 2"
+              fill="none"
+            >
+              <path d="M1 1H41" stroke="#141414" strokeWidth="2" strokeLinecap="round" />
+            </svg>
+
+            {/* 2XL screens and above */}
+            <svg
+              className="hidden 2xl:block my-[60px]"
               xmlns="http://www.w3.org/2000/svg"
               width="52"
               height="6"
@@ -83,7 +108,7 @@ function BuiltForEnterprise() {
         </div>
 
         {/* Right Image */}
-        <div className="fade-right w-1/2 relative mt-[200px]">
+        <div className="fade-right xl:w-1/2 relative xl:mt-[200px]  mb-[">
           <div className="h-full w-full">
             <Image
               src={`${process.env.NEXT_PUBLIC_CDN_URL}/images/Enterprise.png`}

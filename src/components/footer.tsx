@@ -33,7 +33,7 @@ const Footer: React.FC = () => {
     return () => ctx.revert(); // Clean up on unmount
   }, []);
   return (
-    <footer className="bg-black text-white xl:py-12 pt-[89px] xl:pt-32   ">
+    <footer className="bg-black text-white xl:py-12 pt-[89px] xl:pt-32  overflow-hidden   ">
       <div className=" flex flex-col items-center justify-center px-8">
         <div
           ref={containerRef}
@@ -77,8 +77,8 @@ const Footer: React.FC = () => {
 
           {/* CTA Button */}
           <div className="fade-up">
-            <div className="uppercase  w-full flex items-center justify-center">
-              <div className="border border-[#E2E2E2] py-[12px] px-[24px] rounded-[51px] cursor-pointer text-white bg-black shadow-[0_0_25px_rgba(255,255,255,0.4)] hover:shadow-[0_0_40px_rgba(255,255,255,0.6)] transition-all duration-300  hover:scale-105">
+            <div className=" uppercase  w-full flex items-center justify-center">
+              <div className="box text-xl px-[40px] py-[22px] max-w-[200px] max-h-[70px]  ">
                 Talk to Sales
               </div>
             </div>
@@ -91,13 +91,13 @@ const Footer: React.FC = () => {
           alt="LumynXR Logo"
           width={1630}
           height={861}
-          className="w-[110vw] sm:w-screen h-auto max-w-none"
+          className="w-[110vw] 2xl:w-[140vw]  h-auto max-w-none"
           priority
         />
       </div>
 
 
-      <div className="max-w-7xl mx-auto">
+      <div className="w-full  xl:px-[10vw] ">
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 xl:grid-cols-3 gap-8  mb-[62px] xl:mb-[70px] 2xl:mb-[62px]">
           {/* Left Section - Logos */}
