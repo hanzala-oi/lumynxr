@@ -118,8 +118,8 @@ function PassThrough() {
       </video>
 
       {/* Overlay Text */}
-      <div className="xl:absolute xl:w-3/5 flex  xl:justify-end xl:items-center xl:p-10 xl:right-32 2xl:right-22 xl:top-1/2 xl:transform xl:-translate-y-1/2 pl-[28px] ">
-        <div className="text-left ">
+      <div className="xl:absolute  flex  xl:justify-end xl:items-center  xl:top-1/2 xl:transform xl:-translate-y-1/2 pl-[28px] xl:pl-0  w-full  ">
+        <div className="text-left  xl:w-1/3">
           <h1 className="text-[32px] leading-[30px]  xl:text-[64px] 2xl:text-[96px] xl:leading-[76px] 2xl:leading-[100px] font-light text-[#E2E2E2]">
             <span className="hidden xl:block"> Clear
               <br />

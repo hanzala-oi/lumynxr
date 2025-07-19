@@ -117,8 +117,8 @@ function Sound() {
       </video>
 
       {/* Overlay Text */}
-      <div className="xl:absolute w-full  inset-0 flex justify-end items-center   pl-[28px] " >
-        <div className="xl:pr-[170px] ">
+      <div className="xl:absolute w-full  inset-0 flex justify-end items-center   pl-[28px] xl:pl-[0px]  " >
+        <div className="xl:w-1/3  ">
           <h1 className="text-[32px] leading-[30px]  xl:text-[64px] 2xl:text-[96px] xl:leading-[76px] 2xl:leading-[100px] font-light text-[#E2E2E2]">
 
             <span className="hidden xl:block">   Immersive

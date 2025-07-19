@@ -97,10 +97,10 @@ function Optical() {
   return (
     <div
       ref={sectionRef}
-      className="flex flex-col-reverse xl:flex-row h-[75vh] xl:h-screen gap-6 xl:gap-0 w-screen items-start justify-end xl:items-center xl:justify-center bg-black overflow-hidden  "
+      className="flex flex-col-reverse xl:flex-row h-[75vh] xl:h-screen gap-6 xl:gap-0 max-w-screen items-start justify-end xl:items-center xl:justify-start bg-black overflow-hidden  "
     >
       {/* Video Section */}
-      <div className="w-auto xl:w-3/4 xl:ml-[-158px] 2xl:ml-[-206px] h-[301px] xl:h-full  overflow-hidden ">
+      <div className="w-auto xl:w-2/3  h-[301px] xl:h-full  overflow-hidden  ">
         <video
           ref={videoRef}
           muted
@@ -121,7 +121,7 @@ function Optical() {
       </div>
 
       {/* Text Section */}
-      <div className="flex flex-col  text-left ml-[26px] xl:ml-[-150px] mt-[68px] xl:mt-0  overflow-hidden ">
+      <div className=" flex flex-col  text-left ml-[26px] xl:ml-0 mt-[68px] xl:mt-0  overflow-hidden ">
         <div className="text-[32px] leading-[30px] xl:text-[64px] 2xl:text-[96px] xl:leading-[76px] 2xl:leading-[100px] font-light text-[#E2E2E2]">
           <span className="block xl:hidden">See Every Detail</span>
           <span className="hidden xl:block">
