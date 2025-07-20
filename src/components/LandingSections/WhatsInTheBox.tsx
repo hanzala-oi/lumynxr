@@ -71,17 +71,17 @@ function WhatsInTheBox() {
       className="min-h-screen h-[130vh]   bg-[#FAFAFA] xl:py-[115px] 2xl:py-[223px] overflow-hidden"
     >
       <div className="mx-auto h-full">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-[48px]  xl:pl-[122px]">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-[48px]  ">
           {/* What's in the Box Section */}
-          <div className=" flex flex-col">
-            <h2 className="heading text-[32px] xl:text-[40px] 2xl:text-[64px] leading-[35px] xl:leading-[100px] font-[300] text-black mb-8 pl-[28px] pt-10 xl:pt-0">
+          <div className=" flex flex-col ">
+            <h2 className="heading xl:pl-20 text-[32px] xl:text-[40px] 2xl:text-[64px] leading-[35px] xl:leading-[100px] font-[300] text-black mb-8 pl-[28px] pt-10 xl:pt-0">
               What's in the Box?
             </h2>
 
             <div>
-              <div className=" mt-[-60px]  w-[150vw] xl:w-[150%] ml-[-25vw] xl:ml-[-35%]">
+              <div className="  ml-[-50px]    ">
                 <Image
-                  src={`${process.env.NEXT_PUBLIC_CDN_URL}/images/BoxContents.png`}
+                  src={`${process.env.NEXT_PUBLIC_CDN_URL}/images/Box Contents-V2-With Labels.png`}
                   alt="LumynXR Logo"
                   width={684}
                   height={368}

@@ -1,15 +1,25 @@
-import React from 'react';
+"use client";
+import React, { useState } from "react";
+import { AnimatePresence, motion } from "motion/react";
+import { XIcon } from "lucide-react";
 
 function Hero() {
+  const [isVideoDialogOpen, setIsVideoDialogOpen] = useState(false);
+
+  const handlePlayTeaserClick = () => {
+    // Only open video dialog on mobile and tablet (below xl breakpoint)
+    if (window.innerWidth < 1280) {
+      // xl breakpoint is 1280px in Tailwind
+      setIsVideoDialogOpen(true);
+    }
+  };
+
+
   return (
-    <div className="flex flex-col xl:flex-row h-screen w-screen items-start xl:items-center justify-center bg-black ">
+    <div className="flex flex-col xl:flex-row h-screen max-w-screen w-screen items-start xl:items-center justify-center bg-black ">
       {/* Video Section */}
-      <div className="w-auto xl:w-3/5 xl:ml-[-158px] 2xl:ml-[-206px] h-[301px] xl:h-full flex-shrink-0 p-10 ">
-        <video
-          className=" object-cover rounded-xl"
-          autoPlay
-          muted
-        >
+      <div className="w-auto xl:w-2/3 xl:max-w-2/3  h-[301px] xl:h-full flex-shrink-0 flex flex-col items-center justify-center   ">
+        <video className=" object-cover rounded-xl w-[110%] h-[110%] " autoPlay muted>
           <source
             src={`${process.env.NEXT_PUBLIC_CDN_URL}/videos/header.webm`}
             type="video/webm"
@@ -23,7 +33,7 @@ function Hero() {
       </div>
 
       {/* Text Section */}
-      <div className="flex flex-col gap-[16px] xl:gap-10 text-left ml-[26px] xl:ml-0 mt-[68px] xl:mt-0 ">
+      <div className="w-auto xl:w-1/3 flex flex-col gap-[16px] xl:gap-10 text-left ml-[26px] xl:ml-0 mt-[68px] xl:mt-0  ">
         <div className="text-[32px] leading-[35px] xl:text-[64px] 2xl:text-[96px] xl:leading-[76px] 2xl:leading-[100px] font-light text-[#E2E2E2]">
           Realities <br /> Unlike Before
         </div>
@@ -34,41 +44,68 @@ function Hero() {
           cross-industry innovation
         </div>
       </div>
+
+      <div className="flex items-center justify-start w-full xl:hidden">  
+      <button
+        onClick={handlePlayTeaserClick}
+        className="flex h-[43px] items-center mt-5 ml-7 gap-2 px-5 py-2.5 rounded-full bg-gradient-to-b from-[#1A1A1A] to-[#0F0F0F] text-gray-300 text-sm font-medium shadow-inner hover:opacity-90 transition"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="w-4 h-4 fill-gray-400"
+          viewBox="0 0 24 24"
+        >
+          <path d="M8 5v14l11-7z" />
+        </svg>
+        Play Teaser
+      </button>
+      </div>
+
+      <AnimatePresence>
+        {isVideoDialogOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            onClick={() => setIsVideoDialogOpen(false)}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-md"
+          >
+            <motion.div
+              initial={{ scale: 0.5, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.5, opacity: 0 }}
+              transition={{ type: "spring", damping: 30, stiffness: 300 }}
+              className="relative mx-4 aspect-video w-full max-w-4xl md:mx-0"
+            >
+              <motion.button
+                onClick={() => setIsVideoDialogOpen(false)}
+                className="absolute -top-16 right-0 rounded-full bg-neutral-900/50 p-2 text-xl text-white ring-1 backdrop-blur-md"
+              >
+                <XIcon className="size-5 " />
+              </motion.button>
+              <div className="relative isolate z-[1] size-full overflow-hidden rounded-2xl border-2 border-gray-900">
+                <video
+                  className="size-full rounded-2xl object-cover"
+                  autoPlay
+                  controls
+                >
+                  <source
+                    src={`${process.env.NEXT_PUBLIC_CDN_URL}/videos/header.webm`}
+                    type="video/webm"
+                  />
+                  <source
+                    src={`${process.env.NEXT_PUBLIC_CDN_URL}/videos/Header.mp4`}
+                    type="video/mp4"
+                  />
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
 
 export default Hero;
-// import React from 'react';
-
-// function Hero() {
-//   return (
-//     <div className="flex h-screen w-screen items-center justify-center gap-20 px-12 bg-black">
-//       {/* Video Section */}
-//       <div className="w-[640px] h-[480px] flex-shrink-0">
-//         <video
-//           className="w-full h-full object-cover rounded-xl"
-//           src={`${process.env.NEXT_PUBLIC_CDN_URL}/videos/Header.webm`}
-//           autoPlay
-//           loop
-//           muted
-//         />
-//       </div>
-
-//       {/* Text Section */}
-//       <div className="flex flex-col gap-10 max-w-xl text-left">
-//         <div className="text-[64px] leading-[72px] font-light text-[#E2E2E2]">
-//           Realities <br /> Unlike Before
-//         </div>
-//         <div className="text-[20px] leading-[30px] font-extralight text-[#C5C5C5]">
-//           LumynXR is a high-performance mixed reality <br />
-//           headset designed for the future of spatial <br />
-//           computing, with enterprise-ready features for <br />
-//           cross-industry innovation
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default Hero;

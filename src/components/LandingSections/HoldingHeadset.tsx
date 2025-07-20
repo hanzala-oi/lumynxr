@@ -22,12 +22,13 @@ const HoldingHeadset: React.FC = () => {
       scrollTrigger: {
         trigger: container,
         start: "top top",
-        scrub: true,
+        end: () => `+=${window.innerHeight * 2}`,
         pin: true,
         pinSpacing: true,
-        end: () => `+=${window.innerHeight * 2}`,
+        toggleActions: "play none none none", // Only play forward once
       },
     });
+    
 
     // Animate container size and image scale simultaneously
     timeline

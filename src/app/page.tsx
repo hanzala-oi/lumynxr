@@ -21,7 +21,7 @@ export default function Home() {
       <section id="product" data-theme="dark" className="h-screen bg-black">
         <Hero />
       </section>
-      <section id="product" data-theme="dark" className=" ">
+      <section id="product" data-theme="dark" className="hidden xl:block">
         <RevealingHeadset />
       </section>
       <section id="product" data-theme="dark" className=" bg-black">
