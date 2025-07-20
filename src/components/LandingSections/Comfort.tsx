@@ -48,21 +48,10 @@ function Comfort() {
   return (
     <div
       ref={containerRef}
-      className="relative h-[70vh] xl:h-screen w-full bg-black overflow-hidden"
+      className="flex flex-col xl:flex-row h-[70vh] xl:h-screen w-full bg-black overflow-hidden  items-center"
     >
-      {/* Image Block - Absolute positioned */}
-      <div className="absolute inset-0  ml-[-156px]  mt-[150px] xl:m-0 xl:h-screen ">
-        <Image
-          src={`${process.env.NEXT_PUBLIC_CDN_URL}/images/SideView.png`}
-          alt="Comfort"
-          fill
-          className="comfort-image object-cover xl:scale-90 xl:translate-x-44"
-          priority
-        />
-      </div>
-
       {/* Text Block - Relative positioned */}
-      <div className="comfort-text relative z-10 pl-[28px] pt-10 md:pl-[115px] 2xl:pl-[199px] flex flex-col justify-start  xl:justify-center h-full  ">
+      <div className=" comfort-text  z-10 pl-[28px] pt-10 md:pl-[115px] 2xl:pl-[199px] flex flex-col justify-start  xl:justify-center h-fit mb-10 xl:mb-0   ">
         <h1 className="text-[32px] xl:text-[64px] 2xl:text-[96px] font-light leading-[35px]   xl:leading-[76px]  2xl:leading-[100px] tracking-[0%] text-[#E2E2E2] ">
           <span className="block xl:hidden">Balanced for Comfort</span>
           <span className="hidden xl:block">
@@ -91,6 +80,22 @@ function Comfort() {
         </p>
 
       </div>
+      <div className="xl:w-2/3 ">
+        {/* Image Block - Absolute positioned */}
+        <div className="w-full max-w-[250px] xl:max-w-[400px] 2xl:max-w-[600px] mx-auto ">
+          <Image
+            src={`${process.env.NEXT_PUBLIC_CDN_URL}/images/Sideview.V2.png`}
+            alt="Comfort"
+            width={600}
+            height={400}
+            className="w-full h-auto object-cover comfort-image xl:ml-[50px]  "
+            priority
+          />
+        </div>
+      </div>
+
+
+
     </div>
   );
 }

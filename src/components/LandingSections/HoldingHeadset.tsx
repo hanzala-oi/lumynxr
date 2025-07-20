@@ -18,66 +18,71 @@ const HoldingHeadset: React.FC = () => {
 
     if (!container || !imageContainer || !image) return;
 
-    const timeline = gsap.timeline({
+    // Animate once on scroll into view
+    const revealOnce = gsap.timeline({
       scrollTrigger: {
         trigger: container,
         start: "top top",
-        end: () => `+=${window.innerHeight * 2}`,
-        pin: true,
-        pinSpacing: true,
-        toggleActions: "play none none none", // Only play forward once
+        end: "+=100px", // small buffer
+        toggleActions: "play none none none", // only play once
       },
     });
-    
 
-    // Animate container size and image scale simultaneously
-    timeline
+    revealOnce
       .fromTo(
         imageContainer,
-        { 
-          width: "40%", // Start with small container
+        {
+          width: "40%",
           height: "32%",
-          transformOrigin: "bottom bottom" // Scale from bottom center
+          transformOrigin: "bottom bottom",
         },
-        { 
-          width: "100%", // Grow to full size
+        {
+          width: "100%",
           height: "100%",
           ease: "power2.out",
-          transformOrigin: "center center"
+          duration: 1,
         }
       )
       .fromTo(
         image,
-        { 
-          scale: 1.3, // Start zoomed in
-          transformOrigin: "center center"
+        {
+          scale: 1.3,
+          transformOrigin: "center center",
         },
-        { 
-          scale: 1, // Scale down to normal
+        {
+          scale: 1,
           ease: "power2.out",
-          transformOrigin: "center center"
+          duration: 1,
         },
-        0 // Start at the same time as container animation
+        0
       );
 
+    // Pin the container for 2 more scrolls
+    const holdPin = ScrollTrigger.create({
+      trigger: container,
+      start: "top top",
+      end: `+=${300}`, // hold after reveal
+      pin: true,
+      pinSpacing: true,
+    });
+
     return () => {
-      timeline.scrollTrigger?.kill();
-      timeline.kill();
+      revealOnce.kill();
+      holdPin.kill();
     };
   }, []);
 
   return (
     <div
       ref={containerRef}
-      className="relative bg-[#E2E2E2] flex items-center justify-center h-screen"
+      className="relative bg-[#ffffff] flex items-center justify-center h-screen"
     >
-      <div 
+      <div
         ref={imageContainerRef}
         className="relative flex justify-center items-center overflow-hidden rounded-2xl"
-        // style={{ width: "65%", height: "10%" }} // Initial small size
       >
         <Image
-          src={`${process.env.NEXT_PUBLIC_CDN_URL}/images/HoldingHeadset-BG-Desktop.png`}
+          src={`${process.env.NEXT_PUBLIC_CDN_URL}/images/Desktop,Laptop,Phone%20Landscape.png`}
           alt="Header Image"
           fill
           className="object-cover"

@@ -5,8 +5,9 @@ import Link from "next/link";
 import clsx from "clsx";
 import { StarBorder } from "./ui/star-border";
 import { gsap } from "gsap";
+import Image from "next/image";
 
-const navItems = ["Product", "Pricing", "Company", "FAQ"];
+const navItems = ["Product", "Pricing", "Company"];
 
 export default function Navbar() {
     const [isDark, setIsDark] = useState(false);
@@ -157,61 +158,16 @@ export default function Navbar() {
         >
             {/* Logo */}
             <div className="flex flex-1 items-center gap-2">
-                {isDark ? (
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className={clsx(
-                            // Desktop Large
-                            "w-[44px] h-[32px]",
-                            // Desktop Medium
-                            "2xl:w-[42px] 2xl:h-[30px]",
-                            // Desktop Small/Laptop Large
-                            "xl:w-[40px] xl:h-[28px]",
-                            // Laptop Medium
-                            "lg:w-[38px] lg:h-[26px]",
-                            // Tablet Large
-                            "md:w-[36px] md:h-[24px]",
-                            // Tablet Small/Mobile Large
-                            "sm:w-[34px] sm:h-[22px]",
-                            // Mobile Medium
-                            "xs:w-[32px] xs:h-[20px]",
-                            // Mobile Small
-                            "min-[320px]:w-[28px] min-[320px]:h-[18px]"
-                        )}
-                        viewBox="0 0 44 32"
-                        fill="none"
-                    >
-                        <path d="M44 31.9915H32.7659L32.7659 4.90613L44 0L44 31.9915Z" fill="white" />
-                        <path d="M30.2708 17.2526C30.2708 25.3974 23.4944 32 15.1354 32C6.77634 32 0 25.3974 0 17.2526C0 9.10786 6.77634 2.50524 15.1354 2.50524C23.4944 2.50524 30.2708 9.10786 30.2708 17.2526ZM8.77852 17.2526C8.77852 20.6734 11.6246 23.4465 15.1354 23.4465C18.6462 23.4465 21.4922 20.6734 21.4922 17.2526C21.4922 13.8318 18.6462 11.0587 15.1354 11.0587C11.6246 11.0587 8.77852 13.8318 8.77852 17.2526Z" fill="white" />
-                    </svg>
-                ) : (
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className={clsx(
-                            // Desktop Large
-                            "w-[44px] h-[32px]",
-                            // Desktop Medium
-                            "2xl:w-[42px] 2xl:h-[30px]",
-                            // Desktop Small/Laptop Large
-                            "xl:w-[40px] xl:h-[28px]",
-                            // Laptop Medium
-                            "lg:w-[38px] lg:h-[26px]",
-                            // Tablet Large
-                            "md:w-[36px] md:h-[24px]",
-                            // Tablet Small/Mobile Large
-                            "sm:w-[34px] sm:h-[22px]",
-                            // Mobile Medium
-                            "xs:w-[32px] xs:h-[20px]",
-                            // Mobile Small
-                            "min-[320px]:w-[28px] min-[320px]:h-[18px]"
-                        )}
-                        viewBox="0 0 44 32"
-                        fill="none"
-                    >
-                        <path d="M44 31.9915H32.7659L32.7659 4.90613L44 0L44 31.9915Z" fill="#1D1D1D" />
-                        <path d="M30.2708 17.2526C30.2708 25.3974 23.4944 32 15.1354 32C6.77634 32 0 25.3974 0 17.2526C0 9.10786 6.77634 2.50524 15.1354 2.50524C23.4944 2.50524 30.2708 9.10786 30.2708 17.2526ZM8.77852 17.2526C8.77852 20.6734 11.6246 23.4465 15.1354 23.4465C18.6462 23.4465 21.4922 20.6734 21.4922 17.2526C21.4922 13.8318 18.6462 11.0587 15.1354 11.0587C11.6246 11.0587 8.77852 13.8318 8.77852 17.2526Z" fill="#1D1D1D" />
-                    </svg>
-                )}
+
+                <div className="relative w-[110px]  h-[40px] xl:h-[60px] xl:w-[130px] 2xl:w-[170px] ">
+                    <Image
+                        src={`${process.env.NEXT_PUBLIC_CDN_URL}/images/${!isDark ? "lumynxrnavbarblack" : "lumynxrnavbar"}.png`}
+                        alt="Mailabs logo"
+                        fill
+                        className="object-contain ml-2 h-full"
+                    />
+                </div>
+
             </div>
 
             {/* Nav links - Desktop and Large Laptop only */}
@@ -296,7 +252,7 @@ export default function Navbar() {
                     isMobileMenuOpen ? "-rotate-45 -translate-y-1" : "rotate-0 translate-y-0"
                 )} />
             </button>
-      
+
 
             {/* CTA Button - Desktop and Large Laptop only */}
             <div className="hidden xl:flex flex-1 justify-end">

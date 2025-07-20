@@ -55,7 +55,7 @@ export default function Home() {
       <section id="product" data-theme="light" className="h-screen ">
         <WhatsInTheBox />
       </section>
-      <div className="h-[100px] bg-[#FAFAFA]"></div>
+      <div className="h-[100px] xl:h-[50px] bg-[#FAFAFA]"></div>
       <section id="product" data-theme="light" className=" ">
         <BuiltForEnterprise />
       </section>

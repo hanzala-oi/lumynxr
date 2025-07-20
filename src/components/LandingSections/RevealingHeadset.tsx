@@ -58,15 +58,25 @@ const VideoReveal: React.FC = () => {
       className="relative bg-[#E2E2E2] flex items-center justify-center"
     >
       <div className="sticky top-0 flex justify-center items-center w-full h-screen">
+
         <video
           ref={videoRef}
           className="rounded-3xl shadow-2xl bg-black"
-          src={`${process.env.NEXT_PUBLIC_CDN_URL}/videos/header.webm`}
           muted
           playsInline
           autoPlay
           loop
-        />
+        >
+          <source
+            src={`${process.env.NEXT_PUBLIC_CDN_URL}/videos/Teaser_v2.webm`}
+            type="video/webm"
+          />
+          <source
+            src={`${process.env.NEXT_PUBLIC_CDN_URL}/videos/Teaser_v2.mp4`}
+            type="video/mp4"
+          />
+          Your browser does not support the video tag.
+        </video>
         {/* Mute Toggle Button */}
         <button
           onClick={toggleMute}

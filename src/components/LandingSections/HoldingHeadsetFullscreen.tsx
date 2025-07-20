@@ -5,7 +5,7 @@ const HoldingHeadsetFullscreen: React.FC = () => {
   return (
     <div className="w-full xl:hidden">
       <Image
-        src={`${process.env.NEXT_PUBLIC_CDN_URL}/images/HoldingHeadset-BG-Phone.png`}
+        src={`${process.env.NEXT_PUBLIC_CDN_URL}/images/Phone%20Portrait.png`}
         alt="Header Image"
         width={1630} // Replace with actual image resolution width
         height={861} // Replace with actual image resolution height
