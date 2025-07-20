@@ -95,7 +95,7 @@ function PassThrough() {
   }, [hasPlayedOnce, isVisible]);
 
   return (
-    <div ref={sectionRef} className="relative w-full xl:h-screen bg-black h-[70vh] overflow-hidden">
+    <div ref={sectionRef} className="relative flex md:flex-col-reverse   w-full md:min-h-screen   xl:h-screen bg-black min-h-[70vh] overflow-hidden  ">
       {/* Background Video */}
       <video
         ref={videoRef}
@@ -103,7 +103,7 @@ function PassThrough() {
         playsInline
         preload="metadata"
 
-        className="absolute inset-0 xl:-left-64 scale-[1.1] w-full xl:h-full object-cover mt-[200px] xl:mt-0"
+        className="absolute inset-0 xl:-left-64 scale-[1.1] w-full xl:h-full object-cover mt-[200px] md:mt-0 "
 
       >
         <source
@@ -118,9 +118,9 @@ function PassThrough() {
       </video>
 
       {/* Overlay Text */}
-      <div className="xl:absolute  flex  xl:justify-end xl:items-center  xl:top-1/2 xl:transform xl:-translate-y-1/2 pl-[28px] xl:pl-0  w-full  ">
+      <div className="xl:absolute  flex   xl:justify-end xl:items-center  xl:top-1/2 xl:transform xl:-translate-y-1/2 pl-[28px] md:pl-[32px] xl:pl-0  w-full  ">
         <div className="text-left  xl:w-1/3">
-          <h1 className="text-[32px] leading-[30px]  xl:text-[64px] 2xl:text-[96px] xl:leading-[76px] 2xl:leading-[100px] font-light text-[#E2E2E2]">
+          <h1 className="text-[32px] md:text-[48px] md:leading-[52px] leading-[30px] xl:text-[64px] 2xl:text-[96px] xl:leading-[76px] 2xl:leading-[100px] font-light text-[#E2E2E2]">
             <span className="hidden xl:block"> Clear
               <br />
               Passthrough</span>
@@ -136,14 +136,11 @@ function PassThrough() {
         <svg className="my-[15px] xl:hidden" xmlns="http://www.w3.org/2000/svg" width="34" height="2" viewBox="0 0 34 2" fill="none">
           <path d="M1 1C11.6667 1 33 1 33 1" stroke="#C5C5C5" strokeLinecap="round" />
         </svg>
-          <p className="hidden xl:block xl:text-[20px] 2xl:text-[24px] xl:leading-[32px] font-[150] xl:font-[200] text-[#C5C5C5] xl:tracking-[0.048px]">
-            LumynXR delivers full-color passthrough <br /> with iToF depth
-            sensing for a vivid and <br /> accurate Mixed Reality experience.
-          </p>
-          <p className=" xl:hidden text-[14px] font-[150] text-[#C5C5C5]">
+          <p className=" max-w-[358px]  md:max-w-[567px] lg:max-w-[362px] 2xl:max-w-[466px] text-[14px] md:text-[16px] xl:text-[20px] 2xl:text-[24px] md:leading-[24px] xl:leading-[32px] font-[200] xl:font-[200] text-[#C5C5C5] xl:tracking-[0.048px] ">
             LumynXR delivers full-color passthrough  with iToF depth
             sensing for a vivid and  accurate Mixed Reality experience.
           </p>
+
         </div>
       </div>
     </div>

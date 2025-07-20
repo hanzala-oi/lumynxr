@@ -18,12 +18,13 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <section id="product" data-theme="dark" className="h-screen bg-black">
+      <section id="product" data-theme="dark" className="min-h-screen bg-black">
         <Hero />
       </section>
       <section id="product" data-theme="dark" className="hidden xl:block">
         <RevealingHeadset />
       </section>
+      <div className="hidden xl:block h-[200px] bg-black "></div>
       <section id="product" data-theme="dark" className=" bg-black">
         <Optical />
       </section>
@@ -52,10 +53,9 @@ export default function Home() {
       <section id="product" data-theme="dark" className=" bg-black">
         <Features />
       </section>
-      <section id="product" data-theme="light" className="h-screen ">
+      <section id="product" data-theme="light" className="">
         <WhatsInTheBox />
       </section>
-      <div className="h-[100px] xl:h-[50px] bg-[#FAFAFA]"></div>
       <section id="product" data-theme="light" className=" ">
         <BuiltForEnterprise />
       </section>

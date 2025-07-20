@@ -68,13 +68,13 @@ function WhatsInTheBox() {
   return (
     <div
       ref={containerRef}
-      className="min-h-screen h-[130vh]   bg-[#FAFAFA] xl:py-[115px] 2xl:py-[223px] overflow-hidden"
+      className="min-h-screen    bg-[#FAFAFA] xl:py-[115px] 2xl:py-[223px] overflow-hidden"
     >
       <div className="mx-auto h-full">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-[48px]  ">
           {/* What's in the Box Section */}
           <div className=" flex flex-col ">
-            <h2 className="heading xl:pl-20 text-[32px] xl:text-[40px] 2xl:text-[64px] leading-[35px] xl:leading-[100px] font-[300] text-black mb-8 pl-[28px] pt-10 xl:pt-0">
+            <h2 className="heading xl:pl-20 text-[32px] md:text-[36px] xl:text-[40px] 2xl:text-[64px] leading-[35px] md:leading-[52px] xl:leading-[100px] font-[300] text-black mb-8 pl-[28px] md:pl-[32px] pt-10 xl:pt-0">
               What's in the Box?
             </h2>
 
@@ -93,8 +93,8 @@ function WhatsInTheBox() {
           </div>
 
           {/* Specifications Section */}
-          <div className="pl-[28px] xl:pl-0 ">
-            <h2 className="heading text-[32px] xl:text-[40px] 2xl:text-[64px] leading-[35px] xl:leading-[100px] font-[300] text-black mb-[54px] xl:mb-0 2xl:mb-[54px] ">
+          <div className="pl-[28px] md:pl-[32px] xl:pl-0 ">
+            <h2 className="heading text-[32px] md:text-[36px] xl:text-[40px] 2xl:text-[64px] leading-[35px] md:leading-[52px] xl:leading-[100px] font-[300] text-black mb-[54px] xl:mb-0 2xl:mb-[54px] ">
               Specifications
             </h2>
 
@@ -102,10 +102,10 @@ function WhatsInTheBox() {
               <div className="grid grid-cols-2 gap-y-3  ">
                 {specifications.map((spec, index) => (
                   <React.Fragment key={index}>
-                    <span className="text-left text-[#5B5B5B] text-[12px] xl:text-[16px] 2xl:text-[20px] font-extralight leading-[16px] xl:leading-[22px] 2xl:leading-[24px]  ">
+                    <span className="text-left text-[#5B5B5B] text-[12px] md:text-[16px] xl:text-[16px] 2xl:text-[20px] font-extralight leading-[16px] xl:leading-[22px] 2xl:leading-[24px]  ">
                       {spec.label}
                     </span>
-                    <span className="ml-[-70px] text-left text-[#5B5B5B] text-[12px] xl:text-[16px] 2xl:text-[20px] font-normal leading-[14px] xl:leading-[20px] ">
+                    <span className="ml-[-70px] text-left text-[#5B5B5B] text-[12px] md:text-[16px] xl:text-[16px] 2xl:text-[20px] font-normal leading-[14px] md:leading-[16px] xl:leading-[20px] ">
                       {spec.value}
                     </span>
                   </React.Fragment>

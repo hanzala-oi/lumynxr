@@ -161,7 +161,7 @@ export default function Navbar() {
 
                 <div className="relative w-[110px]  h-[40px] xl:h-[60px] xl:w-[130px] 2xl:w-[170px] ">
                     <Image
-                        src={`${process.env.NEXT_PUBLIC_CDN_URL}/images/${!isDark ? "lumynxrnavbarblack" : "lumynxrnavbar"}.png`}
+                        src={`${process.env.NEXT_PUBLIC_CDN_URL}/images/${isDark ? "lumynxrnavbar" : "lumynxrnavbarblack"}.png`}
                         alt="Mailabs logo"
                         fill
                         className="object-contain ml-2 h-full"

@@ -97,10 +97,10 @@ function Optical() {
   return (
     <div
       ref={sectionRef}
-      className="flex flex-col-reverse xl:flex-row h-[75vh] xl:h-screen gap-6 xl:gap-0 max-w-screen items-start justify-end xl:items-center xl:justify-start bg-black overflow-hidden  "
+      className="flex flex-col-reverse md:flex-col  xl:flex-row min-h-[75vh] md:min-h-[90vh] xl:h-screen gap-6 xl:gap-0 max-w-screen items-start justify-end xl:items-center xl:justify-start bg-black overflow-hidden md:pt-[100px] xl:mt-0  "
     >
       {/* Video Section */}
-      <div className="w-auto xl:w-2/3  h-[301px] xl:h-full  overflow-hidden  ">
+      <div className="w-full xl:w-2/3  h-[301px] md:h-4/5    ">
         <video
           ref={videoRef}
           muted
@@ -121,8 +121,8 @@ function Optical() {
       </div>
 
       {/* Text Section */}
-      <div className=" flex flex-col  text-left ml-[26px] xl:ml-0 mt-[68px] xl:mt-0  overflow-hidden ">
-        <div className="text-[32px] leading-[30px] xl:text-[64px] 2xl:text-[96px] xl:leading-[76px] 2xl:leading-[100px] font-light text-[#E2E2E2]">
+      <div className=" flex flex-col  text-left ml-[26px] md:ml-[32px]  xl:ml-0 mt-[68px] md:mt-0  overflow-hidden ">
+        <div className="text-[32px] md:text-[48px] md:leading-[52px] leading-[30px] xl:text-[64px] 2xl:text-[96px] xl:leading-[76px] 2xl:leading-[100px] font-light text-[#E2E2E2]">
           <span className="block xl:hidden">See Every Detail</span>
           <span className="hidden xl:block">
             See Every
@@ -141,12 +141,8 @@ function Optical() {
         <svg className="my-[15px] xl:hidden" xmlns="http://www.w3.org/2000/svg" width="34" height="2" viewBox="0 0 34 2" fill="none">
           <path d="M1 1C11.6667 1 33 1 33 1" stroke="#C5C5C5" strokeLinecap="round" />
         </svg>
-        <p className="hidden xl:block xl:text-[20px] 2xl:text-[24px] xl:leading-[32px] font-[150] xl:font-[200] text-[#C5C5C5] xl:tracking-[0.048px]">
-          4K+ fast LCD delivers ultra-low latency and <br />
-          stunning clarity with vibrant colors, sharp text <br />
-          and lifelike details.
-        </p>
-        <p className=" xl:hidden text-[14px] font-[150] text-[#C5C5C5]">
+     
+        <p className=" max-w-[312px] md:max-w-[548px] lg:max-w-[356px] 2xl:max-w-[507px] text-[14px] md:text-[16px] xl:text-[20px] 2xl:text-[24px] md:leading-[24px] xl:leading-[32px] font-[200] xl:font-[200] text-[#C5C5C5] xl:tracking-[0.048px] ">
           4K+ fast LCD delivers ultra-low latency and
           stunning clarity with vibrant colors, sharp text
           and lifelike details.

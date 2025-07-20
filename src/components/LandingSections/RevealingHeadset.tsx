@@ -55,7 +55,7 @@ const VideoReveal: React.FC = () => {
   return (
     <div
       ref={containerRef}
-      className="relative bg-[#E2E2E2] flex items-center justify-center"
+      className="relative bg-[#E2E2E2] flex items-center justify-center "
     >
       <div className="sticky top-0 flex justify-center items-center w-full h-screen">
 

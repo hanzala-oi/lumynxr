@@ -42,15 +42,15 @@ function BuiltForEnterprise() {
   return (
     <div
       ref={containerRef}
-      className="h-fit  xl:h-screen bg-[#FAFAFA] overflow-hidden pt-[100px] xl:pt-0  "
+      className="h-fit min-h-[80vh]  xl:h-screen bg-[#FAFAFA] overflow-hidden pt-[100px] xl:pt-0  "
     >
-      <div className="flex flex-col xl:flex-row items-start xl:items-center h-full  ">
+      <div className="flex flex-col md:flex-col-reverse xl:flex-row items-start xl:items-center h-full ">
         {/* Left Content */}
-        <div className="fade-left xl:w-1/2 xl:pl-[115px] 2xl:pl-[199px] pl-[28px]  h-full ">
+        <div className="fade-left xl:w-1/2 xl:pl-[115px] 2xl:pl-[199px] pl-[28px]  h-full  md:mt-[-200px]  xl:mt-0 md:pb-20">
           <div className="flex flex-col justify-center h-full  ">
-            <div className="text-[32px] font-[300] leading-[30px] xl:text-[64px] 2xl:text-[96px]  xl:leading-[100px] text-black ">
-              <span className="block 2xl:hidden ">Built for Enterprise</span>
-              <span className="hidden 2xl:block">
+            <div className="text-[32px] md:text-[48px] md:leading-[52px] leading-[30px] xl:text-[64px] 2xl:text-[96px] xl:leading-[76px] 2xl:leading-[100px] text-black ">
+              <span className="block md:hidden ">Built for Enterprise</span>
+              <span className="hidden md:block">
                 Built for
                 <br />
                 Enterprise
@@ -99,31 +99,26 @@ function BuiltForEnterprise() {
             </svg>
 
             {/* Description */}
-                 <p className="hidden xl:block xl:text-[20px] 2xl:text-[24px] xl:leading-[32px] font-[200]  text-[#141414] xl:tracking-[0.048px] ml-1">
-            Enterprise-ready and fully customizable, LumynXR <br />
-              gives you control over software and hardware to <br />
+            <p className="max-w-[352px] md:max-w-[449px]  lg:max-w-[450px] 2xl:max-w-[533px] text-[14px] md:text-[16px] xl:text-[20px] 2xl:text-[24px] md:leading-[24px] xl:leading-[32px] font-[200]  text-[#141414] xl:tracking-[0.048px] ml-1">
+              Enterprise-ready and fully customizable, LumynXR
+              gives you control over software and hardware to
               build MR solutions tailored to your workflow
-        </p>
-        <p className=" xl:hidden text-[14px] font-[200]  text-[#141414] ">
-             Enterprise-ready and fully customizable, LumynXR 
-              gives you control over software and hardware to 
-              build MR solutions tailored to your workflow
-        </p>
-          
+            </p>
+
           </div>
         </div>
 
         {/* Right Image */}
-        <div className="fade-right xl:w-1/2 relative xl:mt-[200px]  ">
-          <div className="h-full w-full">
-            <Image
-              src={`${process.env.NEXT_PUBLIC_CDN_URL}/images/Enterprise.png`}
-              alt="LumynXR Logo"
-              width={1091}
-              height={872}
-              priority
-            />
-          </div>
+        <div className="fade-right  relative md:mb-[100px] w-full  xl:mb-0 xl:mt-[200px]  flex items-end justify-end">
+          <Image
+            src={`${process.env.NEXT_PUBLIC_CDN_URL}/images/Enterprise.png`}
+            alt="LumynXR Logo"
+            width={1091}
+            height={872}
+            priority
+            className="xl:min-w-[768px] md:w-[495px] md:mask-gradient"
+          />
+
         </div>
       </div>
     </div>
