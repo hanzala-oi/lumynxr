@@ -68,11 +68,11 @@ const VideoReveal: React.FC = () => {
           loop
         >
           <source
-            src={`${process.env.NEXT_PUBLIC_CDN_URL}/videos/Teaser_v2.webm`}
+            src={`${process.env.NEXT_PUBLIC_CDN_URL}/videos/Teaser_v3.webm`}
             type="video/webm"
           />
           <source
-            src={`${process.env.NEXT_PUBLIC_CDN_URL}/videos/Teaser_v2.mp4`}
+            src={`${process.env.NEXT_PUBLIC_CDN_URL}/videos/Teaser_v3.mp4`}
             type="video/mp4"
           />
           Your browser does not support the video tag.
@@ -82,7 +82,7 @@ const VideoReveal: React.FC = () => {
           onClick={toggleMute}
           className="absolute bottom-5 right-10 cursor-pointer hover:bg-gray-800 text-white text-sm px-3 py-1.5 rounded-xl shadow-lg bg-black/70 transition"
         >
-          {isMuted ? <Volume2 /> : <VolumeOff />}
+          {isMuted ?  <VolumeOff />: <Volume2 />}
         </button>
       </div>
     </div>

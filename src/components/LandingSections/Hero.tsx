@@ -90,11 +90,11 @@ function Hero() {
                   controls
                 >
                   <source
-                    src={`${process.env.NEXT_PUBLIC_CDN_URL}/videos/Teaser_v2.webm`}
+                    src={`${process.env.NEXT_PUBLIC_CDN_URL}/videos/Teaser_v3.webm`}
                     type="video/webm"
                   />
                   <source
-                    src={`${process.env.NEXT_PUBLIC_CDN_URL}/videos/Teaser_v2.mp4`}
+                    src={`${process.env.NEXT_PUBLIC_CDN_URL}/videos/Teaser_v3.mp4`}
                     type="video/mp4"
                   />
                   Your browser does not support the video tag.

@@ -7,7 +7,11 @@ import { StarBorder } from "./ui/star-border";
 import { gsap } from "gsap";
 import Image from "next/image";
 
-const navItems = ["Product", "Pricing", "Company"];
+const navItems = [
+    { label: "Product", href: "/" },
+    { label: "Pricing", href: "https://calendly.com/oneimmersive/30min?month=2025-07" },
+    { label: "Company", href: "https://www.oneimmersive.us/" }
+];
 
 export default function Navbar() {
     const [isDark, setIsDark] = useState(false);
@@ -182,26 +186,24 @@ export default function Navbar() {
             )}>
                 {navItems.map((item) => (
                     <Link
-                        key={item}
-                        href={`#${item.toLowerCase()}`}
+                        key={item.label}
+                        href={item.href}
+                        target={item.href.startsWith("http") ? "_blank" : undefined}
+                        rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
                         className={clsx(
                             "relative transition-colors duration-200",
-                            // Desktop Large
-                            "pb-[14px]",
-                            // Desktop Medium
-                            "2xl:pb-[12px]",
-                            // Desktop Small/Laptop Large
-                            "xl:pb-[10px]",
-                            activeSection === item && [
+                            "pb-[14px] 2xl:pb-[12px] xl:pb-[10px]",
+                            activeSection === item.label && [
                                 "after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-2/3 after:h-[3px] after:rounded-full after:bg-current",
                                 isDark ? "text-white" : "text-black"
                             ],
                             isDark ? "hover:text-gray-300" : "hover:text-gray-600"
                         )}
                     >
-                        {item}
+                        {item.label}
                     </Link>
                 ))}
+
             </div>
 
             {/* Burger Menu Button - Laptop Medium and below */}
@@ -255,7 +257,7 @@ export default function Navbar() {
 
 
             {/* CTA Button - Desktop and Large Laptop only */}
-            <div className="hidden xl:flex flex-1 justify-end">
+            <div onClick={() => window.open("https://calendly.com/oneimmersive/30min?month=2025-07", "_blank")} className="hidden xl:flex flex-1 justify-end">
                 <div className="card">
                     <div className={`box-base ${isDark ? "box " : "box-white"}`}>
                         <div className="glass"></div>
@@ -295,27 +297,25 @@ export default function Navbar() {
                 <div className="flex flex-col items-center gap-8">
                     {navItems.map((item) => (
                         <Link
-                            key={item}
-                            href={`#${item.toLowerCase()}`}
+                            key={item.label}
+                            href={item.href}
                             onClick={handleMobileLinkClick}
+                            target={item.href.startsWith("http") ? "_blank" : undefined}
+                            rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
                             className={clsx(
                                 "font-normal transition-colors duration-200",
-                                // Laptop Medium and Tablet Large
-                                "lg:text-2xl md:text-2xl",
-                                // Tablet Small/Mobile Large
-                                "sm:text-xl",
-                                // Mobile Medium and Small
-                                "xs:text-lg min-[320px]:text-base",
-                                activeSection === item && "border-b-2 border-current pb-2",
+                                "lg:text-2xl md:text-2xl sm:text-xl xs:text-lg min-[320px]:text-base",
+                                activeSection === item.label && "border-b-2 border-current pb-2",
                                 isDark ? "text-white hover:text-gray-300" : "text-black hover:text-gray-600"
                             )}
                         >
-                            {item}
+                            {item.label}
                         </Link>
                     ))}
 
+
                     {/* Mobile CTA Button */}
-                    <div className={clsx(
+                    <div onClick={() => window.open("https://calendly.com/oneimmersive/30min?month=2025-07", "_blank")} className={clsx(
                         "mt-8",
                         // Laptop Medium and Tablet Large
                         "lg:mt-8 md:mt-8",

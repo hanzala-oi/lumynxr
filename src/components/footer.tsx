@@ -78,12 +78,32 @@ const Footer: React.FC = () => {
               team.
             </p>
           </div>
-        
+
           {/* CTA Button */}
-          <div className="fade-up">
-            <div className=" uppercase  w-full flex items-center justify-center ">
-              <div className="box text-xl px-[40px] py-[17px] max-w-[200px] max-h-[70px]  bg-gradient-to-b from-[rgba(221,221,221,0.13)] to-[rgba(67,67,67,0.13)]">
-                Talk to Sales
+          <div onClick={() => window.open("https://calendly.com/oneimmersive/30min?month=2025-07", "_blank")} className="fade-up w-full flex items-center justify-center  ">
+            <div className="card w-fit  ">
+              <div className={`box-base   box h-12 w-[200px] `}>
+                <div className="glass  h-12 w-[200px]"></div>
+                <div className={clsx(
+                  "rounded-[51px] font-[600]",
+                  // Desktop Large
+                  "px-[24px] py-[14px]",
+                  // Desktop Medium
+                  "2xl:px-[22px] 2xl:py-[12px]",
+                  // Desktop Small/Laptop Large
+                  "xl:px-[20px] xl:py-[10px]",
+                  "bg-gradient-to-b from-[rgba(221,221,221,0.13)] to-[rgba(67,67,67,0.13)] h-12 w-[200px] flex items-center justify-center "
+                )}>
+                  <h1 className={clsx(
+                    "mt-[1px]",
+                    // Desktop Large
+                    "text-base",
+                    // Desktop Medium
+                    "2xl:text-[15px]",
+                    // Desktop Small/Laptop Large
+                    "xl:text-sm"
+                  )}>Talk to Sales</h1>
+                </div>
               </div>
             </div>
           </div>
@@ -165,13 +185,16 @@ const Footer: React.FC = () => {
           <div className="hidden md:flex md:flex-col space-y-4 ml-[50px] xl:ml-[120px]">
             <nav className="flex flex-col  h-[225px] md:border-l-[0.5px] xl:pl-16 md:pl-8  border-[#868686]  justify-between font-[100] md:font-[200] xl:font-[400] text-[10px] md:text-[12px] xl:text-[20px]  2xl:text-[24px] text-[#F2F2F2]">
               <Link
-                href="/sales"
+                target="_blank"
+                href="https://calendly.com/oneimmersive/30min?month=2025-07"
                 className=" hover:text-white transition-colors duration-200"
               >
                 Talk to Sales
               </Link>
               <Link
-                href="/company"
+                target="_blank"
+
+                href="https://www.oneimmersive.us/"
                 className=" hover:text-white transition-colors duration-200"
               >
                 Company
@@ -183,7 +206,8 @@ const Footer: React.FC = () => {
                 FAQ
               </Link> */}
               <Link
-                href="/media"
+               href="#"
+  onClick={(e) => e.preventDefault()}
                 className=" hover:text-white transition-colors duration-200"
               >
                 Media Centre
@@ -212,13 +236,15 @@ const Footer: React.FC = () => {
 
             <nav className="flex flex-col h-full justify-between  ">
               <Link
-                href="/sales"
+                 target="_blank"
+                href="https://calendly.com/oneimmersive/30min?month=2025-07"
                 className=" hover:text-white transition-colors duration-200"
               >
                 Talk to Sales
               </Link>
               <Link
-                href="/company"
+                 target="_blank"
+                href="https://www.oneimmersive.us/"
                 className=" hover:text-white transition-colors duration-200"
               >
                 Company
@@ -230,7 +256,8 @@ const Footer: React.FC = () => {
                 FAQ
               </Link> */}
               <Link
-                href="/media"
+                href="#"
+  onClick={(e) => e.preventDefault()}
                 className=" hover:text-white transition-colors duration-200"
               >
                 Media Centre
@@ -239,25 +266,28 @@ const Footer: React.FC = () => {
 
             <nav className="flex flex-col  h-full justify-between ">
               <Link
-                href="/"
+                href="https://www.linkedin.com/company/one-immersive/"
                 className=" hover:text-white transition-colors duration-200"
               >
                 LinkedIn
               </Link>
               <Link
-                href="/"
+                href="#"
+  onClick={(e) => e.preventDefault()}
                 className=" hover:text-white transition-colors duration-200"
               >
                 Youtube
               </Link>
               <Link
-                href="/"
+                href="#"
+  onClick={(e) => e.preventDefault()}
                 className=" hover:text-white transition-colors duration-200"
               >
                 Instagram
               </Link>
               <Link
-                href="/"
+                 href="#"
+  onClick={(e) => e.preventDefault()}
                 className=" hover:text-white transition-colors duration-200"
               >
                 X (Twitter)
@@ -294,13 +324,15 @@ const Footer: React.FC = () => {
                 © 2024 One Immersive. All rights reserved.
               </span>
               <Link
-                href="/privacy"
+                 href="#"
+  onClick={(e) => e.preventDefault()}
                 className="xl:pl-[62px] hover:text-white transition-colors duration-200 xl:border-x-[0.5px] xl:pr-[62px] border-[#868686]"
               >
                 Privacy Policy
               </Link>
               <Link
-                href="/terms"
+                 href="#"
+  onClick={(e) => e.preventDefault()}
                 className="hover:text-white transition-colors duration-200"
               >
                 Terms of Service
@@ -308,6 +340,7 @@ const Footer: React.FC = () => {
               {/* Right: Social Icons */}
               <div className="hidden md:flex xl:hidden">
                 <svg
+                onClick={() => window.open('https://www.linkedin.com/company/oneimmersive/', '_blank')}
                   xmlns="http://www.w3.org/2000/svg"
                   width="21"
                   height="13"
@@ -320,7 +353,7 @@ const Footer: React.FC = () => {
                   />
                 </svg>
                 <svg
-                  className="ml-2" 
+                  className="ml-2"
                   xmlns="http://www.w3.org/2000/svg"
                   width="20"
                   height="13"
@@ -346,7 +379,7 @@ const Footer: React.FC = () => {
                   />
                 </svg>
                 <svg
-                  className="ml-2" 
+                  className="ml-2"
                   xmlns="http://www.w3.org/2000/svg"
                   width="30"
                   height="13"
@@ -361,11 +394,13 @@ const Footer: React.FC = () => {
               </div>
               <div className="hidden xl:flex space-x-4">
                 <svg
+                onClick={() => window.open('https://www.linkedin.com/company/one-immersive/', '_blank')}
                   xmlns="http://www.w3.org/2000/svg"
                   width="21"
                   height="20"
                   viewBox="0 0 21 20"
                   fill="none"
+                  className="cursor-pointer"
                 >
                   <path
                     d="M0 2.32323C0 1.64982 0.225232 1.09426 0.675676 0.656566C1.12612 0.218848 1.71172 0 2.43243 0C3.14029 0 3.71299 0.215475 4.15058 0.646465C4.60102 1.09091 4.82625 1.67002 4.82625 2.38384C4.82625 3.0303 4.60747 3.56901 4.16988 4C3.71944 4.44444 3.12741 4.66667 2.39382 4.66667H2.37452C1.66666 4.66667 1.09396 4.44444 0.656371 4C0.218784 3.55556 0 2.99663 0 2.32323ZM0.250965 20V6.50505H4.53668V20H0.250965ZM6.9112 20H11.1969V12.4646C11.1969 11.9933 11.2484 11.6296 11.3514 11.3737C11.5315 10.9158 11.805 10.5286 12.1718 10.2121C12.5386 9.89562 12.9987 9.73737 13.5521 9.73737C14.9936 9.73737 15.7143 10.7542 15.7143 12.7879V20H20V12.2626C20 10.2694 19.5496 8.75758 18.6486 7.72727C17.7477 6.69697 16.5573 6.18182 15.0772 6.18182C13.417 6.18182 12.1236 6.92929 11.1969 8.42424V8.46465H11.1776L11.1969 8.42424V6.50505H6.9112C6.93693 6.93602 6.94981 8.27608 6.94981 10.5253C6.94981 12.7744 6.93693 15.9326 6.9112 20Z"
@@ -373,7 +408,7 @@ const Footer: React.FC = () => {
                   />
                 </svg>
                 <svg
-                  className="ml-2" 
+                  className="ml-2"
                   xmlns="http://www.w3.org/2000/svg"
                   width="20"
                   height="20"
@@ -399,7 +434,7 @@ const Footer: React.FC = () => {
                   />
                 </svg>
                 <svg
-                  className="ml-2" 
+                  className="ml-2"
                   xmlns="http://www.w3.org/2000/svg"
                   width="30"
                   height="20"

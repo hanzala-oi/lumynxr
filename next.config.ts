@@ -2,8 +2,16 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   /* config options here */
+
   images: {
-    domains: ['lumynxr-cdn.azureedge.net'],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "lumynxr-cdn.azureedge.net",
+        port: "",
+        pathname: "/**",
+      },
+    ],
   },
 };
 
