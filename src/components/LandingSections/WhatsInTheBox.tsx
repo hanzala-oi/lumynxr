@@ -26,44 +26,44 @@ function WhatsInTheBox() {
     { label: "Weight", value: "540g" },
   ];
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top 80%",
-        },
-      });
+  // useEffect(() => {
+  //   const ctx = gsap.context(() => {
+  //     const tl = gsap.timeline({
+  //       scrollTrigger: {
+  //         trigger: containerRef.current,
+  //         start: "top 80%",
+  //       },
+  //     });
 
-      // Animate Headings
-      tl.from(".heading", {
-        y: 50,
-        opacity: 0,
-        duration: 1,
-        ease: "power3.out",
-        stagger: 0.2,
-      });
+  //     // Animate Headings
+  //     tl.from(".heading", {
+  //       y: 50,
+  //       opacity: 0,
+  //       duration: 1,
+  //       ease: "power3.out",
+  //       stagger: 0.2,
+  //     });
 
-      // Animate Image
-      tl.from(".box-image", {
-        scale: 0.9,
-        opacity: 0,
-        duration: 1.2,
-        ease: "power3.out",
-      }, "-=0.8"); // overlap with previous
+  //     // Animate Image
+  //     tl.from(".box-image", {
+  //       scale: 0.9,
+  //       opacity: 0,
+  //       duration: 1.2,
+  //       ease: "power3.out",
+  //     }, "-=0.8"); // overlap with previous
 
-      // Animate Each Spec Line
-      tl.from(".spec-line", {
-        x: -30,
-        opacity: 0,
-        duration: 0.6,
-        ease: "power2.out",
-        stagger: 0.1,
-      }, "-=0.5"); // slight overlap
-    }, containerRef);
+  //     // Animate Each Spec Line
+  //     tl.from(".spec-line", {
+  //       x: -30,
+  //       opacity: 0,
+  //       duration: 0.6,
+  //       ease: "power2.out",
+  //       stagger: 0.1,
+  //     }, "-=0.5"); // slight overlap
+  //   }, containerRef);
 
-    return () => ctx.revert(); // Clean up animations on unmount
-  }, []);
+  //   return () => ctx.revert(); // Clean up animations on unmount
+  // }, []);
 
   return (
     <div
