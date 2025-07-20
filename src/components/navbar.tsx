@@ -167,7 +167,8 @@ export default function Navbar() {
                     <Image
                         src={`${process.env.NEXT_PUBLIC_CDN_URL}/images/${isDark ? "lumynxrnavbar" : "lumynxrnavbarblack"}.png`}
                         alt="Mailabs logo"
-                        fill
+                        width={110} // Replace with actual image resolution width
+                        height={40} // Replace with actual image resolution height
                         className="object-contain ml-2 h-full"
                     />
                 </div>

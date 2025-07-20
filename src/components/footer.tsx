@@ -143,11 +143,12 @@ const Footer: React.FC = () => {
             {/* Partner Logos */}
             <div className="flex items-center justify-between mt-4 mb-16 xl:mt-[62px] xl:mb-[62px] w-[253px] md:w-[203px] xl:w-[379px] 2xl:w-[487px] ">
               {/* Logo 1 inside pill */}
-              <div className="relative w-[77px] md:w-[55px] h-[17px] xl:w-[132px] xl:h-[26px] 2xl:w-[166px] 2xl:h-[32px]">
+              <div className="relative w-[77px] md:w-[55px] xl:w-[132px] xl:h-[26px] 2xl:w-[166px] 2xl:h-[32px] h-auto">
                 <Image
                   src={`${process.env.NEXT_PUBLIC_CDN_URL}/images/oneimmersive.png`}
                   alt="Mailabs logo"
-                  fill
+                  width={110} // Replace with actual image resolution width
+                  height={40} // Replace with actual image resolution height
                   className="object-contain"
                 />
               </div>
@@ -168,11 +169,12 @@ const Footer: React.FC = () => {
               </svg>
 
               {/* Second partner logo */}
-              <div className="relative w-[53px] md:w-[38px] h-[17px] xl:w-[83px] xl:h-[26px] 2xl:w-[100px] 2xl:h-[32px]">
+              <div className="relative w-[53px] md:w-[38px] h-auto xl:w-[83px] xl:h-[26px] 2xl:w-[100px] 2xl:h-[32px]">
                 <Image
                   src={`${process.env.NEXT_PUBLIC_CDN_URL}/images/mailabs.png`}
                   alt="Mailabs logo"
-                  fill
+                  width={110} // Replace with actual image resolution width
+                  height={40} // Replace with actual image resolution height
                   className="object-contain"
                 />
               </div>
@@ -206,8 +208,8 @@ const Footer: React.FC = () => {
                 FAQ
               </Link> */}
               <Link
-               href="#"
-  onClick={(e) => e.preventDefault()}
+                href="#"
+                onClick={(e) => e.preventDefault()}
                 className=" hover:text-white transition-colors duration-200"
               >
                 Media Centre
@@ -236,14 +238,14 @@ const Footer: React.FC = () => {
 
             <nav className="flex flex-col h-full justify-between  ">
               <Link
-                 target="_blank"
+                target="_blank"
                 href="https://calendly.com/oneimmersive/30min?month=2025-07"
                 className=" hover:text-white transition-colors duration-200"
               >
                 Talk to Sales
               </Link>
               <Link
-                 target="_blank"
+                target="_blank"
                 href="https://www.oneimmersive.us/"
                 className=" hover:text-white transition-colors duration-200"
               >
@@ -257,7 +259,7 @@ const Footer: React.FC = () => {
               </Link> */}
               <Link
                 href="#"
-  onClick={(e) => e.preventDefault()}
+                onClick={(e) => e.preventDefault()}
                 className=" hover:text-white transition-colors duration-200"
               >
                 Media Centre
@@ -273,21 +275,21 @@ const Footer: React.FC = () => {
               </Link>
               <Link
                 href="#"
-  onClick={(e) => e.preventDefault()}
+                onClick={(e) => e.preventDefault()}
                 className=" hover:text-white transition-colors duration-200"
               >
                 Youtube
               </Link>
               <Link
                 href="#"
-  onClick={(e) => e.preventDefault()}
+                onClick={(e) => e.preventDefault()}
                 className=" hover:text-white transition-colors duration-200"
               >
                 Instagram
               </Link>
               <Link
-                 href="#"
-  onClick={(e) => e.preventDefault()}
+                href="#"
+                onClick={(e) => e.preventDefault()}
                 className=" hover:text-white transition-colors duration-200"
               >
                 X (Twitter)
@@ -324,15 +326,15 @@ const Footer: React.FC = () => {
                 © 2024 One Immersive. All rights reserved.
               </span>
               <Link
-                 href="#"
-  onClick={(e) => e.preventDefault()}
+                href="#"
+                onClick={(e) => e.preventDefault()}
                 className="xl:pl-[62px] hover:text-white transition-colors duration-200 xl:border-x-[0.5px] xl:pr-[62px] border-[#868686]"
               >
                 Privacy Policy
               </Link>
               <Link
-                 href="#"
-  onClick={(e) => e.preventDefault()}
+                href="#"
+                onClick={(e) => e.preventDefault()}
                 className="hover:text-white transition-colors duration-200"
               >
                 Terms of Service
@@ -340,7 +342,7 @@ const Footer: React.FC = () => {
               {/* Right: Social Icons */}
               <div className="hidden md:flex xl:hidden">
                 <svg
-                onClick={() => window.open('https://www.linkedin.com/company/oneimmersive/', '_blank')}
+                  onClick={() => window.open('https://www.linkedin.com/company/oneimmersive/', '_blank')}
                   xmlns="http://www.w3.org/2000/svg"
                   width="21"
                   height="13"
@@ -394,7 +396,7 @@ const Footer: React.FC = () => {
               </div>
               <div className="hidden xl:flex space-x-4">
                 <svg
-                onClick={() => window.open('https://www.linkedin.com/company/one-immersive/', '_blank')}
+                  onClick={() => window.open('https://www.linkedin.com/company/one-immersive/', '_blank')}
                   xmlns="http://www.w3.org/2000/svg"
                   width="21"
                   height="20"
