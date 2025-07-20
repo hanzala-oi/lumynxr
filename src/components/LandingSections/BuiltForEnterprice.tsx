@@ -9,35 +9,35 @@ gsap.registerPlugin(ScrollTrigger);
 function BuiltForEnterprise() {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top 80%", // trigger when top of container hits 80% viewport
-          toggleActions: "play none none none",
-        },
-      });
+  // useEffect(() => {
+  //   const ctx = gsap.context(() => {
+  //     const tl = gsap.timeline({
+  //       scrollTrigger: {
+  //         trigger: containerRef.current,
+  //         start: "top 80%", // trigger when top of container hits 80% viewport
+  //         toggleActions: "play none none none",
+  //       },
+  //     });
 
-      // Animate left content
-      tl.from(".fade-left", {
-        x: -100,
-        opacity: 0,
-        duration: 1,
-        ease: "power3.out",
-      });
+  //     // Animate left content
+  //     tl.from(".fade-left", {
+  //       x: -100,
+  //       opacity: 0,
+  //       duration: 1,
+  //       ease: "power3.out",
+  //     });
 
-      // Animate right image
-      tl.from(".fade-right", {
-        x: 100,
-        opacity: 0,
-        duration: 1,
-        ease: "power3.out",
-      });
-    }, containerRef);
+  //     // Animate right image
+  //     tl.from(".fade-right", {
+  //       x: 100,
+  //       opacity: 0,
+  //       duration: 1,
+  //       ease: "power3.out",
+  //     });
+  //   }, containerRef);
 
-    return () => ctx.revert(); // Cleanup on unmount
-  }, []);
+  //   return () => ctx.revert(); // Cleanup on unmount
+  // }, []);
 
   return (
     <div

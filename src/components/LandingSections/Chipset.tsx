@@ -116,6 +116,7 @@ function Chipset() {
           src={`${process.env.NEXT_PUBLIC_CDN_URL}/videos/Chipsetv2.mp4`}
           type="video/mp4"
         />
+
         Your browser does not support the video tag.
       </video>
 

@@ -19,7 +19,13 @@ function Hero() {
     <div className="flex flex-col  xl:flex-row min-h-screen xl:max-h-screen max-w-screen w-screen items-start xl:items-center justify-center bg-black ">
       {/* Video Section */}
       <div className="w-full md:mt-[30vh] lg:mt-0 xl:w-2/3 xl:max-w-2/3  h-[301px] xl:h-full flex-shrink-0 flex flex-col items-center justify-center   ">
-        <video className=" object-cover rounded-xl w-[110%] h-[110%]" autoPlay muted>
+       <video
+          className=" object-cover rounded-xl w-[110%] h-[110%]"
+          muted
+          playsInline
+          autoPlay
+        
+        >
           <source
             src={`${process.env.NEXT_PUBLIC_CDN_URL}/videos/header.webm`}
             type="video/webm"
