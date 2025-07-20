@@ -4,14 +4,7 @@ const nextConfig: NextConfig = {
   /* config options here */
 
   images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "lumynxr-cdn.azureedge.net",
-        port: "",
-        pathname: "/**",
-      },
-    ],
+    domains: ['lumynxr-cdn.azureedge.net'],
   },
 };
 
