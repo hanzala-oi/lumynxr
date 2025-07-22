@@ -117,7 +117,7 @@ const Features: React.FC = () => {
           onMouseLeave={handleMouseLeave}
           className="group w-full xl:w-1/2 h-full  gap-2 flex flex-row xl:flex-col  rounded-xl b-2 "
         >
-          <div className="w-full h-full  overflow-hidden bg-[#000000] rounded-xl">
+          <div className="w-full h-full  overflow-hidden bg-[#090909] rounded-xl">
             <video
               ref={(el) => {
                 videoRefs.current[0] = el;
@@ -133,7 +133,7 @@ const Features: React.FC = () => {
               <source src={features[0].sources.mp4} type="video/mp4" />
               Your browser does not support the video tag.
             </video>
-            <div className="flex flex-col gap-2 justify-end pl-4 md:pb-4 xl:pb-12 h-1/5 md:mt-4 xl:mt-0  bg-[#000000] ">
+            <div className="flex flex-col gap-2 justify-end pl-4 md:pb-4 xl:pb-12 h-1/5 md:mt-4 xl:mt-0  bg-[#090909] ">
               <h1 className="text-[16px]  xl:text-[20px] font-[500] xl:font-normal xl:leading-[100%] xl:tracking-[0%] text-[#F2F2F2]">
                 {features[0].title}
               </h1>
@@ -147,7 +147,7 @@ const Features: React.FC = () => {
           <div
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
-            className="hidden xl:hidden md:flex   flex-col w-full  h-full bg-[#000000] rounded-xl group"
+            className="hidden xl:hidden md:flex   flex-col w-full  h-full bg-[#090909] rounded-xl group"
           >
             <div className="w-full h-full overflow-hidden  rounded-xl ">
               <video
@@ -165,7 +165,7 @@ const Features: React.FC = () => {
                 <source src={features[1].sources.mp4} type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
-              <div className="pb-4 mt-4  2xl:mt-0 pl-4  flex gap-2 flex-col z-10 bg-[#000000]">
+              <div className="pb-4 mt-4  2xl:mt-0 pl-4  flex gap-2 flex-col z-10 bg-[#090909]">
                 <h1 className="text-[16px]  xl:text-[20px] font-[500] xl:font-normal xl:leading-[100%] xl:tracking-[0%] text-[#F2F2F2]">
                   {features[1].title}
                 </h1>
@@ -182,7 +182,7 @@ const Features: React.FC = () => {
           <div
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
-            className="w-full xl:h-3/5 h-full bg-[#000000] rounded-xl group md:hidden xl:block"
+            className="w-full xl:h-3/5 h-full bg-[#090909] rounded-xl group md:hidden xl:block"
           >
             <div className="w-full h-4/5 overflow-hidden ">
               <video
@@ -201,7 +201,7 @@ const Features: React.FC = () => {
                 Your browser does not support the video tag.
               </video>
             </div>
-            <div className="pb-8  2xl:mt-0 pl-4 h-1/5 flex gap-2 flex-col z-10 bg-[#000000]">
+            <div className="pb-8  2xl:mt-0 pl-4 h-1/5 flex gap-2 flex-col z-10 bg-[#090909]">
               <h1 className="text-[16px]  xl:text-[20px] font-[500] xl:font-normal xl:leading-[100%] xl:tracking-[0%] text-[#F2F2F2] ">
                 {features[1].title}
               </h1>
@@ -215,9 +215,9 @@ const Features: React.FC = () => {
           <div
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
-            className="group w-full  xl:h-2/5 h-full bg-[#000000] rounded-xl flex flex-col md:flex-row  md:items-center overflow-hidden"
+            className="group w-full  xl:h-2/5 h-full bg-[#090909] rounded-xl flex flex-col md:flex-row  md:items-center overflow-hidden"
           >
-            <div className="md:w-3/5 h-full flex flex-col gap-2 justify-end pb-8 pl-4 pt-4 bg-[#000000]  ">
+            <div className="md:w-3/5 h-full flex flex-col gap-2 justify-end pb-8 pl-4 pt-4 bg-[#090909]  ">
               <h1 className="text-[16px]   xl:text-[20px] font-[500] xl:font-normal xl:leading-[100%] xl:tracking-[0%] text-[#F2F2F2]">
                 {features[2].title}
               </h1>
