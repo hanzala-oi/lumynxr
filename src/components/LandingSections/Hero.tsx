@@ -40,6 +40,8 @@ function Hero() {
           muted
           playsInline
           autoPlay
+          preload="auto"
+
         >
           <source
             src={`${process.env.NEXT_PUBLIC_CDN_URL}/videos/${videoFormat === "webm" ? "header.webm" : "Header.mp4"}`}
@@ -55,9 +57,9 @@ function Hero() {
           Realities <br /> Unlike Before
         </div>
         <div className="max-w-[302px] md:max-w-[479px] xl:max-w-[399px] 2xl:max-w-[532px] text-[14px] md:text-[16px] xl:text-[20px] 2xl:text-[24px] md:leading-[24px] xl:leading-[32px] font-[200] text-[#C5C5C5] xl:tracking-[0.048px]">
-          LumynXR is a high-performance mixed reality 
-          headset designed for the future of spatial 
-          computing, with enterprise-ready features for 
+          LumynXR is a high-performance mixed reality
+          headset designed for the future of spatial
+          computing, with enterprise-ready features for
           cross-industry innovation
         </div>
       </div>

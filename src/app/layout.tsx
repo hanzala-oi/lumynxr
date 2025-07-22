@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, DM_Sans } from "next/font/google";
+import {  DM_Sans } from "next/font/google";
 import "./globals.css";
 
 const dmSans = DM_Sans({
   subsets: ['latin'],
-  variable: '--font-dm-sans',    // Optional: for Tailwind use
+  variable: '--font-dm-sans',  
   display: 'swap',
 });
 
@@ -23,6 +23,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <link rel="preconnect" href="https://lumynxr-cdn.azureedge.net" />
+
         <link rel="icon" href="/favicon.png" type="image/png" />
       </head>
       <body

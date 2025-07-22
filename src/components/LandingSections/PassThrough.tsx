@@ -1,123 +1,18 @@
-"use client";
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
+import ScrollVideo from "./ScrollVideo";
 
 function PassThrough() {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const [hasPlayedOnce, setHasPlayedOnce] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
-  const playPromiseRef = useRef<Promise<void> | null>(null);
-
-  const playVideo = async () => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    try {
-      if (video.paused) {
-        playPromiseRef.current = video.play();
-        await playPromiseRef.current;
-      }
-    } catch (error) {
-      if (error instanceof Error && error.name !== "AbortError") {
-        console.error("Video play error:", error);
-      }
-    } finally {
-      playPromiseRef.current = null;
-    }
-  };
-
-  const pauseVideo = async () => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    try {
-      if (!video.paused) {
-        video.pause();
-      }
-    } catch (error) {
-      if (error instanceof Error && error.name !== "AbortError") {
-        console.error("Video pause error:", error);
-      }
-    }
-  };
-
-  useEffect(() => {
-    const video = videoRef.current;
-    const section = sectionRef.current;
-
-    if (!video || !section) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true);
-            playVideo();
-            setHasPlayedOnce(true);
-          } else {
-            setIsVisible(false);
-            pauseVideo();
-          }
-        });
-      },
-      {
-        threshold: 0.3,
-        rootMargin: "0px 0px -100px 0px",
-      }
-    );
-
-    observer.observe(section);
-
-    let lastScrollY = window.scrollY;
-    let scrollTimeout: ReturnType<typeof setTimeout>;
-
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      const isScrollingUp = currentScrollY < lastScrollY;
-
-      clearTimeout(scrollTimeout);
-      scrollTimeout = setTimeout(() => {
-        if (isScrollingUp && hasPlayedOnce && isVisible) {
-          playVideo();
-        }
-      }, 100);
-
-      lastScrollY = currentScrollY;
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-
-    return () => {
-      observer.disconnect();
-      window.removeEventListener("scroll", handleScroll);
-      clearTimeout(scrollTimeout);
-    };
-  }, [hasPlayedOnce, isVisible]);
 
   return (
     <div
-      ref={sectionRef}
       className="relative flex md:flex-col-reverse w-full md:min-h-screen xl:h-screen bg-black min-h-[70vh] overflow-hidden"
     >
       {/* Background Video */}
-      <video
-        ref={videoRef}
-        muted
-        playsInline
-        preload="metadata"
+      <ScrollVideo
+        srcWebm={`${process.env.NEXT_PUBLIC_CDN_URL}/videos/Passthroughv2.webm`}
+        srcMp4={`${process.env.NEXT_PUBLIC_CDN_URL}/videos/Passthroughv2.mp4`}
         className="absolute inset-0 xl:-left-64 scale-[1.1] w-full xl:h-full object-cover mt-[200px] md:mt-0"
-      >
-        <source
-          src={`${process.env.NEXT_PUBLIC_CDN_URL}/videos/Passthroughv2.webm`}
-          type="video/webm"
-        />
-        <source
-          src={`${process.env.NEXT_PUBLIC_CDN_URL}/videos/Passthroughv2.mp4`}
-          type="video/mp4"
-        />
-        Your browser does not support the video tag.
-      </video>
-
+      />
       {/* Overlay Text */}
       <div className="xl:absolute flex xl:justify-end xl:items-center xl:top-1/2 xl:transform xl:-translate-y-1/2 pl-[28px] md:pl-[32px] xl:pl-0 w-full">
         <div className="text-left xl:w-1/3">

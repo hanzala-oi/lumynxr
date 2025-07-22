@@ -1,43 +1,16 @@
 "use client";
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { StarBorder } from "./ui/star-border";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import clsx from "clsx";
 
-gsap.registerPlugin(ScrollTrigger);
 
 const Footer: React.FC = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      const fadeUp = gsap.timeline({
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top 80%", // start animation when container is 80% into view
-          toggleActions: "play none none none",
-        },
-      });
-
-      fadeUp.from(".fade-up", {
-        y: 50,
-        opacity: 0,
-        duration: 0.8,
-        ease: "power3.out",
-        stagger: 0.2, // stagger each .fade-up element
-      });
-    }, containerRef);
-
-    return () => ctx.revert(); // Clean up on unmount
-  }, []);
   return (
     <footer className="bg-black text-white xl:py-12 pt-[89px] xl:pt-32  overflow-hidden   ">
       <div className=" flex flex-col items-center justify-center px-8">
         <div
-          ref={containerRef}
           className="max-w-4xl w-full text-start md:text-center mx-auto"
         >
           {/* Main Heading */}

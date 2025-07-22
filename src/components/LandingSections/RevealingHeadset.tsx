@@ -78,6 +78,8 @@ const VideoReveal: React.FC = () => {
           playsInline
           autoPlay
           loop
+          preload="auto"
+
         >
           <source
             src={`${process.env.NEXT_PUBLIC_CDN_URL}/videos/Teaser_v3.${videoFormat}`}

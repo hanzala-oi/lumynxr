@@ -1,52 +1,16 @@
-"use client";
 import Image from "next/image";
-import React, { useEffect, useRef } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import React from "react";
 
-gsap.registerPlugin(ScrollTrigger);
 
 function BuiltForEnterprise() {
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  // useEffect(() => {
-  //   const ctx = gsap.context(() => {
-  //     const tl = gsap.timeline({
-  //       scrollTrigger: {
-  //         trigger: containerRef.current,
-  //         start: "top 80%", // trigger when top of container hits 80% viewport
-  //         toggleActions: "play none none none",
-  //       },
-  //     });
-
-  //     // Animate left content
-  //     tl.from(".fade-left", {
-  //       x: -100,
-  //       opacity: 0,
-  //       duration: 1,
-  //       ease: "power3.out",
-  //     });
-
-  //     // Animate right image
-  //     tl.from(".fade-right", {
-  //       x: 100,
-  //       opacity: 0,
-  //       duration: 1,
-  //       ease: "power3.out",
-  //     });
-  //   }, containerRef);
-
-  //   return () => ctx.revert(); // Cleanup on unmount
-  // }, []);
-
+ 
   return (
     <div
-      ref={containerRef}
       className="h-fit min-h-[80vh]  xl:h-screen bg-[#FAFAFA] overflow-hidden pt-[100px] xl:pt-0  "
     >
       <div className="flex flex-col md:flex-col-reverse xl:flex-row items-start xl:items-center h-full ">
         {/* Left Content */}
-        <div className="fade-left xl:w-1/2 xl:pl-[115px] 2xl:pl-[199px] pl-[28px]  h-full  md:mt-[-200px]  xl:mt-0 md:pb-20">
+        <div className="fade-left  xl:pl-[115px] 2xl:pl-[199px] pl-[28px]  h-full  md:mt-[-200px]  xl:mt-0 md:pb-20 xl:pb-0 ">
           <div className="flex flex-col justify-center h-full  ">
             <div className="text-[32px] md:text-[48px] md:leading-[52px] leading-[30px] xl:text-[64px] 2xl:text-[96px] xl:leading-[76px] 2xl:leading-[100px] text-black ">
               <span className="block md:hidden ">Built for Enterprise</span>
@@ -109,14 +73,14 @@ function BuiltForEnterprise() {
         </div>
 
         {/* Right Image */}
-        <div className="fade-right  relative md:mb-[100px] w-full  xl:mb-0 xl:mt-[200px]  flex items-end justify-end">
+        <div className="fade-right  relative md:mb-[100px] w-full  xl:mb-0 xl:mt-[200px] 2xl:mt-[300px]  flex items-end justify-end ">
           <Image
             src={`${process.env.NEXT_PUBLIC_CDN_URL}/images/Enterprise.png`}
             alt="LumynXR Logo"
-            width={1091}
+            width={1291}
             height={872}
             priority
-            className="xl:min-w-[768px] md:w-[495px] md:mask-gradient"
+            className=" xl:min-w-[768px] md:w-[495px] 2xl:min-w-[1000px] md:mask-gradient  "
           />
 
         </div>

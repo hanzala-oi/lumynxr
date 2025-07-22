@@ -1,100 +1,13 @@
-"use client";
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
+import ScrollVideo from "./ScrollVideo";
 
 function Controller() {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const [hasPlayedOnce, setHasPlayedOnce] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
-  const playPromiseRef = useRef<Promise<void> | null>(null);
-
-  const playVideo = async () => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    try {
-      if (video.paused) {
-        playPromiseRef.current = video.play();
-        await playPromiseRef.current;
-      }
-    } catch (error) {
-      if (error instanceof Error && error.name !== "AbortError") {
-        console.error("Video play error:", error);
-      }
-    } finally {
-      playPromiseRef.current = null;
-    }
-  };
-
-  const pauseVideo = () => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    if (!video.paused) {
-      video.pause();
-    }
-  };
-
-  useEffect(() => {
-    const video = videoRef.current;
-    const section = sectionRef.current;
-
-    if (!video || !section) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true);
-            playVideo();
-            setHasPlayedOnce(true);
-          } else {
-            setIsVisible(false);
-            pauseVideo();
-          }
-        });
-      },
-      {
-        threshold: 0.3, // Match threshold with other components
-        rootMargin: "0px 0px -100px 0px",
-      }
-    );
-
-    observer.observe(section);
-
-    let lastScrollY = window.scrollY;
-    let scrollTimeout: ReturnType<typeof setTimeout>;
-
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      const isScrollingUp = currentScrollY < lastScrollY;
-
-      clearTimeout(scrollTimeout);
-      scrollTimeout = setTimeout(() => {
-        if (isScrollingUp && hasPlayedOnce && isVisible) {
-          playVideo();
-        }
-      }, 100);
-
-      lastScrollY = currentScrollY;
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-
-    return () => {
-      observer.disconnect();
-      window.removeEventListener("scroll", handleScroll);
-      clearTimeout(scrollTimeout);
-    };
-  }, [hasPlayedOnce, isVisible]);
-
   return (
     <div
-      ref={sectionRef}
       className="flex flex-col md:flex-col-reverse xl:flex-row items-center justify-center xl:h-screen bg-black min-h-[70vh] md:min-h-[85vh] overflow-hidden md:pb-20 xl:pb-0"
     >
       {/* Text Content */}
-      <div className="flex flex-col w-full justify-center xl:h-full pl-6 md:pl-[32px] xl:pl-[115px] 2xl:pl-[199px]">
+      <div className="flex z-10 flex-col w-full justify-center xl:h-full pl-6 md:pl-[32px] xl:pl-[115px] 2xl:pl-[199px]">
         <h1 className="text-[32px] md:text-[48px] md:leading-[52px] leading-[30px] xl:text-[64px] 2xl:text-[96px] xl:leading-[76px] 2xl:leading-[100px] font-light text-[#E2E2E2]">
           <span className="hidden xl:block">Effortless<br />Precision</span>
           <span className="xl:hidden">Effortless Precision</span>
@@ -119,23 +32,12 @@ function Controller() {
 
       {/* Video */}
       <div className="rounded-[20px] overflow-hidden pb-[100px] md:pb-0 mt-6 md:mt-0">
-        <video
-          ref={videoRef}
-          muted
-          playsInline
-          preload="metadata"
+        <ScrollVideo
+          srcWebm={`${process.env.NEXT_PUBLIC_CDN_URL}/videos/Controllers.webm`}
+          srcMp4={`${process.env.NEXT_PUBLIC_CDN_URL}/videos/Controllers.mp4`}
           className="rounded-[20px] w-full h-full object-cover"
-        >
-          <source
-            src={`${process.env.NEXT_PUBLIC_CDN_URL}/videos/Controllers.webm`}
-            type="video/webm"
-          />
-          <source
-            src={`${process.env.NEXT_PUBLIC_CDN_URL}/videos/Controllers.mp4`}
-            type="video/mp4"
-          />
-          Your browser does not support the video tag.
-        </video>
+        />
+
       </div>
     </div>
   );

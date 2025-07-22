@@ -1,142 +1,22 @@
-"use client";
-import React, { useRef, useEffect, useState } from "react";
-
-// Utility: Detect preferred video format
-function getPreferredVideoFormat(): "webm" | "mp4" {
-  if (typeof navigator !== "undefined") {
-    const ua = navigator.userAgent;
-    const isIOS = /iPad|iPhone|iPod/.test(ua);
-    const isSafari = /^((?!chrome|android).)*safari/i.test(ua);
-    if (isIOS && isSafari) {
-      return "mp4"; // Safari on iOS
-    }
-    return "webm"; // Prefer WebM for others
-  }
-  return "mp4"; // Default fallback
-}
+import React from "react";
+import ScrollVideo from "./ScrollVideo";
 
 function Optical() {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const [hasPlayedOnce, setHasPlayedOnce] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
-  const [videoFormat, setVideoFormat] = useState<"webm" | "mp4">("mp4");
-  const playPromiseRef = useRef<Promise<void> | null>(null);
-
-  useEffect(() => {
-    setVideoFormat(getPreferredVideoFormat());
-  }, []);
-
-  const playVideo = async () => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    try {
-      if (video.paused) {
-        playPromiseRef.current = video.play();
-        await playPromiseRef.current;
-      }
-    } catch (error) {
-      if (error instanceof Error && error.name !== "AbortError") {
-        console.error("Video play error:", error);
-      }
-    } finally {
-      playPromiseRef.current = null;
-    }
-  };
-
-  const pauseVideo = async () => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    try {
-      if (!video.paused) {
-        video.pause();
-      }
-    } catch (error) {
-      if (error instanceof Error && error.name !== "AbortError") {
-        console.error("Video pause error:", error);
-      }
-    }
-  };
-
-  useEffect(() => {
-    const video = videoRef.current;
-    const section = sectionRef.current;
-
-    if (!video || !section) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true);
-            playVideo();
-            setHasPlayedOnce(true);
-          } else {
-            setIsVisible(false);
-            pauseVideo();
-          }
-        });
-      },
-      {
-        threshold: 0.3,
-        rootMargin: "0px 0px -100px 0px",
-      }
-    );
-
-    observer.observe(section);
-
-    let lastScrollY = window.scrollY;
-    let scrollTimeout: NodeJS.Timeout;
-
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      const isScrollingUp = currentScrollY < lastScrollY;
-
-      clearTimeout(scrollTimeout);
-      scrollTimeout = setTimeout(() => {
-        if (isScrollingUp && hasPlayedOnce && isVisible) {
-          playVideo();
-        }
-      }, 100);
-
-      lastScrollY = currentScrollY;
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-
-    return () => {
-      observer.disconnect();
-      window.removeEventListener("scroll", handleScroll);
-      clearTimeout(scrollTimeout);
-    };
-  }, [hasPlayedOnce, isVisible]);
-
   return (
     <div
-      ref={sectionRef}
       className="flex flex-col-reverse md:flex-col xl:flex-row min-h-[75vh] md:min-h-[90vh] xl:h-screen gap-6 xl:gap-0 max-w-screen items-start justify-end xl:items-center xl:justify-start bg-black overflow-hidden md:pt-[100px] xl:mt-0"
     >
       {/* Video Section */}
       <div className="w-full xl:w-2/3 h-[301px] md:h-4/5">
-        <video
-          ref={videoRef}
-          muted
-          playsInline
-          preload="metadata"
-          className="w-full h-full object-cover rounded-xl"
-        >
-          <source
-            src={`${process.env.NEXT_PUBLIC_CDN_URL}/videos/Optical.${videoFormat}`}
-            type={`video/${videoFormat}`}
-          />
-          Your browser does not support the video tag.
-        </video>
+        <ScrollVideo
+          srcWebm={`${process.env.NEXT_PUBLIC_CDN_URL}/videos/Optical.webm`}
+          srcMp4={`${process.env.NEXT_PUBLIC_CDN_URL}/videos/Optical.mp4`}
+          className=" inset-0  scale-[1.1] w-full xl:h-full object-cover "
+        />
       </div>
 
       {/* Text Section */}
-      <div className="flex flex-col text-left ml-[26px] md:ml-[32px] xl:ml-0 mt-[68px] md:mt-0 overflow-hidden">
+      <div className="flex flex-col z-10 text-left ml-[26px] md:ml-[32px] xl:ml-0 mt-[68px] md:mt-0 overflow-hidden">
         <div className="text-[32px] md:text-[48px] md:leading-[52px] leading-[30px] xl:text-[64px] 2xl:text-[96px] xl:leading-[76px] 2xl:leading-[100px] font-light text-[#E2E2E2]">
           <span className="block xl:hidden">See Every Detail</span>
           <span className="hidden xl:block">

@@ -1,17 +1,12 @@
-"use client";
 import Image from "next/image";
-import React, { useEffect, useRef } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import React from "react";
 
-gsap.registerPlugin(ScrollTrigger);
+
 
 function Comfort() {
-  const containerRef = useRef<HTMLDivElement>(null);
 
   return (
     <div
-      ref={containerRef}
       className="flex flex-col md:flex-col-reverse xl:flex-row min-h-[70vh] md:min-h-[85vh] md:max-h-screen md:pt-[100px] xl:pt-0 xl:h-screen w-full bg-black overflow-hidden  "
     >
       {/* Text Block - Relative positioned */}
