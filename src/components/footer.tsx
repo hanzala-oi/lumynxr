@@ -51,7 +51,7 @@ const Footer: React.FC = () => {
               team.
             </p>
           </div>
-  <div onClick={() => window.open("https://calendly.com/oneimmersive/30min?month=2025-07", "_blank")} className="hidden xl:flex flex-1 justify-end">
+  {/* <div onClick={() => window.open("https://calendly.com/oneimmersive/30min?month=2025-07", "_blank")} className="hidden xl:flex flex-1 justify-end">
                 <div className="card">
                     <div className={`box-base box `}>
                         <div className="glass"></div>
@@ -77,7 +77,7 @@ const Footer: React.FC = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> */}
 
           {/* CTA Button */}
           <div onClick={() => window.open("https://calendly.com/oneimmersive/30min?month=2025-07", "_blank")} className="fade-up w-full flex items-center justify-center  ">
