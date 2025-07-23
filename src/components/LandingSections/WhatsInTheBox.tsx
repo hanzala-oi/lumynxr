@@ -24,21 +24,21 @@ function WhatsInTheBox() {
 
   return (
     <div
-      className="min-h-screen    bg-[#FAFAFA] xl:py-[115px] 2xl:py-[223px] overflow-hidden"
+      className="min-h-screen md:flex md:items-center md:justify-center bg-[#FAFAFA] xl:py-[115px] 2xl:py-[223px] overflow-hidden"
     >
       <div className="mx-auto h-full">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-[48px]  ">
           {/* What's in the Box Section */}
-          <div className=" flex flex-col  items-end w-full ">
+          <div className=" flex flex-col md:items-center items-end w-full ">
             <div className=" flex flex-col items-start ">
 
-              <h2 className="heading xl:pl-20 text-[32px] md:text-[36px] xl:text-[40px] 2xl:text-[64px] leading-[35px] md:leading-[52px] xl:leading-[100px] font-[300] text-black mb-8 pl-[28px] md:pl-[32px] pt-10 xl:pt-0">
+              <h2 className="heading xl:pl-20 text-[32px] md:text-[36px] xl:text-[40px] 2xl:text-[64px] leading-[35px] md:leading-[52px] xl:leading-[100px] font-[300] text-black mb-8 pl-[28px] md:pl-[32px] md:pt-0 pt-10 xl:pt-0">
                 What's in the Box?
               </h2>
 
 
               <div>
-                <div className="  ml-[-50px] xl:ml-0  max-w-[700px]   ">
+                <div className="md:ml-0 ml-[-50px] xl:ml-0  max-w-[700px]   ">
                   <Image
                     src={`${process.env.NEXT_PUBLIC_CDN_URL}/images/Box Contents-V2-With Labels.png`}
                     alt="LumynXR Logo"
@@ -55,7 +55,7 @@ function WhatsInTheBox() {
           {/* Specifications Section */}
           <div className="pl-[28px] md:pl-[32px] xl:pl-0   flex flex-col items-center w-full">
             <div className="w-full flex flex-col items-start">
-              <h2 className="heading text-[32px] md:text-[36px] xl:text-[40px] 2xl:text-[64px] leading-[35px] md:leading-[52px] xl:leading-[100px] font-[300] text-black mb-[54px] xl:mb-0 2xl:mb-[54px] ">
+              <h2 className="heading text-[32px] md:text-[36px] xl:text-[40px] 2xl:text-[64px] leading-[35px] md:leading-[52px] xl:leading-[100px] font-[300] text-black mb-[54px] xl:mb-0 2xl:mb-[54px]  ">
                 Specifications
               </h2>
               <div className=" xl:w-[600px] 2xl:w-[700px] pl-2 w-full">

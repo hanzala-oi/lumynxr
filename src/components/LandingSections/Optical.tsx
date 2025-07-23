@@ -4,7 +4,7 @@ import ScrollVideo from "./ScrollVideo";
 function Optical() {
   return (
     <div
-      className="flex flex-col-reverse md:flex-col xl:flex-row min-h-[75vh] md:min-h-[90vh] xl:h-screen gap-6 xl:gap-0 max-w-screen items-start justify-end xl:items-center xl:justify-start bg-black overflow-hidden md:pt-[100px] xl:mt-0"
+      className="flex flex-col-reverse md-h-[100vh] md:py-10 md:flex-col xl:flex-row min-h-[75vh] md:min-h-[90vh] xl:h-screen gap-6 xl:gap-0 max-w-screen items-start justify-end xl:items-center xl:justify-start bg-black overflow-hidden md:pt-[100px] xl:mt-0"
     >
       {/* Video Section */}
       <div className="w-full xl:w-2/3 h-[301px] md:h-4/5">

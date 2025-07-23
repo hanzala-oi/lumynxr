@@ -4,7 +4,7 @@ import ScrollVideo from "./ScrollVideo";
 function Chipset() {
   return (
     <div
-      className="relative flex md:flex-col-reverse w-full min-h-[75vh] md:h-screen xl:h-screen bg-black h-[70vh]"
+      className="relative flex md:flex-col-reverse w-full min-h-[75vh] md:h-screen xl:h-screen bg-black md:py-10 h-[70vh]"
     >
       {/* Background video */}
       <ScrollVideo

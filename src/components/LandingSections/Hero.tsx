@@ -32,9 +32,9 @@ function Hero() {
   };
 
   return (
-    <div className="flex flex-col xl:flex-row min-h-screen xl:max-h-screen max-w-screen w-screen items-start xl:items-center justify-center bg-black ">
+    <div className="flex  flex-col xl:flex-row min-h-screen xl:max-h-screen max-w-screen w-screen items-start xl:items-center justify-center bg-black tablet:pt-[80px] tablet:gap-6 tablet-landscape:flex-row">
       {/* Video Section */}
-      <div className="w-full md:mt-[30vh] lg:mt-0 xl:w-2/3 xl:max-w-2/3 h-[301px] xl:h-full flex-shrink-0 flex flex-col items-center justify-center">
+      <div className="w-full md-items-center md:h-3/6 md:mt-[10vh] lg:mt-0 xl:w-2/3 xl:max-w-2/3 h-[301px] xl:h-full flex-shrink-0 flex flex-col items-center justify-center">
         <video
           className="object-cover rounded-xl w-[110%] h-[110%]"
           muted
@@ -109,7 +109,7 @@ function Hero() {
                   controls
                 >
                   <source
-                    src={`${process.env.NEXT_PUBLIC_CDN_URL}/videos/${videoFormat === "webm" ? "Teaser_v3.webm" : "Teaser_v3.mp4"}`}
+                    src={`${process.env.NEXT_PUBLIC_CDN_URL}/videos/${videoFormat === "webm" ? "Teaser.webm" : "Teaser_v3.mp4"}`}
                     type={`video/${videoFormat}`}
                   />
                   Your browser does not support the video tag.

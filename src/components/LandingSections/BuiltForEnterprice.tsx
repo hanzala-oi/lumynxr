@@ -6,7 +6,7 @@ function BuiltForEnterprise() {
  
   return (
     <div
-      className="h-fit min-h-[80vh]  xl:h-screen bg-[#FAFAFA] overflow-hidden pt-[100px] xl:pt-0  "
+      className="h-fit min-h-[80vh] lg:min-h-[50vh] md:min-h-[85vh] xl:h-screen bg-[#FAFAFA] overflow-hidden lg:pt-0 pt-[80px] xl:pt-0  "
     >
       <div className="flex flex-col md:flex-col-reverse xl:flex-row items-start xl:items-center h-full ">
         {/* Left Content */}
@@ -73,14 +73,14 @@ function BuiltForEnterprise() {
         </div>
 
         {/* Right Image */}
-        <div className="fade-right  relative md:mb-[100px] w-full  xl:mb-0 xl:mt-[200px] 2xl:mt-[300px]  flex items-end justify-end ">
+        <div className="fade-right relative md:mb-[10px] lg:mb-0  w-full xl:mb-0 xl:mt-[200px] 2xl:mt-[300px] flex items-end justify-end ">
           <Image
             src={`${process.env.NEXT_PUBLIC_CDN_URL}/images/Enterprise.png`}
             alt="LumynXR Logo"
             width={1291}
             height={872}
             priority
-            className=" xl:min-w-[768px] md:w-[495px] 2xl:min-w-[1000px] md:mask-gradient  "
+            className="lg:min-w-[450px] xl:min-w-[768px] md:w-[495px] 2xl:min-w-[1000px] md:mask-gradient  "
           />
 
         </div>

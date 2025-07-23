@@ -96,7 +96,7 @@ const Footer: React.FC = () => {
 
       <div className="w-full  md:px-[10vw] ">
         {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8  mb-[62px] xl:mb-[70px] 2xl:mb-[62px]">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:mb-7 lg:mb-5  mb-[62px] xl:mb-[70px] 2xl:mb-[62px]">
           {/* Left Section - Logos */}
           <div className="flex flex-col space-y-6 items-center  w-full xl:w-[379px] 2xl:w-[487px] ">
             {/* LumynXR Logo */}
@@ -158,7 +158,7 @@ const Footer: React.FC = () => {
 
           {/* Center Section - Navigation */}
           <div className="hidden md:flex md:flex-col space-y-4 ml-[50px] xl:ml-[120px]">
-            <nav className="flex flex-col  h-[225px] md:border-l-[0.5px] xl:pl-16 md:pl-8  border-[#868686]  justify-between font-[100] md:font-[200] xl:font-[400] text-[10px] md:text-[12px] xl:text-[20px]  2xl:text-[24px] text-[#F2F2F2]">
+            <nav className="flex flex-col h-[225px] md:border-l-[0.5px] xl:pl-16 md:pl-8  border-[#868686]  justify-between font-[100] md:font-[200] xl:font-[400] text-[10px] md:text-[12px] xl:text-[20px]  2xl:text-[24px] text-[#F2F2F2]">
               <Link
                 target="_blank"
                 href="https://calendly.com/oneimmersive/30min?month=2025-07"

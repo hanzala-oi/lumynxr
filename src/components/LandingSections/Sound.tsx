@@ -2,21 +2,17 @@ import React from "react";
 import ScrollVideo from "./ScrollVideo";
 
 function Sound() {
-
   return (
-    <div
-      className="relative flex md:flex-col-reverse w-full md:min-h-screen xl:h-screen bg-black min-h-[60vh] overflow-hidden "
-    >
+    <div className="relative flex md:flex-col-reverse w-full md:min-h-screen xl:h-screen bg-black min-h-[60vh] overflow-hidden">
       {/* Background Video */}
       <ScrollVideo
         srcWebm={`${process.env.NEXT_PUBLIC_CDN_URL}/videos/Speakersv2.webm`}
         srcMp4={`${process.env.NEXT_PUBLIC_CDN_URL}/videos/Speakersv2.mp4`}
-        className="absolute  inset-0  scale-[1.1] w-full xl:h-full object-cover mt-[200px] md:mt-0"
+        className="absolute md:mt-20  inset-0 scale-[1.1] md:w-full md:h-4/6 xl:h-full object-cover mt-[200px] z-0"
       />
-      
 
       {/* Overlay Text */}
-      <div className="xl:absolute  flex xl:justify-end xl:items-center xl:top-1/2 xl:transform xl:-translate-y-1/2 pl-[28px] md:pl-[32px] xl:pl-0 w-full">
+      <div className="xl:absolute z-10 flex xl:justify-end xl:items-center xl:top-1/2 xl:transform xl:-translate-y-1/2 pl-[28px] md:pl-[32px] xl:pl-0 w-full">
         <div className="text-left xl:w-1/3">
           <h1 className="text-[32px] md:text-[48px] md:leading-[52px] leading-[30px] xl:text-[64px] 2xl:text-[96px] xl:leading-[76px] 2xl:leading-[100px] font-light text-[#E2E2E2]">
             <span className="hidden xl:block">Immersive<br />Sound</span>
