@@ -10,9 +10,9 @@ function BuiltForEnterprise() {
     >
       <div className="flex flex-col md:flex-col-reverse xl:flex-row items-start xl:items-center h-full ">
         {/* Left Content */}
-        <div className="fade-left  xl:pl-[115px] 2xl:pl-[199px] pl-[28px]  h-full  md:mt-[-200px]  xl:mt-0 md:pb-20 xl:pb-0 ">
-          <div className="flex flex-col justify-center h-full  ">
-            <div className="text-[32px] md:text-[48px] md:leading-[52px] leading-[30px] xl:text-[64px] 2xl:text-[96px] xl:leading-[76px] 2xl:leading-[100px] text-black ">
+        <div className="fade-left    xl:pl-[115px] flex  2xl:pl-[259px] min-[2800px]:pl-[599px] pl-[28px]  h-full  md:mt-[-200px]  xl:mt-0 md:pb-20 xl:pb-0 ">
+          <div className="flex flex-col justify-center h-full   ">
+            <div className="text-[32px] md:text-[48px] md:leading-[52px] leading-[30px] xl:text-[64px] 2xl:text-[96px] min-[2800px]:text-[128px] xl:leading-[76px] 2xl:leading-[100px] text-black ">
               <span className="block md:hidden ">Built for Enterprise</span>
               <span className="hidden md:block">
                 Built for
@@ -63,24 +63,23 @@ function BuiltForEnterprise() {
             </svg>
 
             {/* Description */}
-            <p className="max-w-[352px] md:max-w-[449px]  lg:max-w-[450px] 2xl:max-w-[533px] text-[14px] md:text-[16px] xl:text-[20px] 2xl:text-[24px] md:leading-[24px] xl:leading-[32px] font-[200]  text-[#141414] xl:tracking-[0.048px] ml-1">
+            <p className="max-w-[352px] md:max-w-[449px]  lg:max-w-[450px] 2xl:max-w-[533px] min-[2800px]:max-w-[800px] text-[14px] md:text-[16px] xl:text-[20px] 2xl:text-[24px] md:leading-[24px] xl:leading-[32px] min-[2800px]:leading-[40px] font-[200] min-[2800px]:text-[36px] text-[#141414] xl:tracking-[0.048px] ml-1">
               Enterprise-ready and fully customizable, LumynXR
               gives you control over software and hardware to
               build MR solutions tailored to your workflow
             </p>
-
           </div>
         </div>
 
         {/* Right Image */}
-        <div className="fade-right relative md:mb-[10px] lg:mb-0  w-full xl:mb-0 xl:mt-[200px] 2xl:mt-[300px] flex items-end justify-end ">
+        <div className="fade-right mb-[-120px]  relative md:mb-[10px] lg:mb-0  w-full xl:mb-0 xl:mt-[200px] 2xl:mt-[300px]  flex items-end justify-end ">
           <Image
             src={`${process.env.NEXT_PUBLIC_CDN_URL}/images/Enterprise.png`}
             alt="LumynXR Logo"
             width={1291}
             height={872}
             priority
-            className="lg:min-w-[450px] xl:min-w-[768px] md:w-[495px] 2xl:min-w-[1000px] md:mask-gradient  "
+            className="lg:min-w-[450px] xl:min-w-[768px] md:w-[495px] 2xl:min-w-[1000px] min-[2800px]:min-w-[1500px] md:mask-gradient  "
           />
 
         </div>

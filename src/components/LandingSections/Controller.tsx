@@ -7,7 +7,7 @@ function Controller() {
       className="flex flex-col md:h-screen md:flex-col-reverse xl:flex-row items-center justify-center xl:h-screen bg-black min-h-[70vh] md:min-h-[85vh] overflow-hidden md:pb-20 xl:pb-0"
     >
       {/* Text Content */}
-      <div className="flex z-10 md:mt-10 flex-col w-full justify-center xl:h-full pl-6 md:pl-[32px] xl:pl-[115px] 2xl:pl-[199px]">
+      <div className="flex z-10 md:mt-10 flex-col w-full justify-center xl:h-full pl-6 md:pl-[32px] xl:pl-[115px] 2xl:pl-[259px]">
         <h1 className="text-[32px] md:text-[48px] md:leading-[52px] leading-[30px] xl:text-[64px] 2xl:text-[96px] xl:leading-[76px] 2xl:leading-[100px] font-light text-[#E2E2E2]">
           <span className="hidden xl:block">Effortless<br />Precision</span>
           <span className="xl:hidden">Effortless Precision</span>

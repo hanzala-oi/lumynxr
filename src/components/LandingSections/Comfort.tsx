@@ -10,7 +10,7 @@ function Comfort() {
       className="flex flex-col md:flex-col-reverse xl:flex-row min-h-[70vh] md:min-h-[85vh] md:max-h-screen md:pt-[100px] xl:pt-0 xl:h-screen w-full bg-black overflow-hidden  "
     >
       {/* Text Block - Relative positioned */}
-      <div className="   z-10 pl-[28px] md:pl-[32px] pt-10 xl:pl-[115px] 2xl:pl-[199px] flex flex-col justify-start  xl:justify-center  mb-10 md:mb-0 h-full  ">
+      <div className="   z-10 pl-[28px] md:pl-[32px] pt-10 xl:pl-[115px] 2xl:pl-[259px] flex flex-col justify-start  xl:justify-center  mb-10 md:mb-0 h-full  ">
         <h1 className="text-[32px] md:text-[48px] md:leading-[52px] leading-[30px] xl:text-[64px] 2xl:text-[96px] xl:leading-[76px] 2xl:leading-[100px] font-light text-[#E2E2E2]">
           <span className="block md:hidden">Balanced for Comfort</span>
           <span className="hidden md:block">

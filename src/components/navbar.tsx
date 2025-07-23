@@ -3,7 +3,6 @@
 import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import clsx from "clsx";
-import { StarBorder } from "./ui/star-border";
 import { gsap } from "gsap";
 import Image from "next/image";
 
@@ -14,7 +13,7 @@ const navItems = [
 ];
 
 export default function Navbar() {
-    const [isDark, setIsDark] = useState(false);
+    const [isDark, setIsDark] = useState(true);
     const [activeSection, setActiveSection] = useState("Company");
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const navRef = useRef(null);
@@ -163,16 +162,30 @@ export default function Navbar() {
             {/* Logo */}
             <div className="flex flex-1 items-center gap-2">
 
-                <div className="relative w-[110px]  h-[40px] xl:h-[60px] xl:w-[130px] 2xl:w-[170px] ">
+                <div className="relative w-[110px] h-[40px] xl:h-[60px] xl:w-[130px] 2xl:w-[170px]">
                     <Image
-                        src={`${process.env.NEXT_PUBLIC_CDN_URL}/images/${isDark ? "lumynxrnavbar" : "lumynxrnavbarblack"}.png`}
-                        alt="Mailabs logo"
-                        width={110} // Replace with actual image resolution width
-                        height={40} // Replace with actual image resolution height
-                        className="object-contain ml-2 h-full"
+                        src={`${process.env.NEXT_PUBLIC_CDN_URL}/images/lumynxrnavbar.png`}
+                        alt="LumynXR Light Logo"
+                        fill
+                        className={clsx(
+                            "absolute inset-0 object-contain transition-opacity duration-300",
+                            isDark ? "opacity-100" : "opacity-0"
+
+                        )}
+                        priority
+                    />
+                    <Image
+                        src={`${process.env.NEXT_PUBLIC_CDN_URL}/images/lumynxrnavbarblack.png`}
+                        alt="LumynXR Dark Logo"
+                        fill
+                        className={clsx(
+                            "absolute inset-0 object-contain transition-opacity duration-300",
+                            isDark ? "opacity-0" : "opacity-100"
+
+                        )}
+                        priority
                     />
                 </div>
-
             </div>
 
             {/* Nav links - Desktop and Large Laptop only */}

@@ -14,7 +14,7 @@ function Chipset() {
       />
 
       {/* Text overlay */}
-      <div className="xl:relative xl:bottom-28 z-10 pl-[28px] md:pl-[32px] xl:pl-[115px] 2xl:pl-[199px] flex flex-col justify-start md:justify-end items-start h-full text-[#E2E2E2]">
+      <div className="xl:relative xl:bottom-28 z-10 pl-[28px] md:pl-[32px] xl:pl-[115px] 2xl:pl-[259px] flex flex-col justify-start md:justify-end items-start h-full text-[#E2E2E2]">
         <h1 className="text-[32px] md:text-[48px] md:leading-[52px] leading-[30px] xl:text-[64px] 2xl:text-[96px] xl:leading-[76px] 2xl:leading-[100px] font-light">
           <span className="hidden md:block">
             Powered by <br /> Snapdragon<sup className="xl:text-5xl">®</sup>

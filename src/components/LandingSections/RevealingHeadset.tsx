@@ -31,32 +31,32 @@ const VideoReveal: React.FC = () => {
     setVideoFormat(getPreferredVideoFormat());
   }, []);
 
-  useEffect(() => {
-    const container = containerRef.current;
-    const video = videoRef.current;
+  // useEffect(() => {
+  //   const container = containerRef.current;
+  //   const video = videoRef.current;
 
-    if (!container || !video) return;
+  //   if (!container || !video) return;
 
-    const timeline = gsap.timeline({
-      scrollTrigger: {
-        trigger: container,
-        start: "top top",
-        end: "bottom+=100% top",
-        scrub: true,
-        pin: true,
-      },
-    });
+  //   const timeline = gsap.timeline({
+  //     scrollTrigger: {
+  //       trigger: container,
+  //       start: "top top",
+  //       end: "bottom+=100% top",
+  //       scrub: true,
+  //       pin: true,
+  //     },
+  //   });
 
-    timeline.fromTo(
-      video,
-      { scale: 0.3 },
-      { scale: 1, ease: "power2.out" }
-    );
+  //   timeline.fromTo(
+  //     video,
+  //     { scale: 0.3 },
+  //     { scale: 1, ease: "power2.out" }
+  //   );
 
-    return () => {
-      ScrollTrigger.getAll().forEach((st) => st.kill());
-    };
-  }, []);
+  //   return () => {
+  //     ScrollTrigger.getAll().forEach((st) => st.kill());
+  //   };
+  // }, []);
 
   const toggleMute = () => {
     if (videoRef.current) {
@@ -68,12 +68,12 @@ const VideoReveal: React.FC = () => {
   return (
     <div
       ref={containerRef}
-      className="relative bg-[#E2E2E2] flex items-center justify-center"
+      className="relative bg-[#000000] flex items-center justify-center"
     >
-      <div className="sticky top-0 flex justify-center items-center w-full h-screen">
+      <div className="sticky top-0 flex justify-center items-center w-full h-screen ">
         <video
           ref={videoRef}
-          className="rounded-3xl shadow-2xl bg-black"
+          className="rounded-3xl shadow-2xl bg-black  h-full w-full object-cover"
           muted
           playsInline
           autoPlay

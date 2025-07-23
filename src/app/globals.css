@@ -10,6 +10,7 @@
   --breakpoint-xl: 1280px;
   --breakpoint-2xl: 1710px;
 }
+
 @media (min-width: 768px) and (max-width: 1279px) {
   .md\:mask-gradient {
     -webkit-mask-image: linear-gradient(to bottom, white 0%, white 60%, transparent 100%);
@@ -253,6 +254,8 @@ body {
   }
 }
 
+
+
 /* ////////////////////// */
 .card {
   display: flex;
@@ -268,8 +271,8 @@ body {
   justify-content: center;
   background: #000000;
   border-radius: 51px;
-font-size: 16px;
-  
+  font-size: 16px;
+
   text-transform: uppercase;
   cursor: pointer;
 }
@@ -294,7 +297,7 @@ font-size: 16px;
   z-index: -1;
   border-radius: 51px;
   animation: glowing-border 3.5s linear infinite;
-  
+
 
 }
 
@@ -384,7 +387,7 @@ font-size: 16px;
   }
 
   .box {
-      width: 100%;
+    width: 100%;
     height: 100%;
   }
 
@@ -404,7 +407,7 @@ font-size: 16px;
 
 @media (max-width: 480px) {
   .box {
-      width: 100%;
+    width: 100%;
     height: 100%;
   }
 
@@ -517,3 +520,29 @@ font-size: 16px;
   color: #1D1D1D;
 }
 
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Put these OUTSIDE the @layer block */
+.motion-text {
+  opacity: 0;
+  transform: translateY(24px);
+  animation: fadeUp 0.8s ease-out forwards;
+  animation-delay: 0.3s;
+}
+
+.motion-subtext {
+  opacity: 0;
+  transform: translateY(24px);
+  animation: fadeUp 0.8s ease-out forwards;
+  animation-delay: 0.6s;
+}

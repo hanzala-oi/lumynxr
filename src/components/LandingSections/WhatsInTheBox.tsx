@@ -38,9 +38,9 @@ function WhatsInTheBox() {
 
 
               <div>
-                <div className="md:ml-0 ml-[-50px] xl:ml-0  max-w-[700px]   ">
+                <div className=" ml-[-50px] xl:ml-0 min-[2400px]:ml-[-50px]  max-w-[700px]   min-[2400px]:max-w-[800px]">
                   <Image
-                    src={`${process.env.NEXT_PUBLIC_CDN_URL}/images/Box Contents-V2-With Labels.png`}
+                    src={`${process.env.NEXT_PUBLIC_CDN_URL}/images/BoxContents-v3-With Labels.png`}
                     alt="LumynXR Logo"
                     width={4246}
                     height={2673}
@@ -59,7 +59,7 @@ function WhatsInTheBox() {
                 Specifications
               </h2>
               <div className=" xl:w-[600px] 2xl:w-[700px] pl-2 w-full">
-                <div className="grid grid-cols-2 gap-y-3  ">
+                <div className="grid grid-cols-2 gap-y-3 xl:gap-y-4 2xl:gap-y-6 ">
                   {specifications.map((spec, index) => (
                     <React.Fragment key={index}>
                       <span className="text-left text-[#5B5B5B] text-[12px] md:text-[16px] xl:text-[16px] 2xl:text-[20px] font-extralight leading-[16px] xl:leading-[22px] 2xl:leading-[24px]  ">

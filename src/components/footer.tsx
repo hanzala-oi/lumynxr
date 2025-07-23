@@ -51,6 +51,33 @@ const Footer: React.FC = () => {
               team.
             </p>
           </div>
+  <div onClick={() => window.open("https://calendly.com/oneimmersive/30min?month=2025-07", "_blank")} className="hidden xl:flex flex-1 justify-end">
+                <div className="card">
+                    <div className={`box-base box `}>
+                        <div className="glass"></div>
+                        <div className={clsx(
+                            "rounded-[51px] font-[600]",
+                            // Desktop Large
+                            "px-[24px] py-[14px]",
+                            // Desktop Medium
+                            "2xl:px-[22px] 2xl:py-[12px]",
+                            // Desktop Small/Laptop Large
+                            "xl:px-[20px] xl:py-[10px]",
+                           "bg-gradient-to-b from-[rgba(221,221,221,0.13)] to-[rgba(67,67,67,0.13)]"
+                        )}>
+                            <h1 className={clsx(
+                                "mt-[1px]",
+                                // Desktop Large
+                                "text-base",
+                                // Desktop Medium
+                                "2xl:text-[15px]",
+                                // Desktop Small/Laptop Large
+                                "xl:text-sm"
+                            )}>Talk to Sales</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
           {/* CTA Button */}
           <div onClick={() => window.open("https://calendly.com/oneimmersive/30min?month=2025-07", "_blank")} className="fade-up w-full flex items-center justify-center  ">
