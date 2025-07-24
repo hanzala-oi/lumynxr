@@ -519,6 +519,10 @@ body {
   background: white;
   color: #1D1D1D;
 }
+.box.animated::before,
+.box.animated::after {
+  animation: glowing-border 3.5s linear infinite;
+}
 
 
 @keyframes fadeUp {

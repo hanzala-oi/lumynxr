@@ -8,9 +8,11 @@ function Chipset() {
     >
       {/* Background video */}
       <ScrollVideo
-        srcWebm={`${process.env.NEXT_PUBLIC_CDN_URL}/videos/Chipsetv2.webm`}
+        srcWebm={`${process.env.NEXT_PUBLIC_CDN_URL}/videos/Chipsetv2.mp4`}
         srcMp4={`${process.env.NEXT_PUBLIC_CDN_URL}/videos/Chipsetv2.mp4`}
         className="absolute inset-0 w-full xl:h-full object-cover mt-[200px] md:mt-0"
+        poster="https://lumynxr.blob.core.windows.net/images/chipset.png"
+
       />
 
       {/* Text overlay */}

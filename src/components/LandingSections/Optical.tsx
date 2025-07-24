@@ -12,6 +12,7 @@ function Optical() {
           srcWebm={`${process.env.NEXT_PUBLIC_CDN_URL}/videos/Optical.webm`}
           srcMp4={`${process.env.NEXT_PUBLIC_CDN_URL}/videos/Optical.mp4`}
           className=" inset-0  scale-[1.1] w-full xl:h-full object-cover "
+          poster="https://lumynxr.blob.core.windows.net/images/optical.png"
         />
       </div>
 

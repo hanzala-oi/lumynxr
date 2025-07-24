@@ -11,6 +11,8 @@ function PassThrough() {
         srcWebm={`${process.env.NEXT_PUBLIC_CDN_URL}/videos/Passthroughv2.webm`}
         srcMp4={`${process.env.NEXT_PUBLIC_CDN_URL}/videos/Passthroughv2.mp4`}
         className="absolute inset-0 xl:-left-64 scale-[1.1] w-full xl:h-full object-cover mt-[200px] md:mt-0 z-0"
+                  poster="https://lumynxr.blob.core.windows.net/images/passthrough.png"
+
       />
 
       {/* Overlay Text */}

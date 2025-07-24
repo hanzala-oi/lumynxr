@@ -9,6 +9,8 @@ function Sound() {
         srcWebm={`${process.env.NEXT_PUBLIC_CDN_URL}/videos/Speakersv2.webm`}
         srcMp4={`${process.env.NEXT_PUBLIC_CDN_URL}/videos/Speakersv2.mp4`}
         className="absolute md:mt-20  inset-0 scale-[1.1] md:w-full md:h-4/6 xl:h-full object-cover mt-[200px] z-0"
+                  poster="https://lumynxr.blob.core.windows.net/images/sound.png"
+
       />
 
       {/* Overlay Text */}

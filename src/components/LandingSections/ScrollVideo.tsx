@@ -10,15 +10,18 @@ type ScrollVideoProps = {
   muted?: boolean;
   loop?: boolean;
   preload?: "auto" | "metadata" | "none";
+  poster?: string; // ✅ Add poster prop
+
 };
 
-export default function ScrollVideo({
+function ScrollVideo({
   srcWebm,
   srcMp4,
   className = "",
   muted = true,
   preload = "metadata",
   loop = false,
+  poster
 }: ScrollVideoProps) {
   const { videoRef, containerRef } = useScrollVideo();
   const [format, setFormat] = useState<"webm" | "mp4">("mp4");
@@ -38,15 +41,14 @@ export default function ScrollVideo({
         playsInline
         preload={preload}
         loop={loop}
-        className="w-full h-full object-cover rounded-xl"
+        poster={poster} 
       >
-        {format === "webm" ? (
-          <source src={srcWebm} type="video/webm" />
-        ) : (
-          <source src={srcMp4} type="video/mp4" />
-        )}
+        <source src={srcWebm} type="video/webm" />
+        <source src={srcMp4} type="video/mp4" />
         Your browser does not support the video tag.
       </video>
     </div>
   );
 }
+
+export default React.memo(ScrollVideo);

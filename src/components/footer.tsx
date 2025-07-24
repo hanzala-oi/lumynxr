@@ -3,9 +3,11 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import clsx from "clsx";
+import Teaser from "./LandingSections/Teaser";
+import TalktoSales from "./LandingSections/TalktoSales";
 
 const Footer: React.FC = () => {
-  
+
   return (
     <footer className="bg-black text-white xl:py-12 pt-[89px] xl:pt-32  overflow-hidden   ">
       <div className=" flex flex-col items-center justify-center px-8">
@@ -60,50 +62,16 @@ const Footer: React.FC = () => {
             </p>
           </div>
 
-          {/* CTA Button */}
-          <div
-            onClick={() =>
-              window.open(
-                "https://calendly.com/oneimmersive/30min?month=2025-07",
-                "_blank"
-              )
-            }
-            className="fade-up w-full flex items-center justify-center  "
-          >
-            <div className="card w-fit  ">
-              <div className={`box-base   box h-12 w-[200px] `}>
-                <div className="glass  h-12 w-[200px]"></div>
-                <div
-                  className={clsx(
-                    "rounded-[51px] font-[600]",
-                    // Desktop Large
-                    "px-[24px] py-[14px]",
-                    // Desktop Medium
-                    "2xl:px-[22px] 2xl:py-[12px]",
-                    // Desktop Small/Laptop Large
-                    "xl:px-[20px] xl:py-[10px]",
-                    "bg-gradient-to-b from-[rgba(221,221,221,0.13)] to-[rgba(67,67,67,0.13)] h-12 w-[200px] flex items-center justify-center "
-                  )}
-                >
-                  <h1
-                    className={clsx(
-                      "mt-[1px]",
-                      // Desktop Large
-                      "text-base",
-                      // Desktop Medium
-                      "2xl:text-[15px]",
-                      // Desktop Small/Laptop Large
-                      "xl:text-sm"
-                    )}
-                  >
-                    Talk to Sales
-                  </h1>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
+      <TalktoSales onPlayTeaserClick={() => {
+        window.open(
+          "https://calendly.com/oneimmersive/30min?month=2025-07",
+          "_blank"
+        )
+      }} />
+
+
       <div className="flex justify-center mb-[78px] xl:mb-[242px] w-full mt-[123px] xl:mt-[38px] 2xl:mt-[160px]">
         <Image
           src={`${process.env.NEXT_PUBLIC_CDN_URL}/images/Footer.png`}
@@ -147,7 +115,7 @@ const Footer: React.FC = () => {
                 />
               </div>
 
-          
+
 
             </div>
           </div>

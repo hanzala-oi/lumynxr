@@ -4,6 +4,9 @@ import { AnimatePresence, motion } from "framer-motion";
 import { XIcon } from "lucide-react";
 import { gsap } from "gsap";
 import { useRef } from "react";
+import clsx from "clsx";
+import Navbar from "../navbar";
+import Teaser from "./Teaser";
 
 // Utility: Detect preferred video format
 function getPreferredVideoFormat(): "webm" | "mp4" {
@@ -24,7 +27,7 @@ function Hero() {
   const [videoFormat, setVideoFormat] = useState<"webm" | "mp4">("mp4");
   const textRef = useRef<HTMLDivElement>(null);
   const textRef2 = useRef<HTMLDivElement>(null);
-
+  const isDark = true
   useEffect(() => {
     setVideoFormat(getPreferredVideoFormat());
   }, []);
@@ -59,6 +62,13 @@ function Hero() {
       setIsVideoDialogOpen(true);
     }
   };
+  useEffect(() => {
+    const video = document.querySelector("video");
+    if (video && video.paused) {
+      video.play().catch(() => {
+      });
+    }
+  }, []);
 
   return (
     <div className="flex  flex-col xl:flex-row min-h-screen xl:max-h-screen max-w-screen w-screen items-start xl:items-center justify-center bg-black tablet:pt-[80px] tablet:gap-6 tablet-landscape:flex-row">
@@ -70,14 +80,16 @@ function Hero() {
           playsInline
           autoPlay
           preload="auto"
+          controls={false}
         >
           <source
-            src={`${process.env.NEXT_PUBLIC_CDN_URL}/videos/${
-              videoFormat === "webm" ? "header.webm" : "Header.mp4"
-            }`}
-            type={`video/${videoFormat}`}
+            src={`${process.env.NEXT_PUBLIC_CDN_URL}/videos/header.webm`}
+            type="video/webm"
           />
-          Your browser does not support the video tag.
+          <source
+            src={`${process.env.NEXT_PUBLIC_CDN_URL}/videos/Header.mp4`}
+            type="video/mp4"
+          />
         </video>
       </div>
 
@@ -98,22 +110,10 @@ function Hero() {
           cross-industry innovation
         </div>
       </div>
+        <Teaser onPlayTeaserClick={handlePlayTeaserClick} />
 
-      <div className="flex items-center justify-start w-full h-full xl:hidden">
-        <button
-          onClick={handlePlayTeaserClick}
-          className="flex h-[43px] items-center mt-5 ml-7 gap-2 px-5 py-2.5 rounded-full bg-gradient-to-b from-[#1A1A1A] to-[#0F0F0F] text-gray-300 text-sm font-medium shadow-inner hover:opacity-90 transition"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="w-4 h-4 fill-gray-400"
-            viewBox="0 0 24 24"
-          >
-            <path d="M8 5v14l11-7z" />
-          </svg>
-          Play Teaser
-        </button>
-      </div>
+
+
 
       <AnimatePresence>
         {isVideoDialogOpen && (
@@ -144,9 +144,8 @@ function Hero() {
                   controls
                 >
                   <source
-                    src={`${process.env.NEXT_PUBLIC_CDN_URL}/videos/${
-                      videoFormat === "webm" ? "Teaser.webm" : "Teaser_v3.mp4"
-                    }`}
+                    src={`${process.env.NEXT_PUBLIC_CDN_URL}/videos/${videoFormat === "webm" ? "Teaser.webm" : "Teaser_v3.mp4"
+                      }`}
                     type={`video/${videoFormat}`}
                   />
                   Your browser does not support the video tag.
