@@ -119,9 +119,9 @@ const Footer: React.FC = () => {
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:mb-7 lg:mb-5  mb-[62px] xl:mb-[70px] 2xl:mb-[62px]">
           {/* Left Section - Logos */}
-          <div className="flex flex-col space-y-6 items-center  w-full xl:w-[379px] 2xl:w-[487px] ">
+          <div className="flex flex-col space-y-6 items-center justify-between w-full xl:w-[379px] 2xl:w-[487px]  ">
             {/* LumynXR Logo */}
-            <div className="flex items-center  w-[356px] md:w-[203px] h-[77px] xl:w-[379px] xl:h-[61px]  2xl:w-[487px] 2xl:h-[79px]">
+            <div className="flex items-center  w-[356px] md:w-[203px] h-[77px] xl:w-[379px] xl:h-[61px]  2xl:w-[487px] 2xl:h-[79px] ">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 487 79"
@@ -135,7 +135,7 @@ const Footer: React.FC = () => {
             </div>
 
             {/* Partner Logos */}
-            <div className="flex items-center justify-between mt-4 mb-16 xl:mt-[62px] xl:mb-[62px] w-[253px] md:w-[203px] xl:w-[379px] 2xl:w-[487px] ">
+            <div className="flex items-center justify-center xl:justify-between mt-4 mb-16 xl:mt-[62px] xl:mb-0 w-[253px] md:w-[203px] xl:w-[379px] 2xl:w-[487px] ">
               {/* Logo 1 inside pill */}
               <div className="relative w-[77px] md:w-[55px] xl:w-[132px] xl:h-[26px] 2xl:w-[166px] 2xl:h-[32px] h-auto">
                 <Image
@@ -147,31 +147,8 @@ const Footer: React.FC = () => {
                 />
               </div>
 
-              {/* Divider line */}
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 2 54"
-                className="w-[1.5px] h-[54px] xl:h-[54px] md:h-[18px] "
-                fill="none"
-              >
-                <path
-                  d="M1 1V53"
-                  stroke="#868686"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                />
-              </svg>
+          
 
-              {/* Second partner logo */}
-              <div className="relative w-[53px] md:w-[38px] h-auto xl:w-[83px] xl:h-[26px] 2xl:w-[100px] 2xl:h-[32px]">
-                <Image
-                  src={`${process.env.NEXT_PUBLIC_CDN_URL}/images/mailabs.png`}
-                  alt="Mailabs logo"
-                  width={110} // Replace with actual image resolution width
-                  height={40} // Replace with actual image resolution height
-                  className="object-contain"
-                />
-              </div>
             </div>
           </div>
 
