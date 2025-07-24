@@ -4,20 +4,29 @@ import Link from "next/link";
 import Image from "next/image";
 import clsx from "clsx";
 
-
 const Footer: React.FC = () => {
-
+  
   return (
     <footer className="bg-black text-white xl:py-12 pt-[89px] xl:pt-32  overflow-hidden   ">
       <div className=" flex flex-col items-center justify-center px-8">
-        <div
-          className="max-w-4xl w-full text-start md:text-center mx-auto"
-        >
+        <div className="max-w-4xl w-full text-start md:text-center mx-auto">
           {/* Main Heading */}
           <h1 className="fade-up text-[32px] md:text-[36px] xl:text-[64px] 2xl:text-[96px] mb-[19px] xl:mb-[60px] font-[300] flex items-start md:items-center justify-center flex-col text-[#E2E2E2] gap-[19px] 2xl:gap-[60px]">
             Reserve a LumynXR
-            <svg className="hidden md:block xl:hidden" xmlns="http://www.w3.org/2000/svg" width="27" height="2" viewBox="0 0 27 2" fill="none">
-              <path d="M1 1C9.33333 1 26 1 26 1" stroke="#C5C5C5" strokeWidth="2" strokeLinecap="round" />
+            <svg
+              className="hidden md:block xl:hidden"
+              xmlns="http://www.w3.org/2000/svg"
+              width="27"
+              height="2"
+              viewBox="0 0 27 2"
+              fill="none"
+            >
+              <path
+                d="M1 1C9.33333 1 26 1 26 1"
+                stroke="#C5C5C5"
+                strokeWidth="2"
+                strokeLinecap="round"
+              />
             </svg>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -46,63 +55,49 @@ const Footer: React.FC = () => {
             </p>
             <p className="w-[346px] md:hidden text-[14px] xl:text-[20px] 2xl:text-[24px] font-[200] text-[#C5C5C5] xl:leading-[32px] xl:tracking-[0.04px]">
               We are ready for the enterprise market and actively seeking close
-              collaborations  to bring our headset to your teams. For more
-              details or to reserve a LumynXR,  please contact our sales
-              team.
+              collaborations to bring our headset to your teams. For more
+              details or to reserve a LumynXR, please contact our sales team.
             </p>
           </div>
-  {/* <div onClick={() => window.open("https://calendly.com/oneimmersive/30min?month=2025-07", "_blank")} className="hidden xl:flex flex-1 justify-end">
-                <div className="card">
-                    <div className={`box-base box `}>
-                        <div className="glass"></div>
-                        <div className={clsx(
-                            "rounded-[51px] font-[600]",
-                            // Desktop Large
-                            "px-[24px] py-[14px]",
-                            // Desktop Medium
-                            "2xl:px-[22px] 2xl:py-[12px]",
-                            // Desktop Small/Laptop Large
-                            "xl:px-[20px] xl:py-[10px]",
-                           "bg-gradient-to-b from-[rgba(221,221,221,0.13)] to-[rgba(67,67,67,0.13)]"
-                        )}>
-                            <h1 className={clsx(
-                                "mt-[1px]",
-                                // Desktop Large
-                                "text-base",
-                                // Desktop Medium
-                                "2xl:text-[15px]",
-                                // Desktop Small/Laptop Large
-                                "xl:text-sm"
-                            )}>Talk to Sales</h1>
-                        </div>
-                    </div>
-                </div>
-            </div> */}
 
           {/* CTA Button */}
-          <div onClick={() => window.open("https://calendly.com/oneimmersive/30min?month=2025-07", "_blank")} className="fade-up w-full flex items-center justify-center  ">
+          <div
+            onClick={() =>
+              window.open(
+                "https://calendly.com/oneimmersive/30min?month=2025-07",
+                "_blank"
+              )
+            }
+            className="fade-up w-full flex items-center justify-center  "
+          >
             <div className="card w-fit  ">
               <div className={`box-base   box h-12 w-[200px] `}>
                 <div className="glass  h-12 w-[200px]"></div>
-                <div className={clsx(
-                  "rounded-[51px] font-[600]",
-                  // Desktop Large
-                  "px-[24px] py-[14px]",
-                  // Desktop Medium
-                  "2xl:px-[22px] 2xl:py-[12px]",
-                  // Desktop Small/Laptop Large
-                  "xl:px-[20px] xl:py-[10px]",
-                  "bg-gradient-to-b from-[rgba(221,221,221,0.13)] to-[rgba(67,67,67,0.13)] h-12 w-[200px] flex items-center justify-center "
-                )}>
-                  <h1 className={clsx(
-                    "mt-[1px]",
+                <div
+                  className={clsx(
+                    "rounded-[51px] font-[600]",
                     // Desktop Large
-                    "text-base",
+                    "px-[24px] py-[14px]",
                     // Desktop Medium
-                    "2xl:text-[15px]",
+                    "2xl:px-[22px] 2xl:py-[12px]",
                     // Desktop Small/Laptop Large
-                    "xl:text-sm"
-                  )}>Talk to Sales</h1>
+                    "xl:px-[20px] xl:py-[10px]",
+                    "bg-gradient-to-b from-[rgba(221,221,221,0.13)] to-[rgba(67,67,67,0.13)] h-12 w-[200px] flex items-center justify-center "
+                  )}
+                >
+                  <h1
+                    className={clsx(
+                      "mt-[1px]",
+                      // Desktop Large
+                      "text-base",
+                      // Desktop Medium
+                      "2xl:text-[15px]",
+                      // Desktop Small/Laptop Large
+                      "xl:text-sm"
+                    )}
+                  >
+                    Talk to Sales
+                  </h1>
                 </div>
               </div>
             </div>
@@ -120,7 +115,6 @@ const Footer: React.FC = () => {
         />
       </div>
 
-
       <div className="w-full  md:px-[10vw] ">
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:mb-7 lg:mb-5  mb-[62px] xl:mb-[70px] 2xl:mb-[62px]">
@@ -128,11 +122,11 @@ const Footer: React.FC = () => {
           <div className="flex flex-col space-y-6 items-center  w-full xl:w-[379px] 2xl:w-[487px] ">
             {/* LumynXR Logo */}
             <div className="flex items-center  w-[356px] md:w-[203px] h-[77px] xl:w-[379px] xl:h-[61px]  2xl:w-[487px] 2xl:h-[79px]">
-
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 487 79"
-                fill="none"              >
+                fill="none"
+              >
                 <path
                   d="M14.9872 45.6538H59.9494V58.2107H0V0H14.9872V45.6538ZM117.785 9.23031H132.023V58.2101H117.785V49.6446C110.79 55.1333 101.132 59.0414 89.2255 59.0414C76.1531 59.0414 63.9131 54.3846 63.747 36.3391L63.9138 9.22969H78.2353V30.9336C78.2353 41.3282 81.7322 46.7337 93.4726 46.7337C103.048 46.7337 113.373 41.8272 117.786 36.6715L117.785 9.23031ZM223.815 8.39898C234.805 8.39898 244.797 13.0558 244.964 30.7683L244.797 58.2107H230.559V36.5068C230.559 26.1121 228.81 20.7067 218.652 20.7067C211.158 20.7067 203.831 24.2824 199.502 28.1911C199.585 29.0224 199.585 29.8543 199.585 30.7689L199.419 58.2113H185.18V36.5074C185.18 26.1128 183.431 20.7073 173.273 20.7073C165.03 20.7073 157.037 24.9484 152.957 29.3554V58.2113H138.719V9.23031H152.957V17.2136C158.286 12.9725 166.28 8.39898 178.436 8.39898C185.847 8.39898 192.84 10.5612 196.587 17.3801C202.915 12.6401 211.658 8.39898 223.815 8.39898ZM300.032 9.23031H315.769L282.63 79H266.893L276.801 58.2107H269.474L244.079 9.23092H259.899L280.882 49.6458L300.032 9.23031ZM362.109 8.39898C375.182 8.39898 387.422 13.0558 387.588 31.1013L387.421 58.2107H373.099V36.5068C373.099 26.1121 369.603 20.7067 357.862 20.7067C348.287 20.7067 337.962 25.6132 333.549 30.7689V58.2113H319.311V9.23031H333.549V17.7958C340.543 12.3071 350.203 8.39898 362.109 8.39898ZM436.905 0.831326L420.252 28.3563L437.987 58.2101H434.074L416.506 28.3563L432.991 0.831326H436.905ZM398.936 0.831326L415.505 28.3563L397.937 58.2101H394.024L411.676 28.3563L395.106 0.831326H398.936ZM419.003 26.8602V29.6878H413.507V26.8602H419.003ZM467.848 0.166512C472.012 0.166512 475.342 0.637679 477.84 1.58001C480.338 2.46684 482.142 4.10236 483.252 6.48656C484.363 8.81526 484.918 12.1134 484.918 16.3823C484.918 19.7088 484.557 22.4526 483.835 24.6148C483.113 26.7215 481.976 28.3292 480.422 29.4381C478.868 30.4914 476.842 31.1846 474.344 31.517V31.9327C475.343 32.1547 476.231 32.6536 477.008 33.4294C477.841 34.2058 478.59 35.1482 479.257 36.257C479.923 37.3104 480.478 38.5302 480.922 39.916L487 58.2107H483.253L477.424 40.1657C476.537 37.5046 475.343 35.6477 473.844 34.5944C472.401 33.4855 470.597 32.9311 468.432 32.9311C465.212 32.9311 462.326 32.9034 459.773 32.8479C457.275 32.7923 455.193 32.7368 453.528 32.6813C451.863 32.6258 450.669 32.5703 449.948 32.5148L450.197 29.8537H467.849C471.18 29.7982 473.816 29.3826 475.759 28.6061C477.757 27.8297 479.2 26.4994 480.089 24.6148C480.977 22.6746 481.421 19.958 481.421 16.4656C481.421 12.9731 480.977 10.2843 480.089 8.39898C479.201 6.45881 477.757 5.1002 475.759 4.32437C473.816 3.54794 471.18 3.16002 467.849 3.16002C463.519 3.16002 459.772 3.18778 456.608 3.24328C453.5 3.29878 451.39 3.35429 450.28 3.40979L449.114 0.831942C451.112 0.609927 452.972 0.471784 454.693 0.41628C456.469 0.305272 458.384 0.249768 460.438 0.249768C462.492 0.194264 464.962 0.166512 467.848 0.166512ZM452.528 0.831326V58.2101H449.115L449.114 0.831942L452.528 0.831326Z"
                   fill="#F2F2F2"
@@ -178,9 +172,7 @@ const Footer: React.FC = () => {
                   className="object-contain"
                 />
               </div>
-
             </div>
-
           </div>
 
           {/* Center Section - Navigation */}
@@ -195,7 +187,6 @@ const Footer: React.FC = () => {
               </Link>
               <Link
                 target="_blank"
-
                 href="https://www.oneimmersive.us/"
                 className=" hover:text-white transition-colors duration-200"
               >
@@ -235,7 +226,6 @@ const Footer: React.FC = () => {
           </div>
 
           <div className="md:hidden  flex w-full px-[28px] justify-between font-[100]  text-[10px]  text-[#F2F2F2]">
-
             <nav className="flex flex-col h-full justify-between  ">
               <Link
                 target="_blank"
@@ -312,7 +302,11 @@ const Footer: React.FC = () => {
           </div>
         </div>
         <div className="xl:hidden w-full flex items-center justify-center h-3 px-[28px]">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 358 3" fill="none">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 358 3"
+            fill="none"
+          >
             <path d="M1 2L357 1" stroke="#868686" strokeLinecap="round" />
           </svg>
         </div>
@@ -342,7 +336,12 @@ const Footer: React.FC = () => {
               {/* Right: Social Icons */}
               <div className="hidden md:flex xl:hidden">
                 <svg
-                  onClick={() => window.open('https://www.linkedin.com/company/oneimmersive/', '_blank')}
+                  onClick={() =>
+                    window.open(
+                      "https://www.linkedin.com/company/oneimmersive/",
+                      "_blank"
+                    )
+                  }
                   xmlns="http://www.w3.org/2000/svg"
                   width="21"
                   height="13"
@@ -396,7 +395,12 @@ const Footer: React.FC = () => {
               </div>
               <div className="hidden xl:flex space-x-4">
                 <svg
-                  onClick={() => window.open('https://www.linkedin.com/company/one-immersive/', '_blank')}
+                  onClick={() =>
+                    window.open(
+                      "https://www.linkedin.com/company/one-immersive/",
+                      "_blank"
+                    )
+                  }
                   xmlns="http://www.w3.org/2000/svg"
                   width="21"
                   height="20"
@@ -450,11 +454,7 @@ const Footer: React.FC = () => {
                 </svg>
               </div>
             </div>
-
-
           </div>
-
-
         </div>
       </div>
     </footer>

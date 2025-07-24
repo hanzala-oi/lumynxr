@@ -2,6 +2,8 @@
 import React, { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { XIcon } from "lucide-react";
+import { gsap } from "gsap";
+import { useRef } from "react";
 
 // Utility: Detect preferred video format
 function getPreferredVideoFormat(): "webm" | "mp4" {
@@ -20,9 +22,36 @@ function getPreferredVideoFormat(): "webm" | "mp4" {
 function Hero() {
   const [isVideoDialogOpen, setIsVideoDialogOpen] = useState(false);
   const [videoFormat, setVideoFormat] = useState<"webm" | "mp4">("mp4");
+  const textRef = useRef<HTMLDivElement>(null);
+  const textRef2 = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setVideoFormat(getPreferredVideoFormat());
+  }, []);
+
+  useEffect(() => {
+    const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+
+    if (textRef.current) {
+      tl.fromTo(
+        textRef.current,
+        { opacity: 0, y: 50 },
+        { opacity: 1, y: 0, duration: 1.2 }
+      );
+    }
+
+    if (textRef2.current) {
+      tl.fromTo(
+        textRef2.current,
+        { opacity: 0, y: 100 },
+        { opacity: 1, y: 0, duration: 1.5 },
+        "-=0.5" // starts before the first finishes
+      );
+    }
+
+    return () => {
+      tl.kill(); // cleanup for unmount
+    };
   }, []);
 
   const handlePlayTeaserClick = () => {
@@ -41,10 +70,11 @@ function Hero() {
           playsInline
           autoPlay
           preload="auto"
-
         >
           <source
-            src={`${process.env.NEXT_PUBLIC_CDN_URL}/videos/${videoFormat === "webm" ? "header.webm" : "Header.mp4"}`}
+            src={`${process.env.NEXT_PUBLIC_CDN_URL}/videos/${
+              videoFormat === "webm" ? "header.webm" : "Header.mp4"
+            }`}
             type={`video/${videoFormat}`}
           />
           Your browser does not support the video tag.
@@ -53,13 +83,18 @@ function Hero() {
 
       {/* Text Section */}
       <div className="w-auto xl:w-1/3 flex flex-col gap-[16px] xl:gap-10 text-left ml-[26px] xl:ml-0 mt-[68px] xl:mt-0">
-        <div className="text-[32px] md:text-[48px] leading-[35px] md:leading-[52px] xl:text-[64px] 2xl:text-[96px] xl:leading-[76px] 2xl:leading-[100px] font-light text-[#E2E2E2]">
+        <div
+          ref={textRef}
+          className="text-[32px] md:text-[48px] leading-[35px] md:leading-[52px] xl:text-[64px] 2xl:text-[96px] xl:leading-[76px] 2xl:leading-[100px] font-light text-[#E2E2E2]"
+        >
           Realities <br /> Unlike Before
         </div>
-        <div className="max-w-[302px] md:max-w-[479px] xl:max-w-[399px] 2xl:max-w-[532px] text-[14px] md:text-[16px] xl:text-[20px] 2xl:text-[24px] md:leading-[24px] xl:leading-[32px] font-[200] text-[#C5C5C5] xl:tracking-[0.048px]">
-          LumynXR is a high-performance mixed reality
-          headset designed for the future of spatial
-          computing, with enterprise-ready features for
+        <div
+          ref={textRef2}
+          className="max-w-[302px] md:max-w-[479px] xl:max-w-[399px] 2xl:max-w-[532px] text-[14px] md:text-[16px] xl:text-[20px] 2xl:text-[24px] md:leading-[24px] xl:leading-[32px] font-[200] text-[#C5C5C5] xl:tracking-[0.048px]"
+        >
+          LumynXR is a high-performance mixed reality headset designed for the
+          future of spatial computing, with enterprise-ready features for
           cross-industry innovation
         </div>
       </div>
@@ -109,7 +144,9 @@ function Hero() {
                   controls
                 >
                   <source
-                    src={`${process.env.NEXT_PUBLIC_CDN_URL}/videos/${videoFormat === "webm" ? "Teaser.webm" : "Teaser_v3.mp4"}`}
+                    src={`${process.env.NEXT_PUBLIC_CDN_URL}/videos/${
+                      videoFormat === "webm" ? "Teaser.webm" : "Teaser_v3.mp4"
+                    }`}
                     type={`video/${videoFormat}`}
                   />
                   Your browser does not support the video tag.
