@@ -52,17 +52,17 @@ export default function TalktoSales({ onPlayTeaserClick }: { onPlayTeaserClick: 
         <div
             ref={navRef}
             className=
-            "my-6 ml-[28px] hidden md:flex  w-[96vw] min-h-[3rem]  items-center justify-center text-white"
+            "my-6   flex   w-full min-h-[3rem]  items-center justify-center text-white"
 
         >
 
             {/* CTA Button - Desktop and Large Laptop only */}
-            <div onClick={onPlayTeaserClick} className="flex ">
+            <div onClick={onPlayTeaserClick} className="flex  w-fit items-center justify-center cursor-pointer">
                 <div className="card">
                     <div className="box-base box" style={{ "--angle": "53deg" } as React.CSSProperties}> {/* 👈 hardcoded `box` */}
                         <div className="glass"></div>
                         <div className="rounded-[51px] font-[600] px-[24px] py-[14px] 2xl:px-[22px] 2xl:py-[12px] xl:px-[20px] xl:py-[10px] bg-gradient-to-b from-[rgba(221,221,221,0.13)] to-[rgba(67,67,67,0.13)]">
-                            <h1 className="mt-[1px] text-base 2xl:text-[15px] xl:text-xl py-1 px-3">Talk to Sales</h1>
+                            <h1 className="mt-[1px] text-base 2xl:text-[15px] xl:text-xl xl:py-1 xl:px-3">Talk to Sales</h1>
                         </div>
                     </div>
                 </div>
