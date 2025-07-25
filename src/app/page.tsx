@@ -2,9 +2,8 @@ import dynamic from "next/dynamic";
 import Navbar from "@/components/navbar";
 import Hero from "@/components/LandingSections/Hero";
 
-const RevealingHeadset = dynamic(() => import('@/components/LandingSections/RevealingHeadset'), {
-  loading: () => <div>Loading...</div>,
-});
+const RevealingHeadset = dynamic(() => import('@/components/LandingSections/RevealingHeadset'));
+
 const Optical = dynamic(() => import('@/components/LandingSections/Optical'));
 const Chipset = dynamic(() => import('@/components/LandingSections/Chipset'));
 const Comfort = dynamic(() => import('@/components/LandingSections/Comfort'));
