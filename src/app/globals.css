@@ -550,3 +550,9 @@ body {
   animation: fadeUp 0.8s ease-out forwards;
   animation-delay: 0.6s;
 }
+.motion-playteaser{
+  opacity: 0;
+  transform: translateY(24px);
+  animation: fadeUp 1s ease-out forwards;
+  animation-delay: 0.8s;
+}

@@ -52,7 +52,7 @@ export default function Teaser({ onPlayTeaserClick }: { onPlayTeaserClick: () =>
         <div
             ref={navRef}
             className=
-            "flex my-6 ml-[28px]  w-fit h-[3rem]  text-white xl:hidden"
+            "flex my-6 ml-[28px]  w-fit h-[3rem]  text-white xl:hidden motion-playteaser"
 
         >
 

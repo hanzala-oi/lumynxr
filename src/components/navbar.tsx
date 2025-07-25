@@ -14,7 +14,7 @@ const navItems = [
 
 export default function Navbar() {
     const [isDark, setIsDark] = useState(true);
-    const [activeSection, setActiveSection] = useState("Company");
+    const [activeSection, setActiveSection] = useState("Product");
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const navRef = useRef(null);
     const mobileMenuRef = useRef(null);

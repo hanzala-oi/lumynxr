@@ -1,18 +1,23 @@
-import Footer from "@/components/footer";
-import BuiltForEnterprise from "@/components/LandingSections/BuiltForEnterprice";
-import Chipset from "@/components/LandingSections/Chipset";
-import Comfort from "@/components/LandingSections/Comfort";
-import Controller from "@/components/LandingSections/Controller";
-import Features from "@/components/LandingSections/Features";
-import Hero from "@/components/LandingSections/Hero";
-import Optical from "@/components/LandingSections/Optical";
-import PassThrough from "@/components/LandingSections/PassThrough";
-import RevealingHeadset from "@/components/LandingSections/RevealingHeadset";
-import Sound from "@/components/LandingSections/Sound";
-import WhatsInTheBox from "@/components/LandingSections/WhatsInTheBox";
+import dynamic from "next/dynamic";
 import Navbar from "@/components/navbar";
-import HoldingHeadset from "@/components/LandingSections/HoldingHeadset";
-import HoldingHeadsetFullscreen from "@/components/LandingSections/HoldingHeadsetFullscreen";
+import Hero from "@/components/LandingSections/Hero";
+
+const RevealingHeadset = dynamic(() => import('@/components/LandingSections/RevealingHeadset'), {
+  loading: () => <div>Loading...</div>,
+});
+const Optical = dynamic(() => import('@/components/LandingSections/Optical'));
+const Chipset = dynamic(() => import('@/components/LandingSections/Chipset'));
+const Comfort = dynamic(() => import('@/components/LandingSections/Comfort'));
+const Sound = dynamic(() => import('@/components/LandingSections/Sound'));
+const Controller = dynamic(() => import('@/components/LandingSections/Controller'));
+const PassThrough = dynamic(() => import('@/components/LandingSections/PassThrough'));
+const Features = dynamic(() => import('@/components/LandingSections/Features'));
+const HoldingHeadset = dynamic(() => import('@/components/LandingSections/HoldingHeadset'));
+const HoldingHeadsetFullscreen = dynamic(() => import('@/components/LandingSections/HoldingHeadsetFullscreen'));
+const WhatsInTheBox = dynamic(() => import('@/components/LandingSections/WhatsInTheBox'));
+const BuiltForEnterprise = dynamic(() => import('@/components/LandingSections/BuiltForEnterprice'));
+const Footer = dynamic(() => import('@/components/footer'));
+
 
 export default function Home() {
   return (
@@ -43,7 +48,7 @@ export default function Home() {
       <section id="product" data-theme="dark" className=" bg-black">
         <Controller />
       </section>
-       
+
       <section id="product" data-theme="light" className="xl:hidden">
         <HoldingHeadsetFullscreen />
       </section>
