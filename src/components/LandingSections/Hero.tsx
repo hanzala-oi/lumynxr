@@ -1,7 +1,7 @@
 import React from "react";
 import PlayTeaser from "./PlayTeaser";
 
-const HeroSection = () => {
+const Hero = () => {
   return (
     <div className="flex flex-col xl:flex-row min-h-screen xl:max-h-screen max-w-screen w-screen items-start xl:items-center justify-center bg-black lg:pt-[80px] lg:gap-6 lg-landscape:flex-row">
       {/* Video Section */}
@@ -35,4 +35,4 @@ const HeroSection = () => {
   );
 };
 
-export default HeroSection;
+export default Hero;
