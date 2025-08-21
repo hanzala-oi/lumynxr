@@ -251,7 +251,7 @@ const Features: React.FC = () => {
           <div
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
-            className="group w-full  xl:h-2/5 h-full bg-[#070505] rounded-xl flex flex-col-reverse md:flex-row  md:items-center overflow-hidden"
+            className="group w-full  xl:h-2/5  h-full bg-[#070505] rounded-xl flex flex-col-reverse md:flex-row  md:items-center overflow-hidden"
           >
             <div className="md:w-2/5 h-full  flex  mt-[-100px] md:mt-0 z-10 flex-col gap-2 justify-end pb-8 pl-4 pt-4   2xl:pl-12 ">
               <h1 className="text-[16px]   xl:text-[20px] font-[500] xl:font-normal xl:leading-[100%] xl:tracking-[0%] text-[#F2F2F2]">
@@ -261,12 +261,12 @@ const Features: React.FC = () => {
                 5500mAh battery for long lasting power for extended use
               </p>
             </div>
-            <div className="md:w-full  pb-0 p-8 pl-0  md:mr-[-50px] group h-full group overflow-hidden   flex justify-end  scale-x-[-1] md:scale-x-100">
+            <div className="md:w-3/5  group h-full group overflow-hidden flex justify-end  scale-x-[-1] md:scale-x-100">
               <video
                 ref={(el) => {
                   videoRefs.current[2] = el;
                 }}
-                className="object-cover transition= duration-300 ease-in-out group-hover:scale-105  "
+                className="object-cover transition  duration-300 ease-in-out group-hover:scale-105  "
                 muted
                 loop
                 playsInline

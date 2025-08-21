@@ -1,89 +1,90 @@
+// hooks/useGsapScrollVideo.ts
 "use client";
 
 import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-export function useScrollVideo<T extends HTMLVideoElement>() {
+gsap.registerPlugin(ScrollTrigger);
+
+/**
+ * Controls a <video> element with GSAP ScrollTrigger:
+ * - play() on enter/enterBack
+ * - pause() on leave/leaveBack
+ * - optional early "arm" when near viewport to ensure source is attached once
+ */
+export function useGsapScrollVideo<T extends HTMLVideoElement>({
+  start = "top 80%",       // when top of container hits 80% of viewport
+  end = "bottom 20%",
+  anticipatePin = 1,       // smoother triggers with sticky/transform layouts
+  rootMarginPx = 600,      // when to "arm" (near viewport) so we can attach source once
+  onNearViewport,          // called once when near viewport (to attach <source>)
+}: {
+  start?: string;
+  end?: string;
+  anticipatePin?: number;
+  rootMarginPx?: number;
+  onNearViewport?: () => void;
+}) {
+  const containerRef = useRef<HTMLDivElement | null>(null);
   const videoRef = useRef<T | null>(null);
-  const containerRef = useRef<HTMLDivElement | null>(null); 
-
-  const playPromiseRef = useRef<Promise<void> | null>(null);
-  const hasPlayedOnceRef = useRef(false);
-  const isVisibleRef = useRef(false);
-  const lastScrollYRef = useRef(0);
-  const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null); 
-
-  const playVideo = async () => {
-    const video = videoRef.current;
-    if (!video || !video.paused) return;
-
-    try {
-      playPromiseRef.current = video.play();
-      await playPromiseRef.current;
-      hasPlayedOnceRef.current = true;
-    } catch (error) {
-      if (error instanceof Error && error.name !== "AbortError") {
-        console.error("Video play error:", error);
-      }
-    } finally {
-      playPromiseRef.current = null;
-    }
-  };
-
-  const pauseVideo = () => {
-    const video = videoRef.current;
-    if (video && !video.paused) {
-      video.pause();
-    }
-  };
+  const armedRef = useRef(false);
 
   useEffect(() => {
+    const container = containerRef.current;
     const video = videoRef.current;
-    const container = containerRef.current || video;
-    if (!video || !container) return;
+    if (!container || !video) return;
 
-    const observer = new IntersectionObserver(
+    // 1) Pre-attach “near viewport” observer (fires once)
+    //    This avoids attaching <source> at load, preventing early network.
+    const io = new IntersectionObserver(
       ([entry]) => {
-        isVisibleRef.current = entry.isIntersecting;
-        if (entry.isIntersecting) {
-          playVideo();
-        } else {
-          pauseVideo();
+        const near =
+          entry.isIntersecting ||
+          entry.boundingClientRect.top < window.innerHeight + rootMarginPx;
+        if (near && !armedRef.current) {
+          armedRef.current = true;
+          onNearViewport?.();
         }
       },
-      {
-        threshold: 0.3,
-        rootMargin: "0px 0px -100px 0px",
-      }
+      { rootMargin: `${rootMarginPx}px 0px ${rootMarginPx}px 0px`, threshold: 0.01 }
     );
+    io.observe(container);
 
-    observer.observe(container);
+    // 2) ScrollTrigger play/pause control
+    const st = ScrollTrigger.create({
+      trigger: container,
+      start,
+      end,
+      anticipatePin,
+      onEnter: () => {
+        // play if armed and ready (avoid racing canplay)
+        video.play().catch(() => {});
+      },
+      onEnterBack: () => {
+        video.play().catch(() => {});
+      },
+      onLeave: () => {
+        video.pause();
+      },
+      onLeaveBack: () => {
+        video.pause();
+      },
+    });
 
-    const onScroll = () => {
-      const scrollY = window.scrollY;
-      const isScrollingUp = scrollY < lastScrollYRef.current;
-      lastScrollYRef.current = scrollY;
-
-      clearTimeout(scrollTimeoutRef.current as NodeJS.Timeout);
-
-      scrollTimeoutRef.current = setTimeout(() => {
-        if (
-          isScrollingUp &&
-          isVisibleRef.current &&
-          hasPlayedOnceRef.current
-        ) {
-          playVideo();
-        }
-      }, 100);
-    };
-
-    window.addEventListener("scroll", onScroll, { passive: true });
+    // 3) Pause on tab hide / pagehide (iOS stability)
+    const onVis = () => (document.hidden ? video.pause() : void 0);
+    const onHide = () => video.pause();
+    document.addEventListener("visibilitychange", onVis);
+    window.addEventListener("pagehide", onHide);
 
     return () => {
-      observer.disconnect();
-      window.removeEventListener("scroll", onScroll);
-      clearTimeout(scrollTimeoutRef.current as NodeJS.Timeout);
+      io.disconnect();
+      st.kill();
+      document.removeEventListener("visibilitychange", onVis);
+      window.removeEventListener("pagehide", onHide);
     };
-  }, []);
+  }, [start, end, anticipatePin, rootMarginPx, onNearViewport]);
 
-  return { videoRef, containerRef };
+  return { containerRef, videoRef };
 }

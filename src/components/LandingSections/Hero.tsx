@@ -10,11 +10,11 @@ const Hero = () => {
           className="object-cover rounded-xl w-[110%] h-[110%]"
           muted
           playsInline
+          webkit-playsinline="true"
           autoPlay
-          preload="metadata"
+          preload="none"
           controls={false}
         >
-          <source src={`${process.env.NEXT_PUBLIC_CDN_URL}/videos/header.webm`} type="video/webm" />
           <source src={`${process.env.NEXT_PUBLIC_CDN_URL}/videos/Header.mp4`} type="video/mp4" />
         </video>
       </div>
