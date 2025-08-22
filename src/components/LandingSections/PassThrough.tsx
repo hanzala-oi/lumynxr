@@ -1,24 +1,82 @@
-import React from "react";
+import React, { useLayoutEffect, useRef } from "react";
 import ScrollVideo from "./ScrollVideo";
+import gsap from "gsap";
 
 function PassThrough() {
+  const headingRef = useRef(null);
+  const paraRef = useRef(null);
+  const rootRef = useRef(null);
+
+  const isClient = typeof window !== "undefined";
+
+  useLayoutEffect(() => {
+    if (!isClient) return;
+
+    const prefersReduced = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    const ctx = gsap.context(() => {
+      const heading = headingRef.current;
+      const para = paraRef.current;
+      if (!heading || !para) return;
+
+      if (prefersReduced) {
+        gsap.set([heading, para], { opacity: 1, x: 0 });
+        return;
+      }
+
+      // Initial state for line-style reveal
+      gsap.set([heading, para], { opacity: 0, x: 100 });
+
+      // Trigger on scroll once
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              gsap.to([heading, para], {
+                opacity: 1,
+                x: 0,
+                duration: 1.3,
+                ease: "expo.out",
+                stagger: 0.22,
+                overwrite: "auto",
+              });
+              observer.disconnect();
+            }
+          });
+        },
+        { root: null, rootMargin: "0px 0px -20% 0px", threshold: 0.25 }
+      );
+
+      if (rootRef.current) observer.observe(rootRef.current);
+
+      return () => observer.disconnect();
+    }, rootRef);
+
+    return () => ctx.revert();
+  }, [isClient]);
 
   return (
-    <div className="relative flex md:flex-col-reverse w-full md:min-h-screen xl:h-screen bg-black min-h-[70vh] overflow-hidden">
-      
+    <div
+      ref={rootRef}
+      className="relative flex md:flex-col-reverse w-full md:min-h-screen xl:h-screen bg-black min-h-[70vh] overflow-hidden"
+    >
       {/* Background Video */}
       <ScrollVideo
         srcWebm={`${process.env.NEXT_PUBLIC_CDN_URL}/videos/Passthroughv2.webm`}
         srcMp4={`${process.env.NEXT_PUBLIC_CDN_URL}/videos/Passthroughv2.mp4`}
         className="absolute inset-0 xl:-left-64 scale-[1.1] w-full xl:h-full object-cover mt-[200px] md:mt-0 z-0"
-                  poster="https://lumynxr.blob.core.windows.net/images/passthrough.png"
-
+        poster="https://lumynxr.blob.core.windows.net/images/passthrough.png"
       />
 
       {/* Overlay Text */}
       <div className="xl:absolute lg:pb-10 flex xl:justify-end xl:items-center xl:top-1/2 xl:transform xl:-translate-y-1/2 pl-[28px] md:pl-[32px] xl:pl-0 w-full z-[1]">
         <div className="text-left xl:w-1/3">
-          <h1 className="text-[32px] md:text-[48px] md:leading-[52px] leading-[30px] xl:text-[64px] 2xl:text-[96px] xl:leading-[76px] 2xl:leading-[100px] font-light text-[#E2E2E2]">
+          <h1
+            ref={headingRef}
+            className="text-[32px] md:text-[48px] md:leading-[52px] leading-[30px] xl:text-[64px] 2xl:text-[96px] xl:leading-[76px] 2xl:leading-[100px] font-light text-[#E2E2E2]"
+          >
             <span className="hidden xl:block">
               Clear
               <br />
@@ -72,7 +130,10 @@ function PassThrough() {
             />
           </svg>
 
-          <p className="max-w-[358px] md:max-w-[567px] lg:max-w-[362px] 2xl:max-w-[466px] text-[14px] md:text-[16px] xl:text-[20px] 2xl:text-[24px] md:leading-[24px] xl:leading-[32px] font-[200] text-[#C5C5C5] xl:tracking-[0.048px]">
+          <p
+            ref={paraRef}
+            className="max-w-[358px] md:max-w-[567px] lg:max-w-[362px] 2xl:max-w-[466px] text-[14px] md:text-[16px] xl:text-[20px] 2xl:text-[24px] md:leading-[24px] xl:leading-[32px] font-[200] text-[#C5C5C5] xl:tracking-[0.048px]"
+          >
             LumynXR delivers full-color passthrough with iToF depth sensing for
             a vivid and accurate Mixed Reality experience.
           </p>

@@ -2,8 +2,6 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import clsx from "clsx";
-import Teaser from "./LandingSections/Teaser";
 import TalktoSales from "./LandingSections/TalktoSales";
 
 const Footer: React.FC = () => {

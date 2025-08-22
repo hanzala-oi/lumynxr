@@ -1,5 +1,6 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
+import gsap from "gsap";
 
 type VideoSource = {
   webm: string;
@@ -43,46 +44,40 @@ const features: Feature[] = [
 function isSafariBrowser() {
   if (typeof navigator === "undefined") return false;
   const ua = navigator.userAgent;
-  // desktop Safari: contains “Safari” and “Version”, but not “Chrome”
-  const isDesktopSafari = ua.includes("Safari")
-    && ua.includes("Version/")
-    && !ua.includes("Chrome");
-  // iOS Safari: WebKit engine, iPhone/iPad, but not Chrome
-  const isIOSSafari = /iPad|iPhone|iPod/.test(ua)
-    && !ua.includes("CriOS")
-    && !ua.includes("FxiOS");
+  const isDesktopSafari = ua.includes("Safari") && ua.includes("Version/") && !ua.includes("Chrome");
+  const isIOSSafari = /iPad|iPhone|iPod/.test(ua) && !ua.includes("CriOS") && !ua.includes("FxiOS");
   return isDesktopSafari || isIOSSafari;
 }
 
-// Utility to detect browser
 function getPreferredVideoFormat(): "webm" | "mp4" {
   if (typeof navigator !== "undefined") {
     const ua = navigator.userAgent;
     const isIOS = /iPad|iPhone|iPod/.test(ua);
     const isSafari = /^((?!chrome|android).)*safari/i.test(ua);
     if (isIOS && isSafari) {
-      return "mp4"; // Safari on iOS → MP4
+      return "mp4";
     }
-    return "webm"; // Prefer WebM for others
+    return "webm";
   }
-  return "mp4"; // Default fallback
+  return "mp4";
 }
 
 const Features: React.FC = () => {
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
   const [videoFormat, setVideoFormat] = useState<"webm" | "mp4">("mp4");
-
   const [preferMP4, setPreferMP4] = useState(false);
+  const rootRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     setPreferMP4(isSafariBrowser());
+    setVideoFormat(getPreferredVideoFormat());
   }, []);
 
-
+  // Hover handlers for desktop
   const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
     const video = e.currentTarget.querySelector("video");
-    if (video && video.paused) {
-      video.play().catch((err) => {
+    if (video && (video as HTMLVideoElement).paused) {
+      (video as HTMLVideoElement).play().catch((err) => {
         console.warn("Video play interrupted:", err);
       });
     }
@@ -90,13 +85,15 @@ const Features: React.FC = () => {
 
   const handleMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
     const video = e.currentTarget.querySelector("video");
-    if (video && !video.paused) {
-      video.pause();
-      video.currentTime = 0;
+    if (video && !(video as HTMLVideoElement).paused) {
+      (video as HTMLVideoElement).pause();
+      (video as HTMLVideoElement).currentTime = 0;
     }
   };
 
+  // Autoplay videos on scroll for mobile/tablet
   useEffect(() => {
+    if (typeof window === "undefined") return;
     if (window.innerWidth >= 1280) return;
 
     const observer = new IntersectionObserver(
@@ -104,7 +101,7 @@ const Features: React.FC = () => {
         entries.forEach((entry) => {
           const video = entry.target as HTMLVideoElement;
           if (entry.isIntersecting) {
-            video.play().catch(() => { });
+            video.play().catch(() => {});
           } else {
             video.pause();
             video.currentTime = 0;
@@ -125,9 +122,63 @@ const Features: React.FC = () => {
     };
   }, []);
 
+  // Bottom-to-top text animations
+  useLayoutEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    const ctx = gsap.context(() => {
+      const root = rootRef.current;
+      if (!root) return;
+
+      const blocks = Array.from(root.querySelectorAll<HTMLElement>("[data-rise]"));
+
+      if (prefersReduced) {
+        blocks.forEach((el) => {
+          const parts = el.querySelectorAll<HTMLElement>("h1, p");
+          gsap.set(parts, { y: 0, opacity: 1 });
+        });
+        return;
+      }
+
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            const el = entry.target as HTMLElement;
+            if (entry.isIntersecting) {
+              const parts = el.querySelectorAll<HTMLElement>("h1, p");
+              gsap.to(parts, {
+                y: 0,
+                opacity: 1,
+                duration: 0.9,
+                ease: "power3.out",
+                stagger: 0.12,
+              });
+              io.unobserve(el);
+            }
+          });
+        },
+        { threshold: 0.35, rootMargin: "0px 0px -10% 0px" }
+      );
+
+      // Set initial state and observe
+      blocks.forEach((el) => {
+        const parts = el.querySelectorAll<HTMLElement>("h1, p");
+        gsap.set(parts, { y: 40, opacity: 0 }); // from bottom to top
+        io.observe(el);
+      });
+
+      return () => io.disconnect();
+    }, rootRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <div className="xl:h-screen min-h-screen w-screen flex flex-col xl:flex-row items-center justify-center xl:py-8 xl:px-10 2xl:px-20 2xl:py-20 py-8 px-4 md:px-6 ">
+    <div ref={rootRef} className="xl:h-screen min-h-screen w-screen flex flex-col xl:flex-row items-center justify-center xl:py-8 xl:px-10 2xl:px-20 2xl:py-20 py-8 px-4 md:px-6 ">
       <div className="xl:w-4/5 h-full flex flex-col xl:flex-row items-center justify-center gap-4 xl:gap-2  xl:max-h-[85vh] xl:max-w-[85vw] ">
+        {/* Card 1 */}
         <div
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
@@ -143,7 +194,6 @@ const Features: React.FC = () => {
               loop
               playsInline
               preload="metadata"
-
             >
               {preferMP4 ? (
                 <source src={features[0].sources.mp4} type="video/mp4" />
@@ -153,10 +203,9 @@ const Features: React.FC = () => {
                   <source src={features[0].sources.mp4} type="video/mp4" />
                 </>
               )}
-
               Your browser does not support the video tag.
             </video>
-            <div className="flex flex-col z-10 gap-2 2xl:pl-12  justify-end pl-4 pb-5 md:pb-4 xl:pb-14 h-1/5 md:mt-4 xl:mt-0  bg-[#070505] ">
+            <div data-rise className="flex flex-col z-10 gap-2 2xl:pl-12  justify-end pl-4 pb-5 md:pb-4 xl:pb-14 h-1/5 md:mt-4 xl:mt-0  bg-[#070505] ">
               <h1 className="text-[16px]  xl:text-[20px] font-[500] xl:font-normal xl:leading-[100%] xl:tracking-[0%] text-[#F2F2F2]">
                 {features[0].title}
               </h1>
@@ -167,6 +216,7 @@ const Features: React.FC = () => {
             </div>
           </div>
 
+          {/* Card 2 (tablet) */}
           <div
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
@@ -182,7 +232,6 @@ const Features: React.FC = () => {
                 loop
                 playsInline
                 preload="metadata"
-
               >
                 {preferMP4 ? (
                   <source src={features[1].sources.mp4} type="video/mp4" />
@@ -192,10 +241,9 @@ const Features: React.FC = () => {
                     <source src={features[1].sources.mp4} type="video/mp4" />
                   </>
                 )}
-
                 Your browser does not support the video tag.
               </video>
-              <div className="pb-4 mt-4  2xl:mt-0 pl-4  flex gap-2 flex-col z-10 bg-[#070505]">
+              <div data-rise className="pb-4 mt-4  2xl:mt-0 pl-4  flex gap-2 flex-col z-10 bg-[#070505]">
                 <h1 className="text-[16px]  xl:text-[20px] font-[500] xl:font-normal xl:leading-[100%] xl:tracking-[0%] text-[#F2F2F2]">
                   {features[1].title}
                 </h1>
@@ -208,7 +256,9 @@ const Features: React.FC = () => {
           </div>
         </div>
 
+        {/* Right column */}
         <div className="w-full xl:w-1/2 h-full flex flex-col  gap-4 xl:gap-2 ">
+          {/* Card 2 (desktop) */}
           <div
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
@@ -224,7 +274,6 @@ const Features: React.FC = () => {
                 loop
                 playsInline
                 preload="metadata"
-
               >
                 {preferMP4 ? (
                   <source src={features[1].sources.mp4} type="video/mp4" />
@@ -237,7 +286,7 @@ const Features: React.FC = () => {
                 Your browser does not support the video tag.
               </video>
             </div>
-            <div className="pb-8 min-[2400]:mt-6  2xl:pl-12  pl-4 h-1/5 flex gap-2 flex-col z-10 bg-[#070505]">
+            <div data-rise className="pb-8 min-[2400]:mt-6  2xl:pl-12  pl-4 h-1/5 flex gap-2 flex-col z-10 bg-[#070505]">
               <h1 className="text-[16px]  xl:text-[20px] font-[500] xl:font-normal xl:leading-[100%] xl:tracking-[0%] text-[#F2F2F2] ">
                 {features[1].title}
               </h1>
@@ -248,16 +297,17 @@ const Features: React.FC = () => {
             </div>
           </div>
 
+          {/* Card 3 */}
           <div
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
             className="group w-full  xl:h-2/5  h-full bg-[#070505] rounded-xl flex flex-col-reverse md:flex-row  md:items-center overflow-hidden"
           >
-            <div className="md:w-2/5 h-full  flex  mt-[-100px] md:mt-0 z-10 flex-col gap-2 justify-end pb-8 pl-4 pt-4   2xl:pl-12 ">
+            <div data-rise className="md:w-2/5 h-full  flex  mt-[-100px] md:mt-0 z-10 flex-col gap-2 justify-end pb-8 pl-4 pt-4   2xl:pl-12 ">
               <h1 className="text-[16px]   xl:text-[20px] font-[500] xl:font-normal xl:leading-[100%] xl:tracking-[0%] text-[#F2F2F2]">
                 {features[2].title}
               </h1>
-              <p className="text-[12px]  xl:text-[16px] leading-[15px] xl:leading-[24px] 2xl:tracking-[3%] font-[150] 2xl:font-[200]  text-[#F2F2F2]">
+              <p className="text_[12px]  xl:text-[16px] leading-[15px] xl:leading-[24px] 2xl:tracking-[3%] font-[150] 2xl:font-[200]  text-[#F2F2F2]">
                 5500mAh battery for long lasting power for extended use
               </p>
             </div>
@@ -272,8 +322,7 @@ const Features: React.FC = () => {
                 playsInline
                 preload="metadata"
               >
-
-                  {preferMP4 ? (
+                {preferMP4 ? (
                   <source src={features[2].sources.mp4} type="video/mp4" />
                 ) : (
                   <>

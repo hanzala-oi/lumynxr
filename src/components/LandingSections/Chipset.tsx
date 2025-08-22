@@ -1,9 +1,67 @@
-import React from "react";
+import React, { useLayoutEffect, useRef } from "react";
 import ScrollVideo from "./ScrollVideo";
+import gsap from "gsap";
 
 function Chipset() {
+  const headingRef = useRef(null);
+  const paraRef = useRef(null);
+  const rootRef = useRef(null);
+
+  const isClient = typeof window !== "undefined";
+
+  useLayoutEffect(() => {
+    if (!isClient) return;
+
+    const prefersReduced = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    const ctx = gsap.context(() => {
+      const heading = headingRef.current;
+      const para = paraRef.current;
+
+      if (!heading || !para) return;
+
+      if (prefersReduced) {
+        gsap.set([heading, para], { opacity: 1, x: 0 });
+        return;
+      }
+
+      // Initial state for line-style reveal
+      gsap.set([heading, para], { opacity: 0, x: -100 });
+
+      // Trigger on scroll
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              gsap.to([heading, para], {
+                opacity: 1,
+                x: 0,
+                duration: 1.2,
+                ease: "expo.out",
+                stagger: 0.22,
+                overwrite: "auto",
+              });
+
+              observer.disconnect();
+            }
+          });
+        },
+        { root: null, rootMargin: "0px 0px -20% 0px", threshold: 0.25 }
+      );
+
+      if (rootRef.current) observer.observe(rootRef.current);
+
+      return () => observer.disconnect();
+    }, rootRef);
+
+    return () => ctx.revert();
+  }, [isClient]);
+
   return (
     <div
+      ref={rootRef}
       className="relative flex md:flex-col-reverse w-full min-h-[75vh] md:h-screen xl:h-screen bg-black md:py-10 h-[70vh]"
     >
       {/* Background video */}
@@ -12,12 +70,14 @@ function Chipset() {
         srcMp4={`${process.env.NEXT_PUBLIC_CDN_URL}/videos/Chipsetv2.mp4`}
         className="absolute inset-0 w-full xl:h-full object-cover mt-[200px] md:mt-0"
         poster="https://lumynxr.blob.core.windows.net/images/chipset.png"
-
       />
 
       {/* Text overlay */}
       <div className="xl:relative xl:bottom-28 z-10 pl-[28px] md:pl-[32px] xl:pl-[115px] 2xl:pl-[259px] flex flex-col justify-start md:justify-end items-start h-full text-[#E2E2E2]">
-        <h1 className="text-[32px] md:text-[48px] md:leading-[52px] leading-[30px] xl:text-[64px] 2xl:text-[96px] xl:leading-[76px] 2xl:leading-[100px] font-light">
+        <h1
+          ref={headingRef}
+          className="text-[32px] md:text-[48px] md:leading-[52px] leading-[30px] xl:text-[64px] 2xl:text-[96px] xl:leading-[76px] 2xl:leading-[100px] font-light"
+        >
           <span className="hidden md:block">
             Powered by <br /> Snapdragon<sup className="xl:text-5xl">®</sup>
           </span>
@@ -71,7 +131,10 @@ function Chipset() {
           />
         </svg>
 
-        <p className="max-w-[332px] md:max-w-[470px] lg:max-w-[432px] 2xl:max-w-[519px] text-[14px] md:text-[16px] xl:text-[20px] 2xl:text-[24px] md:leading-[24px] xl:leading-[32px] font-[200] text-[#C5C5C5] xl:tracking-[0.048px]">
+        <p
+          ref={paraRef}
+          className="max-w-[332px] md:max-w-[470px] lg:max-w-[432px] 2xl:max-w-[519px] text-[14px] md:text-[16px] xl:text-[20px] 2xl:text-[24px] md:leading-[24px] xl:leading-[32px] font-[200] text-[#C5C5C5] xl:tracking-[0.048px]"
+        >
           Qualcomm<sup>®</sup> Snapdragon<sup>®</sup> XR2+ Gen 2 powers
           high-speed processing, rich graphics and seamless multitasking for
           enterprise and MR use.
