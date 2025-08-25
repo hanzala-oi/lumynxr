@@ -1,72 +1,40 @@
 import Image from "next/image";
-import React, { useLayoutEffect, useRef } from "react";
-import gsap from "gsap";
+import React, { useEffect, useRef } from "react";
 
 function BuiltForEnterprise() {
-  const rootRef = useRef(null);
-  const leftRef = useRef(null);
-  const rightRef = useRef(null);
+  const rootRef = useRef<HTMLDivElement | null>(null);
+  const leftRef = useRef<HTMLDivElement | null>(null);
+  const rightRef = useRef<HTMLDivElement | null>(null);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (typeof window === "undefined") return;
+    const left = leftRef.current;
+    const right = rightRef.current;
+    if (!left || !right) return;
 
+    // Respect prefers-reduced-motion: if reduce, reveal instantly
     const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReduced) {
+      left.setAttribute("data-inview", "true");
+      right.setAttribute("data-inview", "true");
+      return;
+    }
 
-    const ctx = gsap.context(() => {
-      const left = leftRef.current as HTMLElement | null;
-      const right = rightRef.current as HTMLElement | null;
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            (entry.target as HTMLElement).setAttribute("data-inview", "true");
+            io.unobserve(entry.target);
+          }
+        }
+      },
+      { threshold: 0.35, rootMargin: "0px 0px -10% 0px" }
+    );
 
-      if (!left || !right) return;
-
-      const leftParts = left.querySelectorAll<HTMLElement>(".bf-title, .bf-desc, svg");
-      const rightParts = right.querySelectorAll<HTMLElement>("img");
-
-      if (prefersReduced) {
-        gsap.set([leftParts, rightParts], { opacity: 1, x: 0 });
-        return;
-      }
-
-      // initial states: left column enters from left, image from right
-      gsap.set(leftParts, { x: -100, opacity: 0 });
-      gsap.set(rightParts, { x: 100, opacity: 0 });
-
-      const io = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            const el = entry.target as HTMLElement;
-            if (entry.isIntersecting) {
-              if (el === left) {
-                gsap.to(leftParts, {
-                  x: 0,
-                  opacity: 1,
-                  duration: 1.0,
-                  ease: "power3.out",
-                  stagger: 0.12,
-                });
-                io.unobserve(left);
-              }
-              if (el === right) {
-                gsap.to(rightParts, {
-                  x: 0,
-                  opacity: 1,
-                  duration: 1.0,
-                  ease: "power3.out",
-                });
-                io.unobserve(right);
-              }
-            }
-          });
-        },
-        { threshold: 0.35, rootMargin: "0px 0px -10% 0px" }
-      );
-
-      io.observe(left);
-      io.observe(right);
-
-      return () => io.disconnect();
-    }, rootRef);
-
-    return () => ctx.revert();
+    io.observe(left);
+    io.observe(right);
+    return () => io.disconnect();
   }, []);
 
   return (
@@ -78,10 +46,21 @@ function BuiltForEnterprise() {
         {/* Left Content */}
         <div
           ref={leftRef}
-          className="fade-left xl:pl-[115px] flex 2xl:pl-[259px] min-[2800px]:pl-[599px] pl-[28px] h-full md:mt-[-200px] xl:mt-0 md:pb-20 xl:pb-0"
+          // initial state: shifted left & transparent; when [data-inview=true], reset transform/opacity
+          className={[
+            "fade-left xl:pl-[115px] flex 2xl:pl-[259px] min-[2800px]:pl-[599px] pl-[28px] h-full md:mt-[-200px] xl:mt-0 md:pb-20 xl:pb-0",
+            "opacity-0 -translate-x-24",
+            // animate only when motion allowed
+            "motion-safe:transition-all motion-safe:duration-1000 motion-safe:ease-[cubic-bezier(0.22,1,0.36,1)]",
+            // flip to visible when in view using Tailwind arbitrary data-variant
+            "[&[data-inview='true']]:opacity-100 [&[data-inview='true']]:translate-x-0",
+          ].join(" ")}
         >
           <div className="flex flex-col justify-center h-full">
-            <div className="bf-title text-[32px] md:text-[48px] md:leading-[52px] leading-[30px] xl:text-[64px] 2xl:text-[96px] min-[2800px]:text-[128px] xl:leading-[76px] 2xl:leading-[100px] text-black ">
+            <div
+              // stagger the title a bit using delay utilities
+              className="bf-title text-[32px] md:text-[48px] md:leading-[52px] leading-[30px] xl:text-[64px] 2xl:text-[96px] min-[2800px]:text-[128px] xl:leading-[76px] 2xl:leading-[100px] text-black motion-safe:delay-100"
+            >
               <span className="block md:hidden ">Built for Enterprise</span>
               <span className="hidden md:block">
                 Built for
@@ -89,9 +68,10 @@ function BuiltForEnterprise() {
                 Enterprise
               </span>
             </div>
+
             {/* Small screens (default) */}
             <svg
-              className="block xl:hidden my-[15px] "
+              className="block xl:hidden my-[15px] motion-safe:delay-200"
               xmlns="http://www.w3.org/2000/svg"
               width="34"
               height="2"
@@ -103,7 +83,7 @@ function BuiltForEnterprise() {
 
             {/* Extra Large screens (xl only) */}
             <svg
-              className="hidden xl:block 2xl:hidden mt-[10px] mb-[40px] ml-1"
+              className="hidden xl:block 2xl:hidden mt-[10px] mb-[40px] ml-1 motion-safe:delay-200"
               xmlns="http://www.w3.org/2000/svg"
               width="42"
               height="2"
@@ -115,7 +95,7 @@ function BuiltForEnterprise() {
 
             {/* 2XL screens and above */}
             <svg
-              className="hidden 2xl:block my-[60px] ml-1"
+              className="hidden 2xl:block my-[60px] ml-1 motion-safe:delay-200"
               xmlns="http://www.w3.org/2000/svg"
               width="52"
               height="6"
@@ -126,7 +106,7 @@ function BuiltForEnterprise() {
             </svg>
 
             {/* Description */}
-            <p className="bf-desc max-w-[352px] md:max-w-[449px] lg:max-w-[450px] 2xl:max-w-[533px] min-[2800px]:max-w-[800px] text-[14px] md:text-[16px] xl:text-[20px] 2xl:text-[24px] md:leading-[24px] xl:leading-[32px] min-[2800px]:leading-[40px] font-[200] min-[2800px]:text-[36px] text-[#141414] xl:tracking-[0.048px] ml-1">
+            <p className="bf-desc max-w-[352px] md:max-w-[449px] lg:max-w-[450px] 2xl:max-w-[533px] min-[2800px]:max-w-[800px] text-[14px] md:text-[16px] xl:text-[20px] 2xl:text-[24px] md:leading-[24px] xl:leading-[32px] min-[2800px]:leading-[40px] font-[200] min-[2800px]:text-[36px] text-[#141414] xl:tracking-[0.048px] ml-1 motion-safe:delay-200">
               Enterprise-ready and fully customizable, LumynXR gives you control over software and hardware to build MR solutions tailored to your workflow
             </p>
           </div>
@@ -135,7 +115,13 @@ function BuiltForEnterprise() {
         {/* Right Image */}
         <div
           ref={rightRef}
-          className="fade-right mb-[-120px] relative md:mb-[10px] lg:mb-0 w-full xl:mb-0 xl:mt-[200px] 2xl:mt-[300px] flex items-end justify-end "
+          // initial state: shifted right & transparent; reveal when in view
+          className={[
+            "fade-right mb-[-120px] relative md:mb-[10px] lg:mb-0 w-full xl:mb-0 xl:mt-[200px] 2xl:mt-[300px] flex items-end justify-end",
+            "opacity-0 translate-x-24",
+            "motion-safe:transition-all motion-safe:duration-1000 motion-safe:ease-[cubic-bezier(0.22,1,0.36,1)]",
+            "[&[data-inview='true']]:opacity-100 [&[data-inview='true']]:translate-x-0",
+          ].join(" ")}
         >
           <Image
             src={`${process.env.NEXT_PUBLIC_CDN_URL}/images/Enterprise.png`}
@@ -143,7 +129,7 @@ function BuiltForEnterprise() {
             width={1291}
             height={872}
             priority
-            className="lg:min-w-[450px] xl:min-w-[768px] md:w-[495px] 2xl:min-w-[1000px] min-[2800px]:min-w-[1500px] md:mask-gradient  "
+            className="lg:min-w-[450px] xl:min-w-[768px] md:w-[495px] 2xl:min-w-[1000px] min-[2800px]:min-w-[1500px] md:mask-gradient motion-safe:delay-150"
           />
         </div>
       </div>

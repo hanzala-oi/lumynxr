@@ -1,63 +1,44 @@
-import React, { useLayoutEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import ScrollVideo from "./ScrollVideo";
-import gsap from "gsap";
 
 function Chipset() {
-  const headingRef = useRef(null);
-  const paraRef = useRef(null);
-  const rootRef = useRef(null);
+  const rootRef = useRef<HTMLDivElement | null>(null);
+  const headingRef = useRef<HTMLHeadingElement | null>(null);
+  const paraRef = useRef<HTMLParagraphElement | null>(null);
 
-  const isClient = typeof window !== "undefined";
+  useEffect(() => {
+    if (typeof window === "undefined") return;
 
-  useLayoutEffect(() => {
-    if (!isClient) return;
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const root = rootRef.current;
+    const heading = headingRef.current;
+    const para = paraRef.current;
+    if (!root || !heading || !para) return;
 
-    const prefersReduced = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
+    // If user prefers reduced motion, reveal instantly
+    if (prefersReduced) {
+      heading.setAttribute("data-inview", "true");
+      para.setAttribute("data-inview", "true");
+      return;
+    }
 
-    const ctx = gsap.context(() => {
-      const heading = headingRef.current;
-      const para = paraRef.current;
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // mark both elements as visible; delays handle the stagger
+            heading.setAttribute("data-inview", "true");
+            para.setAttribute("data-inview", "true");
+            io.unobserve(entry.target);
+          }
+        });
+      },
+      { root: null, rootMargin: "0px 0px -20% 0px", threshold: 0.25 }
+    );
 
-      if (!heading || !para) return;
-
-      if (prefersReduced) {
-        gsap.set([heading, para], { opacity: 1, x: 0 });
-        return;
-      }
-
-      // Initial state for line-style reveal
-      gsap.set([heading, para], { opacity: 0, x: -100 });
-
-      // Trigger on scroll
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              gsap.to([heading, para], {
-                opacity: 1,
-                x: 0,
-                duration: 1.2,
-                ease: "expo.out",
-                stagger: 0.22,
-                overwrite: "auto",
-              });
-
-              observer.disconnect();
-            }
-          });
-        },
-        { root: null, rootMargin: "0px 0px -20% 0px", threshold: 0.25 }
-      );
-
-      if (rootRef.current) observer.observe(rootRef.current);
-
-      return () => observer.disconnect();
-    }, rootRef);
-
-    return () => ctx.revert();
-  }, [isClient]);
+    io.observe(root);
+    return () => io.disconnect();
+  }, []);
 
   return (
     <div
@@ -76,7 +57,14 @@ function Chipset() {
       <div className="xl:relative xl:bottom-28 z-10 pl-[28px] md:pl-[32px] xl:pl-[115px] 2xl:pl-[259px] flex flex-col justify-start md:justify-end items-start h-full text-[#E2E2E2]">
         <h1
           ref={headingRef}
-          className="text-[32px] md:text-[48px] md:leading-[52px] leading-[30px] xl:text-[64px] 2xl:text-[96px] xl:leading-[76px] 2xl:leading-[100px] font-light"
+          // initial hidden + left shift; reveal when [data-inview='true']
+          className={[
+            "text-[32px] md:text-[48px] md:leading-[52px] leading-[30px] xl:text-[64px] 2xl:text-[96px] xl:leading-[76px] 2xl:leading-[100px] font-light",
+            "opacity-0 -translate-x-24",
+            "motion-safe:transition-all motion-safe:duration-[1200ms] motion-safe:ease-[cubic-bezier(0.19,1,0.22,1)]",
+            "motion-safe:delay-100",
+            "[&[data-inview='true']]:opacity-100 [&[data-inview='true']]:translate-x-0",
+          ].join(" ")}
         >
           <span className="hidden md:block">
             Powered by <br /> Snapdragon<sup className="xl:text-5xl">®</sup>
@@ -133,7 +121,13 @@ function Chipset() {
 
         <p
           ref={paraRef}
-          className="max-w-[332px] md:max-w-[470px] lg:max-w-[432px] 2xl:max-w-[519px] text-[14px] md:text-[16px] xl:text-[20px] 2xl:text-[24px] md:leading-[24px] xl:leading-[32px] font-[200] text-[#C5C5C5] xl:tracking-[0.048px]"
+          className={[
+            "max-w-[332px] md:max-w-[470px] lg:max-w-[432px] 2xl:max-w-[519px] text-[14px] md:text-[16px] xl:text-[20px] 2xl:text-[24px] md:leading-[24px] xl:leading-[32px] font-[200] text-[#C5C5C5] xl:tracking-[0.048px]",
+            "opacity-0 -translate-x-24",
+            "motion-safe:transition-all motion-safe:duration-[1200ms] motion-safe:ease-[cubic-bezier(0.19,1,0.22,1)]",
+            "motion-safe:delay-300",
+            "[&[data-inview='true']]:opacity-100 [&[data-inview='true']]:translate-x-0",
+          ].join(" ")}
         >
           Qualcomm<sup>®</sup> Snapdragon<sup>®</sup> XR2+ Gen 2 powers
           high-speed processing, rich graphics and seamless multitasking for

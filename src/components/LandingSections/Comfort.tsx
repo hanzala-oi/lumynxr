@@ -1,62 +1,47 @@
 import Image from "next/image";
-import React, { useLayoutEffect, useRef } from "react";
-import gsap from "gsap";
+import React, { useEffect, useRef } from "react";
 
 function Comfort() {
-  const headingRef = useRef(null);
-  const paraRef = useRef(null);
-  const rootRef = useRef(null);
+  const headingRef = useRef<HTMLHeadingElement | null>(null);
+  const paraRef = useRef<HTMLParagraphElement | null>(null);
+  const imageWrapRef = useRef<HTMLDivElement | null>(null);
+  const rootRef = useRef<HTMLDivElement | null>(null);
 
-  const isClient = typeof window !== "undefined";
+  useEffect(() => {
+    if (typeof window === "undefined") return;
 
-  useLayoutEffect(() => {
-    if (!isClient) return;
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const root = rootRef.current;
+    const heading = headingRef.current;
+    const para = paraRef.current;
+    const imageWrap = imageWrapRef.current;
+    if (!root || !heading || !para) return;
 
-    const prefersReduced = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
+    // If reduced motion, reveal instantly
+    if (prefersReduced) {
+      heading.setAttribute("data-inview", "true");
+      para.setAttribute("data-inview", "true");
+      if (imageWrap) imageWrap.setAttribute("data-inview", "true");
+      return;
+    }
 
-    const ctx = gsap.context(() => {
-      const heading = headingRef.current;
-      const para = paraRef.current;
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            heading.setAttribute("data-inview", "true");
+            para.setAttribute("data-inview", "true");
+            if (imageWrap) imageWrap.setAttribute("data-inview", "true");
+            io.unobserve(entry.target);
+          }
+        });
+      },
+      { root: null, rootMargin: "0px 0px -20% 0px", threshold: 0.25 }
+    );
 
-      if (!heading || !para) return;
-
-      if (prefersReduced) {
-        gsap.set([heading, para], { opacity: 1, x: 0 });
-        return;
-      }
-
-      // Initial state for line-style reveal
-      gsap.set([heading, para], { opacity: 0, x: -100 });
-
-      // Trigger on scroll once
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              gsap.to([heading, para], {
-                opacity: 1,
-                x: 0,
-                duration: 1.2,
-                ease: "expo.out",
-                stagger: 0.22, // adjust to add delay between heading and paragraph
-                overwrite: "auto",
-              });
-              observer.disconnect();
-            }
-          });
-        },
-        { root: null, rootMargin: "0px 0px -20% 0px", threshold: 0.25 }
-      );
-
-      if (rootRef.current) observer.observe(rootRef.current);
-
-      return () => observer.disconnect();
-    }, rootRef);
-
-    return () => ctx.revert();
-  }, [isClient]);
+    io.observe(root);
+    return () => io.disconnect();
+  }, []);
 
   return (
     <div
@@ -67,7 +52,14 @@ function Comfort() {
       <div className="z-10 pl-[28px] md:pl-[32px] pt-10 xl:pl-[115px] 2xl:pl-[259px] flex flex-col justify-start xl:justify-center mb-10 md:mb-0 h-full">
         <h1
           ref={headingRef}
-          className="text-[32px] md:text-[48px] md:leading-[52px] leading-[30px] xl:text-[64px] 2xl:text-[96px] xl:leading-[76px] 2xl:leading-[100px] font-light text-[#E2E2E2]"
+          className={[
+            "text-[32px] md:text-[48px] md:leading-[52px] leading-[30px] xl:text-[64px] 2xl:text-[96px] xl:leading-[76px] 2xl:leading-[100px] font-light text-[#E2E2E2]",
+            // animation additions:
+            "opacity-0 -translate-x-24",
+            "motion-safe:transition-all motion-safe:duration-[1200ms] motion-safe:ease-[cubic-bezier(0.19,1,0.22,1)]",
+            "motion-safe:delay-100",
+            "[&[data-inview='true']]:opacity-100 [&[data-inview='true']]:translate-x-0",
+          ].join(" ")}
         >
           <span className="block md:hidden">Balanced for Comfort</span>
           <span className="hidden md:block">
@@ -120,7 +112,14 @@ function Comfort() {
 
         <p
           ref={paraRef}
-          className="max-w-[352px] md:max-w-[489px] lg:max-w-[423px] 2xl:max-w-[509px] text-[14px] md:text-[16px] xl:text-[20px] 2xl:text-[24px] md:leading-[24px] xl:leading-[32px] font-[200] xl:font-[200] text-[#C5C5C5] xl:tracking-[0.048px]"
+          className={[
+            "max-w-[352px] md:max-w-[489px] lg:max-w-[423px] 2xl:max-w-[509px] text-[14px] md:text-[16px] xl:text-[20px] 2xl:text-[24px] md:leading-[24px] xl:leading-[32px] font-[200] xl:font-[200] text-[#C5C5C5] xl:tracking-[0.048px]",
+            // animation additions:
+            "opacity-0 -translate-x-24",
+            "motion-safe:transition-all motion-safe:duration-[1200ms] motion-safe:ease-[cubic-bezier(0.19,1,0.22,1)]",
+            "motion-safe:delay-300",
+            "[&[data-inview='true']]:opacity-100 [&[data-inview='true']]:translate-x-0",
+          ].join(" ")}
         >
           Ergonomic facemask design ensures balanced 1:1 weight distribution for all-day comfort
         </p>
@@ -128,7 +127,17 @@ function Comfort() {
 
       <div className="xl:w-2/3 flex items-end justify-end">
         {/* Image Block - Absolute positioned */}
-        <div className="mx-auto h-full flex items-center justify-end xl:w-2/3">
+        <div
+          ref={imageWrapRef}
+          className={[
+            "mx-auto h-full flex items-center justify-end xl:w-2/3",
+            // animation additions (image slides in from right):
+            "opacity-0 translate-x-24",
+            "motion-safe:transition-all motion-safe:duration-[1000ms] motion-safe:ease-[cubic-bezier(0.22,1,0.36,1)]",
+            "motion-safe:delay-200",
+            "[&[data-inview='true']]:opacity-100 [&[data-inview='true']]:translate-x-0",
+          ].join(" ")}
+        >
           <Image
             src={`${process.env.NEXT_PUBLIC_CDN_URL}/images/Sideview.V2.png`}
             alt="Comfort"

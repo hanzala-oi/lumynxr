@@ -1,61 +1,48 @@
-import React, { useLayoutEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import ScrollVideo from "./ScrollVideo";
-import gsap from "gsap";
 
 function Controller() {
-  const headingRef = useRef(null);
-  const paraRef = useRef(null);
-  const rootRef = useRef(null);
+  const headingRef = useRef<HTMLHeadingElement | null>(null);
+  const paraRef = useRef<HTMLParagraphElement | null>(null);
+  const videoWrapRef = useRef<HTMLDivElement | null>(null);
+  const rootRef = useRef<HTMLDivElement | null>(null);
 
-  const isClient = typeof window !== "undefined";
+  useEffect(() => {
+    if (typeof window === "undefined") return;
 
-  useLayoutEffect(() => {
-    if (!isClient) return;
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const root = rootRef.current;
+    const heading = headingRef.current;
+    const para = paraRef.current;
+    const videoWrap = videoWrapRef.current;
 
-    const prefersReduced = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
+    if (!root || !heading || !para) return;
 
-    const ctx = gsap.context(() => {
-      const heading = headingRef.current;
-      const para = paraRef.current;
-      if (!heading || !para) return;
+    // If user prefers reduced motion, reveal instantly
+    if (prefersReduced) {
+      heading.setAttribute("data-inview", "true");
+      para.setAttribute("data-inview", "true");
+      if (videoWrap) videoWrap.setAttribute("data-inview", "true");
+      return;
+    }
 
-      if (prefersReduced) {
-        gsap.set([heading, para], { opacity: 1, x: 0 });
-        return;
-      }
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            heading.setAttribute("data-inview", "true");
+            para.setAttribute("data-inview", "true");
+            if (videoWrap) videoWrap.setAttribute("data-inview", "true");
+            io.unobserve(entry.target);
+          }
+        }
+      },
+      { root: null, rootMargin: "0px 0px -20% 0px", threshold: 0.25 }
+    );
 
-      // Initial state for line-style reveal
-      gsap.set([heading, para], { opacity: 0, x: -100 });
-
-      // Trigger once when the section enters the viewport
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              gsap.to([heading, para], {
-                opacity: 1,
-                x: 0,
-                duration: 1.2,
-                ease: "expo.out",
-                stagger: 0.22, // paragraph follows heading
-                overwrite: "auto",
-              });
-              observer.disconnect();
-            }
-          });
-        },
-        { root: null, rootMargin: "0px 0px -20% 0px", threshold: 0.25 }
-      );
-
-      if (rootRef.current) observer.observe(rootRef.current);
-
-      return () => observer.disconnect();
-    }, rootRef);
-
-    return () => ctx.revert();
-  }, [isClient]);
+    io.observe(root);
+    return () => io.disconnect();
+  }, []);
 
   return (
     <div
@@ -66,7 +53,14 @@ function Controller() {
       <div className="flex z-10 md:mt-10 flex-col w-full justify-center xl:h-full pl-6 md:pl-[32px] xl:pl-[115px] 2xl:pl-[259px]">
         <h1
           ref={headingRef}
-          className="text-[32px] md:text-[48px] md:leading-[52px] leading-[30px] xl:text-[64px] 2xl:text-[96px] xl:leading-[76px] 2xl:leading-[100px] font-light text-[#E2E2E2]"
+          className={[
+            "text-[32px] md:text-[48px] md:leading-[52px] leading-[30px] xl:text-[64px] 2xl:text-[96px] xl:leading-[76px] 2xl:leading-[100px] font-light text-[#E2E2E2]",
+            // animation additions:
+            "opacity-0 -translate-x-24",
+            "motion-safe:transition-all motion-safe:duration-[1200ms] motion-safe:ease-[cubic-bezier(0.19,1,0.22,1)]",
+            "motion-safe:delay-100",
+            "[&[data-inview='true']]:opacity-100 [&[data-inview='true']]:translate-x-0",
+          ].join(" ")}
         >
           <span className="hidden xl:block">Effortless<br />Precision</span>
           <span className="xl:hidden">Effortless Precision</span>
@@ -86,14 +80,31 @@ function Controller() {
         {/* Description */}
         <p
           ref={paraRef}
-          className="max-w-[319px] md:max-w-[459px] lg:max-w-[377px] 2xl:max-w-[451px] text-[14px] md:text-[16px] xl:text-[20px] 2xl:text-[24px] md:leading-[24px] xl:leading-[32px] font-[200] text-[#C5C5C5] xl:tracking-[0.048px]"
+          className={[
+            "max-w-[319px] md:max-w-[459px] lg:max-w-[377px] 2xl:max-w-[451px] text-[14px] md:text-[16px] xl:text-[20px] 2xl:text-[24px] md:leading-[24px] xl:leading-[32px] font-[200] text-[#C5C5C5] xl:tracking-[0.048px]",
+            // animation additions:
+            "opacity-0 -translate-x-24",
+            "motion-safe:transition-all motion-safe:duration-[1200ms] motion-safe:ease-[cubic-bezier(0.19,1,0.22,1)]",
+            "motion-safe:delay-300",
+            "[&[data-inview='true']]:opacity-100 [&[data-inview='true']]:translate-x-0",
+          ].join(" ")}
         >
           Interact naturally with precise hand tracking or high fidelity controllers for intuitive, accurate control.
         </p>
       </div>
 
       {/* Video */}
-      <div className="rounded-[20px] overflow-hidden pb-[100px] md:pb-0 mt-6 md:mt-10">
+      <div
+        ref={videoWrapRef}
+        className={[
+          "rounded-[20px] overflow-hidden pb-[100px] md:pb-0 mt-6 md:mt-10",
+          // animation additions (video slides in slightly from the right):
+          "opacity-0 translate-x-24",
+          "motion-safe:transition-all motion-safe:duration-1000 motion-safe:ease-[cubic-bezier(0.22,1,0.36,1)]",
+          "motion-safe:delay-200",
+          "[&[data-inview='true']]:opacity-100 [&[data-inview='true']]:translate-x-0",
+        ].join(" ")}
+      >
         <ScrollVideo
           srcWebm={`${process.env.NEXT_PUBLIC_CDN_URL}/videos/Controllers.webm`}
           srcMp4={`${process.env.NEXT_PUBLIC_CDN_URL}/videos/Controllers.mp4`}

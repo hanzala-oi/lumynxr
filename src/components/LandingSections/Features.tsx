@@ -1,6 +1,5 @@
 "use client";
-import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
-import gsap from "gsap";
+import React, { useEffect, useRef, useState } from "react";
 
 type VideoSource = {
   webm: string;
@@ -41,6 +40,7 @@ const features: Feature[] = [
     },
   },
 ];
+
 function isSafariBrowser() {
   if (typeof navigator === "undefined") return false;
   const ua = navigator.userAgent;
@@ -122,57 +122,40 @@ const Features: React.FC = () => {
     };
   }, []);
 
-  // Bottom-to-top text animations
-  useLayoutEffect(() => {
+  // Bottom-to-top text reveals (Tailwind only)
+  useEffect(() => {
     if (typeof window === "undefined") return;
+    const root = rootRef.current;
+    if (!root) return;
 
     const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const blocks = Array.from(root.querySelectorAll<HTMLElement>("[data-rise]"));
 
-    const ctx = gsap.context(() => {
-      const root = rootRef.current;
-      if (!root) return;
-
-      const blocks = Array.from(root.querySelectorAll<HTMLElement>("[data-rise]"));
-
-      if (prefersReduced) {
-        blocks.forEach((el) => {
-          const parts = el.querySelectorAll<HTMLElement>("h1, p");
-          gsap.set(parts, { y: 0, opacity: 1 });
-        });
-        return;
-      }
-
-      const io = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            const el = entry.target as HTMLElement;
-            if (entry.isIntersecting) {
-              const parts = el.querySelectorAll<HTMLElement>("h1, p");
-              gsap.to(parts, {
-                y: 0,
-                opacity: 1,
-                duration: 0.9,
-                ease: "power3.out",
-                stagger: 0.12,
-              });
-              io.unobserve(el);
-            }
-          });
-        },
-        { threshold: 0.35, rootMargin: "0px 0px -10% 0px" }
-      );
-
-      // Set initial state and observe
+    if (prefersReduced) {
       blocks.forEach((el) => {
-        const parts = el.querySelectorAll<HTMLElement>("h1, p");
-        gsap.set(parts, { y: 40, opacity: 0 }); // from bottom to top
-        io.observe(el);
+        el.querySelectorAll<HTMLElement>("h1, p").forEach((part) => {
+          part.setAttribute("data-inview", "true");
+        });
       });
+      return;
+    }
 
-      return () => io.disconnect();
-    }, rootRef);
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const el = entry.target as HTMLElement;
+          el.querySelectorAll<HTMLElement>("h1, p").forEach((part) => {
+            part.setAttribute("data-inview", "true");
+          });
+          io.unobserve(el);
+        });
+      },
+      { threshold: 0.35, rootMargin: "0px 0px -10% 0px" }
+    );
 
-    return () => ctx.revert();
+    blocks.forEach((el) => io.observe(el));
+    return () => io.disconnect();
   }, []);
 
   return (
@@ -206,10 +189,24 @@ const Features: React.FC = () => {
               Your browser does not support the video tag.
             </video>
             <div data-rise className="flex flex-col z-10 gap-2 2xl:pl-12  justify-end pl-4 pb-5 md:pb-4 xl:pb-14 h-1/5 md:mt-4 xl:mt-0  bg-[#070505] ">
-              <h1 className="text-[16px]  xl:text-[20px] font-[500] xl:font-normal xl:leading-[100%] xl:tracking-[0%] text-[#F2F2F2]">
+              <h1 className={[
+                "text-[16px]  xl:text-[20px] font-[500] xl:font-normal xl:leading-[100%] xl:tracking-[0%] text-[#F2F2F2]",
+                // animation additions:
+                "opacity-0 translate-y-10",
+                "motion-safe:transition-all motion-safe:duration-[900ms] motion-safe:ease-[cubic-bezier(0.22,1,0.36,1)]",
+                "motion-safe:delay-100",
+                "[&[data-inview='true']]:opacity-100 [&[data-inview='true']]:translate-y-0",
+              ].join(" ")}>
                 {features[0].title}
               </h1>
-              <p className="text-[12px] xl:text-[16px] leading-[15px] xl:leading-[24px] 2xl:tracking-[3%] font-[150] 2xl:font-[200]  text-[#F2F2F2] ">
+              <p className={[
+                "text-[12px] xl:text-[16px] leading-[15px] xl:leading-[24px] 2xl:tracking-[3%] font-[150] 2xl:font-[200]  text-[#F2F2F2] ",
+                // animation additions:
+                "opacity-0 translate-y-10",
+                "motion-safe:transition-all motion-safe:duration-[900ms] motion-safe:ease-[cubic-bezier(0.22,1,0.36,1)]",
+                "motion-safe:delay-300",
+                "[&[data-inview='true']]:opacity-100 [&[data-inview='true']]:translate-y-0",
+              ].join(" ")}>
                 Built-in anti-fog ventilation keeps your view clear and
                 uninterrupted during extended use
               </p>
@@ -244,10 +241,22 @@ const Features: React.FC = () => {
                 Your browser does not support the video tag.
               </video>
               <div data-rise className="pb-4 mt-4  2xl:mt-0 pl-4  flex gap-2 flex-col z-10 bg-[#070505]">
-                <h1 className="text-[16px]  xl:text-[20px] font-[500] xl:font-normal xl:leading-[100%] xl:tracking-[0%] text-[#F2F2F2]">
+                <h1 className={[
+                  "text-[16px]  xl:text-[20px] font-[500] xl:font-normal xl:leading-[100%] xl:tracking-[0%] text-[#F2F2F2]",
+                  "opacity-0 translate-y-10",
+                  "motion-safe:transition-all motion-safe:duration-[900ms] motion-safe:ease-[cubic-bezier(0.22,1,0.36,1)]",
+                  "motion-safe:delay-100",
+                  "[&[data-inview='true']]:opacity-100 [&[data-inview='true']]:translate-y-0",
+                ].join(" ")}>
                   {features[1].title}
                 </h1>
-                <p className="text-[12px] xl:text-[16px] leading-[15px] xl:leading-[24px] 2xl:tracking-[3%] font-[150] 2xl:font-[200]  text-[#F2F2F2]">
+                <p className={[
+                  "text-[12px] xl:text-[16px] leading-[15px] xl:leading-[24px] 2xl:tracking-[3%] font-[150] 2xl:font-[200]  text-[#F2F2F2]",
+                  "opacity-0 translate-y-10",
+                  "motion-safe:transition-all motion-safe:duration-[900ms] motion-safe:ease-[cubic-bezier(0.22,1,0.36,1)]",
+                  "motion-safe:delay-300",
+                  "[&[data-inview='true']]:opacity-100 [&[data-inview='true']]:translate-y-0",
+                ].join(" ")}>
                   Adjustable IPD range from 56-70mm ensures a clear, comfortable
                   view tailored to each user's eye distance
                 </p>
@@ -287,10 +296,22 @@ const Features: React.FC = () => {
               </video>
             </div>
             <div data-rise className="pb-8 min-[2400]:mt-6  2xl:pl-12  pl-4 h-1/5 flex gap-2 flex-col z-10 bg-[#070505]">
-              <h1 className="text-[16px]  xl:text-[20px] font-[500] xl:font-normal xl:leading-[100%] xl:tracking-[0%] text-[#F2F2F2] ">
+              <h1 className={[
+                "text-[16px]  xl:text-[20px] font-[500] xl:font-normal xl:leading-[100%] xl:tracking-[0%] text-[#F2F2F2] ",
+                "opacity-0 translate-y-10",
+                "motion-safe:transition-all motion-safe:duration-[900ms] motion-safe:ease-[cubic-bezier(0.22,1,0.36,1)]",
+                "motion-safe:delay-100",
+                "[&[data-inview='true']]:opacity-100 [&[data-inview='true']]:translate-y-0",
+              ].join(" ")}>
                 {features[1].title}
               </h1>
-              <p className="text-[12px] xl:text-[16px] leading-[15px] xl:leading-[24px] 2xl:tracking-[3%] font-[150] 2xl:font-[200]  text-[#F2F2F2]">
+              <p className={[
+                "text-[12px] xl:text-[16px] leading-[15px] xl:leading-[24px] 2xl:tracking-[3%] font-[150] 2xl:font-[200]  text-[#F2F2F2]",
+                "opacity-0 translate-y-10",
+                "motion-safe:transition-all motion-safe:duration-[900ms] motion-safe:ease-[cubic-bezier(0.22,1,0.36,1)]",
+                "motion-safe:delay-300",
+                "[&[data-inview='true']]:opacity-100 [&[data-inview='true']]:translate-y-0",
+              ].join(" ")}>
                 Adjustable IPD range from 56-70mm ensures a clear, comfortable
                 view tailored to each user's eye distance
               </p>
@@ -304,10 +325,22 @@ const Features: React.FC = () => {
             className="group w-full  xl:h-2/5  h-full bg-[#070505] rounded-xl flex flex-col-reverse md:flex-row  md:items-center overflow-hidden"
           >
             <div data-rise className="md:w-2/5 h-full  flex  mt-[-100px] md:mt-0 z-10 flex-col gap-2 justify-end pb-8 pl-4 pt-4   2xl:pl-12 ">
-              <h1 className="text-[16px]   xl:text-[20px] font-[500] xl:font-normal xl:leading-[100%] xl:tracking-[0%] text-[#F2F2F2]">
+              <h1 className={[
+                "text-[16px]   xl:text-[20px] font-[500] xl:font-normal xl:leading-[100%] xl:tracking-[0%] text-[#F2F2F2]",
+                "opacity-0 translate-y-10",
+                "motion-safe:transition-all motion-safe:duration-[900ms] motion-safe:ease-[cubic-bezier(0.22,1,0.36,1)]",
+                "motion-safe:delay-100",
+                "[&[data-inview='true']]:opacity-100 [&[data-inview='true']]:translate-y-0",
+              ].join(" ")}>
                 {features[2].title}
               </h1>
-              <p className="text_[12px]  xl:text-[16px] leading-[15px] xl:leading-[24px] 2xl:tracking-[3%] font-[150] 2xl:font-[200]  text-[#F2F2F2]">
+              <p className={[
+                "text_[12px]  xl:text-[16px] leading-[15px] xl:leading-[24px] 2xl:tracking-[3%] font-[150] 2xl:font-[200]  text-[#F2F2F2]",
+                "opacity-0 translate-y-10",
+                "motion-safe:transition-all motion-safe:duration-[900ms] motion-safe:ease-[cubic-bezier(0.22,1,0.36,1)]",
+                "motion-safe:delay-300",
+                "[&[data-inview='true']]:opacity-100 [&[data-inview='true']]:translate-y-0",
+              ].join(" ")}>
                 5500mAh battery for long lasting power for extended use
               </p>
             </div>

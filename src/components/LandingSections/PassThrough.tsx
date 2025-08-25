@@ -1,61 +1,43 @@
-import React, { useLayoutEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import ScrollVideo from "./ScrollVideo";
-import gsap from "gsap";
 
 function PassThrough() {
-  const headingRef = useRef(null);
-  const paraRef = useRef(null);
-  const rootRef = useRef(null);
+  const headingRef = useRef<HTMLHeadingElement | null>(null);
+  const paraRef = useRef<HTMLParagraphElement | null>(null);
+  const rootRef = useRef<HTMLDivElement | null>(null);
 
-  const isClient = typeof window !== "undefined";
+  useEffect(() => {
+    if (typeof window === "undefined") return;
 
-  useLayoutEffect(() => {
-    if (!isClient) return;
+    const root = rootRef.current;
+    const heading = headingRef.current;
+    const para = paraRef.current;
+    if (!root || !heading || !para) return;
 
-    const prefersReduced = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    const ctx = gsap.context(() => {
-      const heading = headingRef.current;
-      const para = paraRef.current;
-      if (!heading || !para) return;
+    if (prefersReduced) {
+      heading.setAttribute("data-inview", "true");
+      para.setAttribute("data-inview", "true");
+      return;
+    }
 
-      if (prefersReduced) {
-        gsap.set([heading, para], { opacity: 1, x: 0 });
-        return;
-      }
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            heading.setAttribute("data-inview", "true");
+            para.setAttribute("data-inview", "true");
+            io.unobserve(entry.target);
+          }
+        }
+      },
+      { root: null, rootMargin: "0px 0px -20% 0px", threshold: 0.25 }
+    );
 
-      // Initial state for line-style reveal
-      gsap.set([heading, para], { opacity: 0, x: 100 });
-
-      // Trigger on scroll once
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              gsap.to([heading, para], {
-                opacity: 1,
-                x: 0,
-                duration: 1.3,
-                ease: "expo.out",
-                stagger: 0.22,
-                overwrite: "auto",
-              });
-              observer.disconnect();
-            }
-          });
-        },
-        { root: null, rootMargin: "0px 0px -20% 0px", threshold: 0.25 }
-      );
-
-      if (rootRef.current) observer.observe(rootRef.current);
-
-      return () => observer.disconnect();
-    }, rootRef);
-
-    return () => ctx.revert();
-  }, [isClient]);
+    io.observe(root);
+    return () => io.disconnect();
+  }, []);
 
   return (
     <div
@@ -75,7 +57,14 @@ function PassThrough() {
         <div className="text-left xl:w-1/3">
           <h1
             ref={headingRef}
-            className="text-[32px] md:text-[48px] md:leading-[52px] leading-[30px] xl:text-[64px] 2xl:text-[96px] xl:leading-[76px] 2xl:leading-[100px] font-light text-[#E2E2E2]"
+            className={[
+              "text-[32px] md:text-[48px] md:leading-[52px] leading-[30px] xl:text-[64px] 2xl:text-[96px] xl:leading-[76px] 2xl:leading-[100px] font-light text-[#E2E2E2]",
+              // animation additions:
+              "opacity-0 translate-x-24",
+              "motion-safe:transition-all motion-safe:duration-[1300ms] motion-safe:ease-[cubic-bezier(0.22,1,0.36,1)]",
+              "motion-safe:delay-100",
+              "[&[data-inview='true']]:opacity-100 [&[data-inview='true']]:translate-x-0",
+            ].join(" ")}
           >
             <span className="hidden xl:block">
               Clear
@@ -132,7 +121,14 @@ function PassThrough() {
 
           <p
             ref={paraRef}
-            className="max-w-[358px] md:max-w-[567px] lg:max-w-[362px] 2xl:max-w-[466px] text-[14px] md:text-[16px] xl:text-[20px] 2xl:text-[24px] md:leading-[24px] xl:leading-[32px] font-[200] text-[#C5C5C5] xl:tracking-[0.048px]"
+            className={[
+              "max-w-[358px] md:max-w-[567px] lg:max-w-[362px] 2xl:max-w-[466px] text-[14px] md:text-[16px] xl:text-[20px] 2xl:text-[24px] md:leading-[24px] xl:leading-[32px] font-[200] text-[#C5C5C5] xl:tracking-[0.048px]",
+              // animation additions:
+              "opacity-0 translate-x-24",
+              "motion-safe:transition-all motion-safe:duration-[1300ms] motion-safe:ease-[cubic-bezier(0.22,1,0.36,1)]",
+              "motion-safe:delay-300",
+              "[&[data-inview='true']]:opacity-100 [&[data-inview='true']]:translate-x-0",
+            ].join(" ")}
           >
             LumynXR delivers full-color passthrough with iToF depth sensing for
             a vivid and accurate Mixed Reality experience.
